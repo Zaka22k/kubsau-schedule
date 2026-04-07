@@ -1,0 +1,815 @@
+{
+  "updatedAt": "20:46",
+  "weeks": [
+    {
+      "week": 1,
+      "days": [
+        {
+          "title": "Понедельник | 13 апреля",
+          "isToday": false,
+          "lessons": [
+            {
+              "startTime": "08:00",
+              "endTime": "09:30",
+              "isLection": false,
+              "discipline": "",
+              "teachers": [],
+              "rooms": []
+            },
+            {
+              "startTime": "09:45",
+              "endTime": "11:15",
+              "isLection": false,
+              "discipline": "",
+              "teachers": [],
+              "rooms": []
+            },
+            {
+              "startTime": "11:30",
+              "endTime": "13:00",
+              "isLection": false,
+              "discipline": "",
+              "teachers": [],
+              "rooms": []
+            },
+            {
+              "startTime": "13:50",
+              "endTime": "15:20",
+              "isLection": false,
+              "discipline": "",
+              "teachers": [],
+              "rooms": []
+            },
+            {
+              "startTime": "15:35",
+              "endTime": "17:05",
+              "isLection": false,
+              "discipline": "",
+              "teachers": [],
+              "rooms": []
+            },
+            {
+              "startTime": "17:20",
+              "endTime": "18:50",
+              "isLection": false,
+              "discipline": "",
+              "teachers": [],
+              "rooms": []
+            }
+          ]
+        },
+        {
+          "title": "Вторник | 14 апреля",
+          "isToday": false,
+          "lessons": [
+            {
+              "startTime": "08:00",
+              "endTime": "09:30",
+              "isLection": false,
+              "discipline": "",
+              "teachers": [],
+              "rooms": []
+            },
+            {
+              "startTime": "09:45",
+              "endTime": "11:15",
+              "isLection": false,
+              "discipline": "",
+              "teachers": [],
+              "rooms": []
+            },
+            {
+              "startTime": "11:30",
+              "endTime": "13:00",
+              "isLection": false,
+              "discipline": "Управление ИТ-проектами",
+              "teachers": [
+                "Ефанова Н. В."
+              ],
+              "rooms": [
+                "402эк"
+              ]
+            },
+            {
+              "startTime": "13:50",
+              "endTime": "15:20",
+              "isLection": false,
+              "discipline": "",
+              "teachers": [],
+              "rooms": []
+            },
+            {
+              "startTime": "15:35",
+              "endTime": "17:05",
+              "isLection": false,
+              "discipline": "",
+              "teachers": [],
+              "rooms": []
+            },
+            {
+              "startTime": "17:20",
+              "endTime": "18:50",
+              "isLection": false,
+              "discipline": "",
+              "teachers": [],
+              "rooms": []
+            }
+          ]
+        },
+        {
+          "title": "Среда | 15 апреля",
+          "isToday": false,
+          "lessons": [
+            {
+              "startTime": "08:00",
+              "endTime": "09:30",
+              "isLection": false,
+              "discipline": "",
+              "teachers": [],
+              "rooms": []
+            },
+            {
+              "startTime": "09:45",
+              "endTime": "11:15",
+              "isLection": false,
+              "discipline": "",
+              "teachers": [],
+              "rooms": []
+            },
+            {
+              "startTime": "11:30",
+              "endTime": "13:00",
+              "isLection": false,
+              "discipline": "Стандартизация, сертификация и управление качеством информационных систем",
+              "teachers": [
+                "Минина Е. А."
+              ],
+              "rooms": [
+                "212эк"
+              ]
+            },
+            {
+              "startTime": "13:50",
+              "endTime": "15:20",
+              "isLection": false,
+              "discipline": "",
+              "teachers": [],
+              "rooms": []
+            },
+            {
+              "startTime": "15:35",
+              "endTime": "17:05",
+              "isLection": false,
+              "discipline": "",
+              "teachers": [],
+              "rooms": []
+            },
+            {
+              "startTime": "17:20",
+              "endTime": "18:50",
+              "isLection": false,
+              "discipline": "",
+              "teachers": [],
+              "rooms": []
+            }
+          ]
+        },
+        {
+          "title": "Четверг | 16 апреля",
+          "isToday": false,
+          "lessons": [
+            {
+              "startTime": "08:00",
+              "endTime": "09:30",
+              "isLection": false,
+              "discipline": "",
+              "teachers": [],
+              "rooms": []
+            },
+            {
+              "startTime": "09:45",
+              "endTime": "11:15",
+              "isLection": false,
+              "discipline": "",
+              "teachers": [],
+              "rooms": []
+            },
+            {
+              "startTime": "11:30",
+              "endTime": "13:00",
+              "isLection": false,
+              "discipline": "Основы теории управления",
+              "teachers": [
+                "Лукьяненко Т. В."
+              ],
+              "rooms": [
+                "303эк"
+              ]
+            },
+            {
+              "startTime": "13:50",
+              "endTime": "15:20",
+              "isLection": false,
+              "discipline": "",
+              "teachers": [],
+              "rooms": []
+            },
+            {
+              "startTime": "15:35",
+              "endTime": "17:05",
+              "isLection": false,
+              "discipline": "",
+              "teachers": [],
+              "rooms": []
+            },
+            {
+              "startTime": "17:20",
+              "endTime": "18:50",
+              "isLection": false,
+              "discipline": "",
+              "teachers": [],
+              "rooms": []
+            }
+          ]
+        },
+        {
+          "title": "Пятница | 17 апреля",
+          "isToday": false,
+          "lessons": [
+            {
+              "startTime": "08:00",
+              "endTime": "09:30",
+              "isLection": false,
+              "discipline": "",
+              "teachers": [],
+              "rooms": []
+            },
+            {
+              "startTime": "09:45",
+              "endTime": "11:15",
+              "isLection": false,
+              "discipline": "",
+              "teachers": [],
+              "rooms": []
+            },
+            {
+              "startTime": "11:30",
+              "endTime": "13:00",
+              "isLection": false,
+              "discipline": "",
+              "teachers": [],
+              "rooms": []
+            },
+            {
+              "startTime": "13:50",
+              "endTime": "15:20",
+              "isLection": false,
+              "discipline": "",
+              "teachers": [],
+              "rooms": []
+            },
+            {
+              "startTime": "15:35",
+              "endTime": "17:05",
+              "isLection": false,
+              "discipline": "",
+              "teachers": [],
+              "rooms": []
+            },
+            {
+              "startTime": "17:20",
+              "endTime": "18:50",
+              "isLection": false,
+              "discipline": "",
+              "teachers": [],
+              "rooms": []
+            }
+          ]
+        },
+        {
+          "title": "Суббота | 18 апреля",
+          "isToday": false,
+          "lessons": [
+            {
+              "startTime": "08:00",
+              "endTime": "09:30",
+              "isLection": false,
+              "discipline": "",
+              "teachers": [],
+              "rooms": []
+            },
+            {
+              "startTime": "09:45",
+              "endTime": "11:15",
+              "isLection": false,
+              "discipline": "",
+              "teachers": [],
+              "rooms": []
+            },
+            {
+              "startTime": "11:30",
+              "endTime": "13:00",
+              "isLection": false,
+              "discipline": "",
+              "teachers": [],
+              "rooms": []
+            },
+            {
+              "startTime": "13:15",
+              "endTime": "14:45",
+              "isLection": false,
+              "discipline": "",
+              "teachers": [],
+              "rooms": []
+            },
+            {
+              "startTime": "15:00",
+              "endTime": "16:30",
+              "isLection": false,
+              "discipline": "",
+              "teachers": [],
+              "rooms": []
+            },
+            {
+              "startTime": "16:45",
+              "endTime": "18:15",
+              "isLection": false,
+              "discipline": "",
+              "teachers": [],
+              "rooms": []
+            }
+          ]
+        },
+        {
+          "title": "Воскресенье | 19 апреля",
+          "isToday": false,
+          "lessons": [
+            {
+              "startTime": "08:00",
+              "endTime": "09:30",
+              "isLection": false,
+              "discipline": "",
+              "teachers": [],
+              "rooms": []
+            },
+            {
+              "startTime": "09:45",
+              "endTime": "11:15",
+              "isLection": false,
+              "discipline": "",
+              "teachers": [],
+              "rooms": []
+            },
+            {
+              "startTime": "11:30",
+              "endTime": "13:00",
+              "isLection": false,
+              "discipline": "",
+              "teachers": [],
+              "rooms": []
+            },
+            {
+              "startTime": "13:50",
+              "endTime": "15:20",
+              "isLection": false,
+              "discipline": "",
+              "teachers": [],
+              "rooms": []
+            },
+            {
+              "startTime": "15:35",
+              "endTime": "17:05",
+              "isLection": false,
+              "discipline": "",
+              "teachers": [],
+              "rooms": []
+            },
+            {
+              "startTime": "17:20",
+              "endTime": "18:50",
+              "isLection": false,
+              "discipline": "",
+              "teachers": [],
+              "rooms": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "days": [
+        {
+          "title": "Понедельник | 6 апреля",
+          "isToday": false,
+          "lessons": [
+            {
+              "startTime": "08:00",
+              "endTime": "09:30",
+              "isLection": false,
+              "discipline": "Основы теории управления",
+              "teachers": [
+                "Русак С. Н."
+              ],
+              "rooms": [
+                "405эк"
+              ]
+            },
+            {
+              "startTime": "09:45",
+              "endTime": "11:15",
+              "isLection": false,
+              "discipline": "Стандартизация, сертификация и управление качеством информационных систем",
+              "teachers": [
+                "Минина Е. А."
+              ],
+              "rooms": [
+                "216эк"
+              ]
+            },
+            {
+              "startTime": "11:30",
+              "endTime": "13:00",
+              "isLection": false,
+              "discipline": "",
+              "teachers": [],
+              "rooms": []
+            },
+            {
+              "startTime": "13:50",
+              "endTime": "15:20",
+              "isLection": false,
+              "discipline": "Кроссплатформенные приложения",
+              "teachers": [
+                "Иванова Е. А."
+              ],
+              "rooms": [
+                "401эк"
+              ]
+            },
+            {
+              "startTime": "15:35",
+              "endTime": "17:05",
+              "isLection": false,
+              "discipline": "",
+              "teachers": [],
+              "rooms": []
+            },
+            {
+              "startTime": "17:20",
+              "endTime": "18:50",
+              "isLection": false,
+              "discipline": "",
+              "teachers": [],
+              "rooms": []
+            }
+          ]
+        },
+        {
+          "title": "Вторник | 7 апреля",
+          "isToday": true,
+          "lessons": [
+            {
+              "startTime": "08:00",
+              "endTime": "09:30",
+              "isLection": false,
+              "discipline": "Управление ИТ-проектами",
+              "teachers": [
+                "Ефанова Н. В."
+              ],
+              "rooms": [
+                "214эк"
+              ]
+            },
+            {
+              "startTime": "09:45",
+              "endTime": "11:15",
+              "isLection": false,
+              "discipline": "Управление ИТ-проектами",
+              "teachers": [
+                "Ефанова Н. В."
+              ],
+              "rooms": [
+                "214эк"
+              ]
+            },
+            {
+              "startTime": "11:30",
+              "endTime": "13:00",
+              "isLection": true,
+              "discipline": "Основы теории управления",
+              "teachers": [
+                "Лукьяненко Т. В."
+              ],
+              "rooms": [
+                "403эк"
+              ]
+            },
+            {
+              "startTime": "13:50",
+              "endTime": "15:20",
+              "isLection": false,
+              "discipline": "",
+              "teachers": [],
+              "rooms": []
+            },
+            {
+              "startTime": "15:35",
+              "endTime": "17:05",
+              "isLection": false,
+              "discipline": "",
+              "teachers": [],
+              "rooms": []
+            },
+            {
+              "startTime": "17:20",
+              "endTime": "18:50",
+              "isLection": false,
+              "discipline": "",
+              "teachers": [],
+              "rooms": []
+            }
+          ]
+        },
+        {
+          "title": "Среда | 8 апреля",
+          "isToday": false,
+          "lessons": [
+            {
+              "startTime": "08:00",
+              "endTime": "09:30",
+              "isLection": false,
+              "discipline": "",
+              "teachers": [],
+              "rooms": []
+            },
+            {
+              "startTime": "09:45",
+              "endTime": "11:15",
+              "isLection": false,
+              "discipline": "",
+              "teachers": [],
+              "rooms": []
+            },
+            {
+              "startTime": "11:30",
+              "endTime": "13:00",
+              "isLection": false,
+              "discipline": "Стандартизация, сертификация и управление качеством информационных систем",
+              "teachers": [
+                "Минина Е. А."
+              ],
+              "rooms": [
+                "408эк"
+              ]
+            },
+            {
+              "startTime": "13:50",
+              "endTime": "15:20",
+              "isLection": false,
+              "discipline": "",
+              "teachers": [],
+              "rooms": []
+            },
+            {
+              "startTime": "15:35",
+              "endTime": "17:05",
+              "isLection": false,
+              "discipline": "",
+              "teachers": [],
+              "rooms": []
+            },
+            {
+              "startTime": "17:20",
+              "endTime": "18:50",
+              "isLection": false,
+              "discipline": "",
+              "teachers": [],
+              "rooms": []
+            }
+          ]
+        },
+        {
+          "title": "Четверг | 9 апреля",
+          "isToday": false,
+          "lessons": [
+            {
+              "startTime": "08:00",
+              "endTime": "09:30",
+              "isLection": false,
+              "discipline": "",
+              "teachers": [],
+              "rooms": []
+            },
+            {
+              "startTime": "09:45",
+              "endTime": "11:15",
+              "isLection": false,
+              "discipline": "",
+              "teachers": [],
+              "rooms": []
+            },
+            {
+              "startTime": "11:30",
+              "endTime": "13:00",
+              "isLection": false,
+              "discipline": "Кроссплатформенные приложения",
+              "teachers": [
+                "Иванова Е. А."
+              ],
+              "rooms": [
+                "101эк"
+              ]
+            },
+            {
+              "startTime": "13:50",
+              "endTime": "15:20",
+              "isLection": false,
+              "discipline": "",
+              "teachers": [],
+              "rooms": []
+            },
+            {
+              "startTime": "15:35",
+              "endTime": "17:05",
+              "isLection": false,
+              "discipline": "",
+              "teachers": [],
+              "rooms": []
+            },
+            {
+              "startTime": "17:20",
+              "endTime": "18:50",
+              "isLection": false,
+              "discipline": "",
+              "teachers": [],
+              "rooms": []
+            }
+          ]
+        },
+        {
+          "title": "Пятница | 10 апреля",
+          "isToday": false,
+          "lessons": [
+            {
+              "startTime": "08:00",
+              "endTime": "09:30",
+              "isLection": false,
+              "discipline": "",
+              "teachers": [],
+              "rooms": []
+            },
+            {
+              "startTime": "09:45",
+              "endTime": "11:15",
+              "isLection": false,
+              "discipline": "",
+              "teachers": [],
+              "rooms": []
+            },
+            {
+              "startTime": "11:30",
+              "endTime": "13:00",
+              "isLection": false,
+              "discipline": "",
+              "teachers": [],
+              "rooms": []
+            },
+            {
+              "startTime": "13:50",
+              "endTime": "15:20",
+              "isLection": false,
+              "discipline": "",
+              "teachers": [],
+              "rooms": []
+            },
+            {
+              "startTime": "15:35",
+              "endTime": "17:05",
+              "isLection": false,
+              "discipline": "",
+              "teachers": [],
+              "rooms": []
+            },
+            {
+              "startTime": "17:20",
+              "endTime": "18:50",
+              "isLection": false,
+              "discipline": "",
+              "teachers": [],
+              "rooms": []
+            }
+          ]
+        },
+        {
+          "title": "Суббота | 11 апреля",
+          "isToday": false,
+          "lessons": [
+            {
+              "startTime": "08:00",
+              "endTime": "09:30",
+              "isLection": false,
+              "discipline": "",
+              "teachers": [],
+              "rooms": []
+            },
+            {
+              "startTime": "09:45",
+              "endTime": "11:15",
+              "isLection": false,
+              "discipline": "",
+              "teachers": [],
+              "rooms": []
+            },
+            {
+              "startTime": "11:30",
+              "endTime": "13:00",
+              "isLection": false,
+              "discipline": "",
+              "teachers": [],
+              "rooms": []
+            },
+            {
+              "startTime": "13:15",
+              "endTime": "14:45",
+              "isLection": false,
+              "discipline": "",
+              "teachers": [],
+              "rooms": []
+            },
+            {
+              "startTime": "15:00",
+              "endTime": "16:30",
+              "isLection": false,
+              "discipline": "",
+              "teachers": [],
+              "rooms": []
+            },
+            {
+              "startTime": "16:45",
+              "endTime": "18:15",
+              "isLection": false,
+              "discipline": "",
+              "teachers": [],
+              "rooms": []
+            }
+          ]
+        },
+        {
+          "title": "Воскресенье | 12 апреля",
+          "isToday": false,
+          "lessons": [
+            {
+              "startTime": "08:00",
+              "endTime": "09:30",
+              "isLection": false,
+              "discipline": "",
+              "teachers": [],
+              "rooms": []
+            },
+            {
+              "startTime": "09:45",
+              "endTime": "11:15",
+              "isLection": false,
+              "discipline": "",
+              "teachers": [],
+              "rooms": []
+            },
+            {
+              "startTime": "11:30",
+              "endTime": "13:00",
+              "isLection": false,
+              "discipline": "",
+              "teachers": [],
+              "rooms": []
+            },
+            {
+              "startTime": "13:50",
+              "endTime": "15:20",
+              "isLection": false,
+              "discipline": "",
+              "teachers": [],
+              "rooms": []
+            },
+            {
+              "startTime": "15:35",
+              "endTime": "17:05",
+              "isLection": false,
+              "discipline": "",
+              "teachers": [],
+              "rooms": []
+            },
+            {
+              "startTime": "17:20",
+              "endTime": "18:50",
+              "isLection": false,
+              "discipline": "",
+              "teachers": [],
+              "rooms": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
