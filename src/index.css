@@ -81,6 +81,20 @@ body {
   flex-direction: column;
 }
 
+@media (max-width: 450px) {
+  :root {
+    --subtitle-font: 20px;
+    --body-font: 16px;
+    --caption-font: 12px;
+
+    --compact-spacing: 2px;
+    --beetwen-controls-spacing: 6px;
+    --beetwen-control_header-spacing: 10px;
+    --card-spacing: 12px;
+    --beetwen-sections-spacing: 20px;
+  }
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     /* TEXT */
