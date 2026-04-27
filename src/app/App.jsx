@@ -32,11 +32,7 @@ const App = () => {
       return (
         <>
           {[1, 2].map((week) => (
-            <WeekSection
-              key={week}
-              weekNumber={week}
-              days={schedule.weeks[week]}
-            />
+            <WeekSection key={week} days={schedule.weeks[week]} />
           ))}
         </>
       );
@@ -48,7 +44,9 @@ const App = () => {
   return (
     <div className={styles.root}>
       <header className={styles.header}>
-        КУБГАУ <span>Расписание</span>
+        <a href="https://kubsau.ru">
+          КУБГАУ <span>Расписание</span>
+        </a>
       </header>
 
       <main className={styles.main}>{getMainContent()}</main>

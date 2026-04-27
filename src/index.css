@@ -16,14 +16,17 @@
   --text-color-secondary: rgb(92, 92, 92);
   --text-color-tertiary: rgb(134, 134, 134);
   --on-accent-text-color: rgb(255, 255, 255);
+  --accent-text-color-primary: rgb(26, 78, 33);
 
   /* FILL */
   --card-bg-color: rgb(253, 253, 253);
-  --card-bg-color-secondary: rgb(240, 240, 240);
-  --control-bg-color: rgb(243, 243, 243);
-  --control-bg-color-secondary: rgb(237, 237, 237);
-  --control-bg-color-tertiary: rgb(229, 229, 229);
-  --active-control-bg-color: rgb(255, 255, 255);
+
+  --control-bg-color: rgba(243, 243, 243, 0.6);
+  --control-bg-color-secondary: rgba(237, 237, 237, 0.6);
+  --control-bg-color-tertiary: rgba(229, 229, 229, 0.6);
+  --active-control-bg-color: rgba(255, 255, 255, 0.6);
+
+  --accent-control-bg-color: rgb(26, 78, 33);
 
   /* STROKE */
   --divider-stroke-color: rgb(229, 229, 229);
@@ -41,6 +44,7 @@
 
   /* APP */
   --bg-color: rgb(243, 243, 243);
+  --transp-bg-color: rgba(243, 243, 243, 0.6);
 }
 
 * {
@@ -51,6 +55,11 @@
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   color: var(--text-color-primary);
 
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
   &::-webkit-scrollbar {
     width: 4px;
   }
@@ -58,6 +67,10 @@
     background: var(--control-stroke-color);
     border-radius: 10px;
   }
+
+  transition:
+    background-color 0.167s ease-in,
+    color 0.167s ease-in;
 }
 
 html,
@@ -68,14 +81,6 @@ body {
   flex-direction: column;
 }
 
-@media (max-width: 800px) {
-  :root {
-    --subtitle-font: 20px;
-    --body-font: 16px;
-    --caption-font: 12px;
-  }
-}
-
 @media (prefers-color-scheme: dark) {
   :root {
     /* TEXT */
@@ -84,14 +89,17 @@ body {
     --text-color-tertiary: rgb(150, 150, 150);
     --accent-text-color-primary: rgb(137, 241, 165);
     --on-accent-text-color: rgb(0, 0, 0);
+    --accent-text-color-primary: rgb(167, 233, 175);
 
     /* FILL */
     --card-bg-color: rgb(39, 39, 39);
-    --card-bg-color-secondary: rgb(56, 56, 56);
-    --control-bg-color: rgb(45, 45, 45);
-    --control-bg-color-secondary: rgb(50, 50, 50);
-    --control-bg-color-tertiary: rgb(39, 39, 39);
-    --active-control-bg-color: rgb(31, 31, 31);
+    --control-bg-color: rgba(45, 45, 45, 0.6);
+
+    --control-bg-color-secondary: rgba(50, 50, 50, 0.6);
+    --control-bg-color-tertiary: rgba(39, 39, 39, 0.6);
+    --active-control-bg-color: rgba(31, 31, 31, 0.6);
+
+    --accent-control-bg-color: rgb(129, 207, 140);
 
     /* STROKE */
     --divider-stroke-color: rgb(50, 50, 50);
@@ -109,5 +117,6 @@ body {
 
     /* APP */
     --bg-color: rgb(32, 32, 32);
+    --transp-bg-color: rgba(32, 32, 32, 0.6);
   }
 }

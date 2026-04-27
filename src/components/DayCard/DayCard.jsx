@@ -29,7 +29,7 @@ const DayCard = (props) => {
     <table
       className={styles.cardContainer}
       ref={dayRef}
-      style={{ scrollMarginTop: "20px" }}
+      style={{ scrollMarginTop: "50px" }}
     >
       <thead>
         <tr className={styles.title}>
@@ -82,10 +82,17 @@ const Lesson = (props) => {
           <div className={styles.discipline}>{lesson.discipline}</div>
           <div className={styles.teachers}>{lesson.teachers.join(", ")}</div>
         </td>
-        <td className={styles.rooms}>
-          {lesson.rooms.length > 0
-            ? lesson.rooms.join("\n")
-            : lesson.groups.join("\n")}
+        <td className={styles.whoWhere}>
+          {(lesson.rooms.length > 0 ? lesson.rooms : lesson.groups).map(
+            (item) => (
+              <a
+                key={item}
+                href={`./?t=${lesson.rooms.length > 0 ? 3 : 1}&v=${item}`}
+              >
+                {item}
+              </a>
+            ),
+          )}
         </td>
       </tr>
       {!isLast && <tr className={styles.divider}></tr>}

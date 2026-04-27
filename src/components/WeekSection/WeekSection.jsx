@@ -1,16 +1,12 @@
-import { DayCard, WeekDivider } from "@components";
+import { DayCard } from "@components";
 import styles from "./WeekSection.module.css";
 
-const WeekSection = ({ weekNumber = 1, days = [] }) => {
+const WeekSection = ({ days = [] }) => {
   return (
-    <section className={styles.section}>
-      <WeekDivider>Неделя {weekNumber}</WeekDivider>
-
-      <div className={styles.list}>
-        {days.map((day, index) => (
-          <DayCard key={index} day={day} />
-        ))}
-      </div>
+    <section className={styles.list}>
+      {days.map((day, index) => (
+        <DayCard key={index} day={day} />
+      ))}
     </section>
   );
 };

@@ -14,7 +14,7 @@ const SearchInput = (props) => {
     setTimeout(() => {
       onSearch(value);
       setLoading(false);
-    }, 100);
+    }, 50);
   };
 
   const handleSelect = (value) => {
