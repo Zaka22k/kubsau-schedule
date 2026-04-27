@@ -50,6 +50,14 @@
 
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   color: var(--text-color-primary);
+
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: var(--control-stroke-color);
+    border-radius: 10px;
+  }
 }
 
 html,

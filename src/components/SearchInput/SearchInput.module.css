@@ -28,29 +28,13 @@
   justify-content: space-between;
   gap: var(--beetwen-controls-spacing);
 
-  .icon,
-  .spinner {
+  .icon {
     width: 28px;
     height: 28px;
     flex-shrink: 0;
 
     & path {
       fill: var(--text-color-secondary) !important;
-    }
-  }
-
-  .spinner {
-    animation: spin 0.8s linear infinite;
-    transform-origin: center;
-    opacity: 0;
-    scale: 0;
-    transition:
-      opacity 0.167s ease-in,
-      scale 0.167s ease-in;
-
-    &.visible {
-      opacity: 1;
-      scale: 1;
     }
   }
 
@@ -74,13 +58,6 @@
   flex-direction: column-reverse;
   overflow-y: auto;
   margin-bottom: 8px;
-  &::-webkit-scrollbar {
-    width: 4px;
-  }
-  &::-webkit-scrollbar-thumb {
-    background: var(--control-stroke-color);
-    border-radius: 10px;
-  }
 
   & li {
     list-style: none;
@@ -97,11 +74,5 @@
     &:active {
       background-color: var(--control-bg-color-tertiary);
     }
-  }
-}
-
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
   }
 }

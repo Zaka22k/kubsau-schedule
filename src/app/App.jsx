@@ -1,4 +1,4 @@
-import { SearchInput, WeekDivider, WeekSection } from "@components";
+import { SearchInput, WeekSection, Spinner } from "@components";
 import useApp from "./useApp";
 import { Fragment } from "react";
 import styles from "./App.module.css";
@@ -13,13 +13,23 @@ const App = () => {
     loading,
   } = useApp();
 
-  return (
-    <div className={styles.root}>
-      <header className={styles.header}>
-        КУБГАУ <span>Расписание</span>
-      </header>
+  const getMainContent = () => {
+    if (loading === 1) {
+      return (
+        <div className={styles.emptyMessage}>
+          <Spinner loading={true} size={48} />
+        </div>
+      );
+    }
 
-      {schedule ? (
+    if (loading === -1) {
+      return (
+        <div className={styles.emptyMessage}>Ошибка загрузки расписания</div>
+      );
+    }
+
+    if (schedule) {
+      return (
         <>
           {[1, 2].map((week) => (
             <WeekSection
@@ -29,11 +39,19 @@ const App = () => {
             />
           ))}
         </>
-      ) : (
-        <div className={styles.emptyMessage}>
-          Введите группу или номер аудитории
-        </div>
-      )}
+      );
+    }
+
+    return <div className={styles.emptyMessage}>Расписание не загружено</div>;
+  };
+
+  return (
+    <div className={styles.root}>
+      <header className={styles.header}>
+        КУБГАУ <span>Расписание</span>
+      </header>
+
+      <main className={styles.main}>{getMainContent()}</main>
 
       <SearchInput
         onSearch={getSuggestions}
