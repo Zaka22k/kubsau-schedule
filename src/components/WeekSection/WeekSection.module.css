@@ -1,0 +1,18 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--beetwen-control_header-spacing);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (min-width: 700px) {
+  .list {
+    gap: var(--beetwen-sections-spacing);
+  }
+}

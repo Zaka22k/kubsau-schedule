@@ -1,0 +1,20 @@
+.dividerWrapper {
+  display: flex;
+  align-items: center;
+  padding: var(--beetwen-controls-spacing) var(--beetwen-control_header-spacing);
+  position: sticky;
+  top: 0px;
+  background-color: var(--bg-color);
+
+  .dividerTitle {
+    font-size: var(--body-font);
+    width: 30%;
+    text-align: center;
+    font-weight: 600;
+  }
+  .line {
+    height: 1px;
+    background-color: var(--divider-stroke-color);
+    width: 35%;
+  }
+}

@@ -1,0 +1,107 @@
+.searchContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background-color: var(--control-bg-color);
+  border: 1px solid var(--control-stroke-color);
+  padding: 12px 16px;
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  max-height: 450px;
+  width: calc(100% - 32px);
+  max-width: 700px;
+  border-radius: 36px;
+  transition: background-color 0.167s ease-in;
+
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+  &.focus {
+    background-color: var(--active-control-bg-color);
+  }
+}
+
+.inputContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--beetwen-controls-spacing);
+
+  .icon,
+  .spinner {
+    width: 28px;
+    height: 28px;
+    flex-shrink: 0;
+
+    & path {
+      fill: var(--text-color-secondary) !important;
+    }
+  }
+
+  .spinner {
+    animation: spin 0.8s linear infinite;
+    transform-origin: center;
+    opacity: 0;
+    scale: 0;
+    transition:
+      opacity 0.167s ease-in,
+      scale 0.167s ease-in;
+
+    &.visible {
+      opacity: 1;
+      scale: 1;
+    }
+  }
+
+  .input {
+    background-color: transparent;
+    border: none;
+    width: 100%;
+    font-size: var(--body-font);
+    color: var(--text-color-primary);
+    outline: none;
+    transition: all 0.167s ease-in;
+
+    &::placeholder {
+      color: var(--text-color-tertiary);
+    }
+  }
+}
+
+.suggestionList {
+  display: flex;
+  flex-direction: column-reverse;
+  overflow-y: auto;
+  margin-bottom: 8px;
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: var(--control-stroke-color);
+    border-radius: 10px;
+  }
+
+  & li {
+    list-style: none;
+    font-size: var(--body-font);
+    color: var(--text-color-secondary);
+    padding: 8px 12px;
+    border-radius: 16px;
+
+    &:hover {
+      color: var(--text-color-primary);
+      background-color: var(--control-bg-color-secondary);
+    }
+
+    &:active {
+      background-color: var(--control-bg-color-tertiary);
+    }
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

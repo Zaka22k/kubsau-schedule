@@ -1,0 +1,105 @@
+:root {
+  /* FONT */
+  --subtitle-font: 24px;
+  --body-font: 18px;
+  --caption-font: 14px;
+
+  /* PADDING */
+  --compact-spacing: 4px;
+  --beetwen-controls-spacing: 8px;
+  --beetwen-control_header-spacing: 12px;
+  --card-spacing: 16px;
+  --beetwen-sections-spacing: 24px;
+
+  /* TEXT */
+  --text-color-primary: rgb(26, 26, 26);
+  --text-color-secondary: rgb(92, 92, 92);
+  --text-color-tertiary: rgb(134, 134, 134);
+  --on-accent-text-color: rgb(255, 255, 255);
+
+  /* FILL */
+  --card-bg-color: rgb(253, 253, 253);
+  --card-bg-color-secondary: rgb(240, 240, 240);
+  --control-bg-color: rgb(243, 243, 243);
+  --control-bg-color-secondary: rgb(237, 237, 237);
+  --control-bg-color-tertiary: rgb(229, 229, 229);
+  --active-control-bg-color: rgb(255, 255, 255);
+
+  /* STROKE */
+  --divider-stroke-color: rgb(229, 229, 229);
+  --card-stroke-color: rgb(229, 229, 229);
+  --control-stroke-color: rgb(229, 229, 229);
+
+  --system-success-color: rgb(15, 123, 15);
+  --system-success-bg-color: rgb(223, 246, 221);
+
+  --system-warning-color: rgb(157, 93, 0);
+  --system-warning-bg-color: rgb(255, 244, 206);
+
+  --system-error-color: rgb(196, 43, 28);
+  --system-error-bg-color: rgb(253, 231, 233);
+
+  /* APP */
+  --bg-color: rgb(243, 243, 243);
+}
+
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--text-color-primary);
+}
+
+html,
+body {
+  height: 100vh;
+  background-color: var(--bg-color);
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 800px) {
+  :root {
+    --subtitle-font: 20px;
+    --body-font: 16px;
+    --caption-font: 12px;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* TEXT */
+    --text-color-primary: rgb(255, 255, 255);
+    --text-color-secondary: rgb(204, 204, 204);
+    --text-color-tertiary: rgb(150, 150, 150);
+    --accent-text-color-primary: rgb(137, 241, 165);
+    --on-accent-text-color: rgb(0, 0, 0);
+
+    /* FILL */
+    --card-bg-color: rgb(39, 39, 39);
+    --card-bg-color-secondary: rgb(56, 56, 56);
+    --control-bg-color: rgb(45, 45, 45);
+    --control-bg-color-secondary: rgb(50, 50, 50);
+    --control-bg-color-tertiary: rgb(39, 39, 39);
+    --active-control-bg-color: rgb(31, 31, 31);
+
+    /* STROKE */
+    --divider-stroke-color: rgb(50, 50, 50);
+    --card-stroke-color: rgb(29, 29, 29);
+    --control-stroke-color: rgb(48, 48, 48);
+
+    --system-success-color: rgb(108, 203, 95);
+    --system-success-bg-color: rgb(57, 61, 27);
+
+    --system-warning-color: rgb(252, 225, 0);
+    --system-warning-bg-color: rgb(67, 53, 25);
+
+    --system-error-color: rgb(255, 153, 164);
+    --system-error-bg-color: rgb(68, 39, 38);
+
+    /* APP */
+    --bg-color: rgb(32, 32, 32);
+  }
+}
