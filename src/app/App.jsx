@@ -15,6 +15,7 @@ const App = () => {
   const [activeWeek, setActiveWeek] = useState(null);
   const mainRef = useRef(null);
   const weekRefsRef = useRef(new Map());
+  const weeksArray = schedule?.currentWeek === 1 ? [1, 2] : [2, 1];
 
   const registerWeekElement = (week, element) => {
     if (!element) {
@@ -70,7 +71,7 @@ const App = () => {
     if (schedule) {
       return (
         <>
-          {[1, 2].map((week) => (
+          {weeksArray.map((week) => (
             <WeekSection
               key={week}
               week={week}

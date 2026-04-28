@@ -63,7 +63,7 @@
   .times {
     color: var(--text-color-tertiary);
 
-    &:hover {
+    &.now {
       color: var(--text-color-primary);
     }
   }

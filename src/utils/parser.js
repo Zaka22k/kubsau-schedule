@@ -39,6 +39,21 @@ function parseLesson($, lesson) {
       .map((i, el) => $(el).text().trim())
       .get();
 
+    const now = new Date();
+    const currentTimeStr =
+      now.getHours().toString().padStart(2, "0") +
+      ":" +
+      now.getMinutes().toString().padStart(2, "0");
+
+    let isNow = false;
+    if (startTime && endTime) {
+      const startDate = new Date(`1970-01-01T${startTime}:00Z`);
+      const endDate = new Date(`1970-01-01T${endTime}:00Z`);
+      const currentDate = new Date(`1970-01-01T${currentTimeStr}:00Z`);
+
+      isNow = currentDate >= startDate && currentDate <= endDate;
+    }
+
     return {
       startTime: startTime,
       endTime: endTime,
@@ -47,6 +62,7 @@ function parseLesson($, lesson) {
       teachers: teachers,
       rooms: rooms,
       groups: groups,
+      isNow: isNow,
     };
   } catch (err) {
     throw new Error("Ошибка парсинга урока: " + err.message);

@@ -45,6 +45,7 @@ const DayCard = (props) => {
             key={index}
             lesson={lesson}
             isLast={index === day.lessons.length - 1}
+            isToday={day.isToday}
           />
         ))}
       </tbody>
@@ -64,14 +65,18 @@ const Lesson = (props) => {
       teachers: [],
       rooms: [],
       groups: [],
+      isNow: false,
     },
     isLast = false,
+    isToday = false,
   } = props;
 
   return (
     <>
       <tr className={styles.lessonContainer}>
-        <td className={styles.times}>
+        <td
+          className={`${styles.times} ${lesson.isNow && isToday && styles.now}`}
+        >
           {lesson.startTime}
           <br />
           {lesson.endTime}
