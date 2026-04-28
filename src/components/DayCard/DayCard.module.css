@@ -1,7 +1,6 @@
 .cardContainer {
   padding: var(--card-spacing);
   width: 100%;
-  transition: all 0.167s ease-out;
 
   .title {
     display: flex;
@@ -22,10 +21,10 @@
       color: var(--text-color-secondary);
 
       &.today {
-        color: var(--on-accent-text-color);
-        background-color: var(--accent-control-bg-color);
+        color: var(--text-color-inverted);
+        background-color: var(--system-green);
         padding: 2px 12px;
-        border-radius: 999px;
+        border-radius: var(--circular-border-radius);
       }
     }
   }
@@ -39,8 +38,8 @@
 
 @media (min-width: 900px) {
   .cardContainer {
-    background-color: var(--card-bg-color);
-    border-radius: 8px;
+    background-color: var(--card-background-color);
+    border-radius: var(--card-border-radius);
     border: 1px solid var(--card-stroke-color);
     max-width: 750px;
     box-shadow:
@@ -94,8 +93,8 @@
     padding: var(--compact-spacing) var(--beetwen-control_header-spacing);
 
     &.lection {
-      background-color: var(--system-warning-bg-color);
-      border-radius: 4px;
+      background-color: var(--system-yellow);
+      border-radius: var(--control-border-radius);
     }
 
     .discipline {
@@ -110,7 +109,7 @@
 }
 
 .divider {
-  background-color: var(--divider-stroke-color);
+  background-color: var(--divider-color);
   height: 1px;
   width: 100%;
 }

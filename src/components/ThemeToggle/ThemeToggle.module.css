@@ -1,0 +1,20 @@
+.toggle {
+  border: none;
+  border-radius: var(--circular-border-radius);
+  color: var(--text-color-primary);
+  font-size: var(--body-font);
+  flex-shrink: 0;
+  padding: var(--compact-spacing);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+
+  &:hover {
+    background-color: var(--control-background-color-secondary);
+  }
+
+  &:active {
+    background-color: var(--control-background-color-tertiary);
+  }
+}

@@ -5,27 +5,15 @@
   overflow: hidden;
 }
 
-.header {
-  font-size: var(--subtitle-font);
-  padding: var(--beetwen-control_header-spacing) var(--card-spacing);
-  font-weight: 500;
-  flex-shrink: 0;
-  position: fixed;
-  backdrop-filter: blur(15px);
-  width: 100%;
-  border-radius: 0px 0px 8px 8px;
-  background-color: var(--transp-bg-color);
+.headerLink {
+  text-decoration: none;
 
-  & a {
+  &:visited {
     text-decoration: none;
-
-    &:visited {
-      text-decoration: none;
-    }
   }
 
   & span {
-    color: var(--accent-text-color-primary);
+    color: var(--system-green);
   }
 }
 
@@ -40,8 +28,7 @@
 }
 
 .emptyMessage {
-  color: var(--text-color-secondary);
-  font-size: var(--body-font);
+  font-size: var(--subtitle-font);
   display: flex;
   justify-content: center;
   align-items: center;

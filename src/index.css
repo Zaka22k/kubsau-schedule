@@ -1,8 +1,13 @@
 :root {
-  /* FONT */
+  /* Font */
   --subtitle-font: 24px;
   --body-font: 18px;
   --caption-font: 14px;
+
+  /* Border-radius */
+  --card-border-radius: 15px;
+  --control-border-radius: 12px;
+  --circular-border-radius: 9999px;
 
   /* PADDING */
   --compact-spacing: 4px;
@@ -11,40 +16,68 @@
   --card-spacing: 16px;
   --beetwen-sections-spacing: 24px;
 
-  /* TEXT */
-  --text-color-primary: rgb(26, 26, 26);
+  /* Other */
+  --filter: saturate(180%) blur(20px);
+}
+
+:root[data-theme="light"] {
+  /* Text */
+  --text-color-primary: rgb(29, 29, 31);
   --text-color-secondary: rgb(92, 92, 92);
   --text-color-tertiary: rgb(134, 134, 134);
-  --on-accent-text-color: rgb(255, 255, 255);
-  --accent-text-color-primary: rgb(26, 78, 33);
+  --text-color-inverted: rgb(245, 245, 247);
 
-  /* FILL */
-  --card-bg-color: rgb(253, 253, 253);
+  /* System */
+  --system-background-color: rgb(255, 255, 255);
+  --system-blur-color: rgba(255, 255, 255, 0.7);
 
-  --control-bg-color: rgba(243, 243, 243, 0.6);
-  --control-bg-color-secondary: rgba(237, 237, 237, 0.6);
-  --control-bg-color-tertiary: rgba(229, 229, 229, 0.6);
-  --active-control-bg-color: rgba(255, 255, 255, 0.6);
+  --system-green: rgb(15, 123, 15);
+  --system-yellow: rgb(255, 244, 206);
 
-  --accent-control-bg-color: rgb(26, 78, 33);
-
-  /* STROKE */
-  --divider-stroke-color: rgb(229, 229, 229);
+  /* Card */
+  --card-background-color: rgb(245, 245, 247);
   --card-stroke-color: rgb(229, 229, 229);
-  --control-stroke-color: rgb(229, 229, 229);
 
-  --system-success-color: rgb(15, 123, 15);
-  --system-success-bg-color: rgb(223, 246, 221);
+  /* Control */
+  --control-stroke-color: rgb(232, 232, 232);
+  --control-background-color-primary: rgba(250, 250, 250, 0.7);
+  --control-background-color-secondary: rgba(251, 251, 253, 0.7);
+  --control-background-color-tertiary: rgba(210, 210, 215, 0.7);
 
-  --system-warning-color: rgb(157, 93, 0);
-  --system-warning-bg-color: rgb(255, 244, 206);
+  /* Other */
 
-  --system-error-color: rgb(196, 43, 28);
-  --system-error-bg-color: rgb(253, 231, 233);
+  --divider-color: rgb(229, 229, 229);
+}
 
-  /* APP */
-  --bg-color: rgb(243, 243, 243);
-  --transp-bg-color: rgba(243, 243, 243, 0.6);
+:root[data-theme="dark"] {
+  /* Text */
+  --text-color-primary: rgb(245, 245, 247);
+  --text-color-secondary: rgb(204, 204, 204);
+  --text-color-tertiary: rgb(150, 150, 150);
+  --text-color-inverted: rgb(29, 29, 31);
+
+  /* System */
+  --system-background-color: rgb(0, 0, 0);
+  --system-blur-color: rgba(29, 29, 31, 0.7);
+
+  --system-green: rgb(129, 207, 140);
+  --system-yellow: rgb(67, 53, 25);
+
+  /* Card */
+
+  --card-background-color: rgb(29, 29, 31);
+  --card-stroke-color: rgb(29, 29, 29);
+
+  /* Control */
+
+  --control-stroke-color: rgb(63, 63, 65);
+  --control-background-color-primary: rgba(26, 26, 26, 0.7);
+  --control-background-color-secondary: rgba(56, 56, 59, 0.7);
+  --control-background-color-tertiary: rgba(39, 39, 39, 0.7);
+
+  /* Other */
+
+  --divider-color: rgb(50, 50, 50);
 }
 
 * {
@@ -61,11 +94,12 @@
   user-select: none;
 
   &::-webkit-scrollbar {
-    width: 4px;
+    width: 6px;
   }
+
   &::-webkit-scrollbar-thumb {
     background: var(--control-stroke-color);
-    border-radius: 10px;
+    border-radius: var(--circular-border-radius);
   }
 
   transition:
@@ -76,7 +110,7 @@
 html,
 body {
   height: 100vh;
-  background-color: var(--bg-color);
+  background-color: var(--system-background-color);
   display: flex;
   flex-direction: column;
 }
@@ -92,45 +126,7 @@ body {
     --beetwen-control_header-spacing: 10px;
     --card-spacing: 12px;
     --beetwen-sections-spacing: 20px;
-  }
-}
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    /* TEXT */
-    --text-color-primary: rgb(255, 255, 255);
-    --text-color-secondary: rgb(204, 204, 204);
-    --text-color-tertiary: rgb(150, 150, 150);
-    --accent-text-color-primary: rgb(137, 241, 165);
-    --on-accent-text-color: rgb(0, 0, 0);
-    --accent-text-color-primary: rgb(167, 233, 175);
-
-    /* FILL */
-    --card-bg-color: rgb(39, 39, 39);
-    --control-bg-color: rgba(45, 45, 45, 0.6);
-
-    --control-bg-color-secondary: rgba(50, 50, 50, 0.6);
-    --control-bg-color-tertiary: rgba(39, 39, 39, 0.6);
-    --active-control-bg-color: rgba(31, 31, 31, 0.6);
-
-    --accent-control-bg-color: rgb(129, 207, 140);
-
-    /* STROKE */
-    --divider-stroke-color: rgb(50, 50, 50);
-    --card-stroke-color: rgb(29, 29, 29);
-    --control-stroke-color: rgb(48, 48, 48);
-
-    --system-success-color: rgb(108, 203, 95);
-    --system-success-bg-color: rgb(57, 61, 27);
-
-    --system-warning-color: rgb(252, 225, 0);
-    --system-warning-bg-color: rgb(67, 53, 25);
-
-    --system-error-color: rgb(255, 153, 164);
-    --system-error-bg-color: rgb(68, 39, 38);
-
-    /* APP */
-    --bg-color: rgb(32, 32, 32);
-    --transp-bg-color: rgba(32, 32, 32, 0.6);
+    --control-border-radius: 8px;
   }
 }

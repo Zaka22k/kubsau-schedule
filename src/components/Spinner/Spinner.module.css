@@ -5,8 +5,8 @@
   opacity: 0;
   scale: 0;
   transition:
-    opacity 0.167s ease-in,
-    scale 0.167s ease-in;
+    opacity 0.02s ease-in,
+    scale 0.02s ease-in;
 
   & path {
     fill: var(--text-color-secondary) !important;

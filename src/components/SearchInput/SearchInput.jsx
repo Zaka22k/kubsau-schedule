@@ -14,7 +14,7 @@ const SearchInput = (props) => {
     setTimeout(() => {
       onSearch(value);
       setLoading(false);
-    }, 50);
+    }, 80);
   };
 
   const handleSelect = (value) => {
@@ -23,23 +23,25 @@ const SearchInput = (props) => {
     inputRef.current?.blur();
   };
 
+  const showSuggestions = open && itemsSourse.length > 0;
+
   return (
     <footer className={`${styles.searchContainer} ${open && styles.focus}`}>
-      {open && itemsSourse.length > 0 && (
-        <ul className={styles.suggestionList}>
-          {itemsSourse.map((group) => (
-            <li
-              key={group.data}
-              onMouseDown={(e) => {
-                e.preventDefault();
-                handleSelect(group.value);
-              }}
-            >
-              {group.value}
-            </li>
-          ))}
-        </ul>
-      )}
+      <ul
+        className={`${styles.suggestionList} ${showSuggestions ? styles.visible : ""}`}
+      >
+        {itemsSourse.map((group, index) => (
+          <li
+            key={`${group.value}-${index}`}
+            onMouseDown={(e) => {
+              e.preventDefault();
+              handleSelect(group.value);
+            }}
+          >
+            {group.value}
+          </li>
+        ))}
+      </ul>
       <div className={styles.inputContainer}>
         <svg
           viewBox="0 -960 960 960"
