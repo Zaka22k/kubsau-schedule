@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { getSchedule } from "@utils";
 import { useSearchParams } from "react-router-dom";
+// import { schedule as sh } from "@tests";
 
 const reGroup = /^[А-ЯЁ]{2}\d{4,5}$/u;
 const reRoom = /^\d{3}[а-яё]{2}$/u;
@@ -17,8 +18,13 @@ const useApp = () => {
   const getType = (value) =>
     reGroup.test(value) ? "1" : reRoom.test(value) ? "3" : null;
 
-  const runScheduleSearch = async (type, value) => {
-    if (!type || !value) return;
+  const searchSchedule = async () => {
+    const type = searchParams.get("t");
+    const value = searchParams.get("v");
+
+    if (type && value) {
+      if (value !== query) setQuery(value);
+    } else return;
 
     setLoading(1);
     try {
@@ -31,7 +37,7 @@ const useApp = () => {
     }
   };
 
-  const getSuggestions = async (value) => {
+  const searchSuggestions = async (value) => {
     setQuery(value);
 
     try {
@@ -48,7 +54,7 @@ const useApp = () => {
       }
 
       const response = await axios.get(
-        `${import.meta.env.VITE_SCHEDULE_URL}/bitrix/components/atom/atom.education.schedule.remote.data/get.php?query=${trimmedValue}&type_schedule=${type}`,
+        `${import.meta.env.VITE_SUGGESTIONS_URL}/get.php?query=${trimmedValue}&type_schedule=${type}`,
       );
 
       setSuggestions(response.data.suggestions || []);
@@ -70,19 +76,13 @@ const useApp = () => {
   };
 
   useEffect(() => {
-    const type = searchParams.get("t");
-    const value = searchParams.get("v");
-
-    if (type && value) {
-      if (value !== query) setQuery(value);
-      runScheduleSearch(type, value);
-    }
+    searchSchedule();
   }, [searchParams]);
 
   return {
     schedule,
     suggestions,
-    getSuggestions,
+    searchSuggestions,
     query,
     setQuery,
     onSuggestionChosen,

@@ -7,7 +7,7 @@ const App = () => {
   const {
     schedule,
     suggestions,
-    getSuggestions,
+    searchSuggestions,
     query,
     onSuggestionChosen,
     loading,
@@ -30,7 +30,7 @@ const App = () => {
     if (!main) return;
 
     const handleScroll = () => {
-      if (main.scrollTop < 90) {
+      if (main.scrollTop < 85) {
         setActiveWeek(null);
         return;
       }
@@ -104,7 +104,7 @@ const App = () => {
       </main>
 
       <SearchInput
-        onSearch={getSuggestions}
+        onSearch={searchSuggestions}
         itemsSourse={suggestions}
         onSelect={onSuggestionChosen}
         query={query}

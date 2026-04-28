@@ -8,6 +8,15 @@
 .headerLink {
   text-decoration: none;
 
+  &:hover {
+    color: var(--system-green);
+
+    & span {
+      color: var(--text-color-tertiary);
+      font-size: var(--body-font);
+    }
+  }
+
   &:visited {
     text-decoration: none;
   }
@@ -21,7 +30,7 @@
   flex: 1;
   overflow-y: auto;
   padding-top: 80px;
-  padding-bottom: 90px;
+  padding-bottom: 95px;
   display: flex;
   flex-direction: column;
   gap: var(--beetwen-sections-spacing);

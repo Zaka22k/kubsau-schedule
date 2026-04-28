@@ -58,7 +58,7 @@ const SearchInput = (props) => {
           type="search"
           value={query}
           className={styles.input}
-          placeholder="Поиск по группе / аудитории..."
+          placeholder="Поиск по группе / аудитории"
           onChange={(e) => {
             const value = e.target.value;
             handleSearch(value);

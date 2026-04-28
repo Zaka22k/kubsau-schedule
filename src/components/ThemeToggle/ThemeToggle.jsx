@@ -41,8 +41,8 @@ const ThemeToggle = () => {
         fill="currentColor"
         aria-hidden="true"
         focusable="false"
-        width={28}
-        height={28}
+        width={24}
+        height={24}
       >
         {returnIcon()}
       </svg>

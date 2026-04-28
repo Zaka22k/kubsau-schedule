@@ -21,7 +21,7 @@ const DayCard = (props) => {
           behavior: "smooth",
           block: "start",
         });
-      }, 100);
+      }, 167);
     }
   }, [isCurrent]);
 
@@ -92,7 +92,7 @@ const Lesson = (props) => {
             (item) => (
               <a
                 key={item}
-                href={`./?t=${lesson.rooms.length > 0 ? 3 : 1}&v=${item}`}
+                href={`./?t=${lesson.rooms.length > 0 ? 3 : 1}&v=${item.replace(/\/\d+$/, "")}`}
               >
                 {item}
               </a>

@@ -11,7 +11,7 @@ const Header = ({ children, scrollRef, activeWeek }) => {
     if (!el) return;
 
     const handleScroll = () => {
-      setScrolled(el.scrollTop > 50);
+      setScrolled(el.scrollTop > 35);
     };
 
     el.addEventListener("scroll", handleScroll);

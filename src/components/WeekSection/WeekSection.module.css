@@ -9,10 +9,5 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-
-@media (min-width: 700px) {
-  .list {
-    gap: var(--beetwen-sections-spacing);
-  }
+  gap: var(--beetwen-sections-spacing);
 }
