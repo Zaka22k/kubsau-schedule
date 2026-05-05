@@ -8,6 +8,7 @@
   align-items: center;
   backdrop-filter: var(--filter);
   align-self: center;
+  z-index: 1000;
 }
 
 .left {

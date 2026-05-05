@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { DayCard } from "@components";
+import { DayItem } from "@components";
 import styles from "./WeekSection.module.css";
 
 const WeekSection = ({ week, days = [], onRegister }) => {
@@ -14,7 +14,7 @@ const WeekSection = ({ week, days = [], onRegister }) => {
   return (
     <section ref={ref} className={styles.list}>
       {days.map((day, index) => (
-        <DayCard key={index} day={day} />
+        <DayItem key={index} day={day} />
       ))}
     </section>
   );

@@ -1,0 +1,28 @@
+.skeleton {
+  background: var(--divider-color);
+  animation: pulse 2.5s infinite ease-in-out;
+
+  &.circle {
+    border-radius: var(--circular-border-radius);
+  }
+
+  &.rectangle {
+    border-radius: var(--control-border-radius);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+.infoContainer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--beetwen-controls-spacing);
+}

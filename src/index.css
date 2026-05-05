@@ -28,8 +28,8 @@
   --text-color-inverted: rgb(255, 255, 255);
 
   /* System */
-  --system-background-color: rgb(249, 249, 249);
-  --system-blur-color: rgba(243, 243, 243, 0.5);
+  --system-background-color: rgb(242, 242, 242);
+  --system-blur-color: rgba(242, 242, 242, 0.5);
 
   --system-green: rgb(15, 123, 15);
   --system-yellow: rgb(255, 244, 206);
@@ -40,13 +40,17 @@
 
   /* Control */
   --control-stroke-color: rgb(229, 229, 229);
-  --control-background-color-primary: rgba(255, 255, 255, 0.5);
+  --control-background-color-primary: rgba(250, 250, 250, 0.5);
   --control-background-color-secondary: rgba(246, 246, 246, 0.5);
   --control-background-color-tertiary: rgba(245, 245, 245, 0.5);
 
+  --control-accent-background-color-primary: rgb(44, 109, 57);
+  --control-accent-background-color-secondary: rgb(64, 123, 76);
+  --control-accent-background-color-tertiary: rgb(84, 136, 94);
+
   /* Other */
 
-  --divider-color: rgb(229, 229, 229);
+  --divider-color: rgb(233, 233, 233);
 }
 
 :root[data-theme="dark"] {
@@ -57,26 +61,30 @@
   --text-color-inverted: rgb(0, 0, 0);
 
   /* System */
-  --system-background-color: rgb(39, 39, 39);
+  --system-background-color: rgb(32, 32, 32);
   --system-blur-color: rgba(32, 32, 32, 0.7);
 
   --system-green: rgb(129, 207, 140);
   --system-yellow: rgb(67, 53, 25);
   /* Card */
 
-  --card-background-color: rgb(31, 31, 31);
+  --card-background-color: rgb(25, 25, 25);
   --card-stroke-color: rgb(29, 29, 29);
 
   /* Control */
 
   --control-stroke-color: rgb(48, 48, 48);
-  --control-background-color-primary: rgba(30, 30, 30, 0.7);
+  --control-background-color-primary: rgba(45, 45, 45, 0.7);
   --control-background-color-secondary: rgba(50, 50, 50, 0.7);
   --control-background-color-tertiary: rgba(39, 39, 39, 0.7);
 
+  --control-accent-background-color-primary: rgb(136, 204, 148);
+  --control-accent-background-color-secondary: rgb(125, 186, 136);
+  --control-accent-background-color-tertiary: rgb(114, 169, 124);
+
   /* Other */
 
-  --divider-color: rgb(50, 50, 50);
+  --divider-color: rgb(44, 44, 44);
 }
 
 * {

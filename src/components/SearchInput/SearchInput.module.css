@@ -23,16 +23,6 @@
   justify-content: space-between;
   gap: var(--beetwen-controls-spacing);
 
-  .icon {
-    width: 28px;
-    height: 28px;
-    flex-shrink: 0;
-
-    & path {
-      fill: var(--text-color-secondary) !important;
-    }
-  }
-
   .input {
     background-color: transparent;
     border: none;
@@ -41,8 +31,49 @@
     color: var(--text-color-primary);
     outline: none;
 
+    &::-webkit-search-decoration,
+    &::-webkit-search-cancel-button,
+    &::-webkit-search-results-button,
+    &::-webkit-search-results-decoration {
+      display: none;
+    }
+
     &::placeholder {
       color: var(--text-color-tertiary);
+    }
+  }
+}
+
+.submitButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: var(--circular-border-radius);
+  padding: var(--compact-spacing) var(--beetwen-control_header-spacing);
+  scale: 0;
+  transition: scale 0.167s ease-in;
+  background-color: var(--control-accent-background-color-primary);
+  border: none;
+
+  &:hover {
+    background-color: var(--control-accent-background-color-secondary);
+  }
+
+  &:active {
+    background-color: var(--control-accent-background-color-tertiary);
+  }
+
+  &.show {
+    scale: 1;
+  }
+
+  .icon {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+
+    & path {
+      fill: var(--text-color-inverted) !important;
     }
   }
 }

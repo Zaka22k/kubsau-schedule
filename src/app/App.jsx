@@ -1,5 +1,11 @@
-import { SearchInput, WeekSection, Spinner, Header } from "@components";
-import { useApp } from "@hooks";
+import {
+  SearchInput,
+  WeekSection,
+  Spinner,
+  Header,
+  SkeletonItem,
+} from "@components";
+import { useApp } from "@contexts";
 import { useRef, useState, useEffect } from "react";
 import styles from "./App.module.css";
 
@@ -56,8 +62,10 @@ const App = () => {
   const getMainContent = () => {
     if (loading === 1) {
       return (
-        <div className={styles.emptyMessage}>
-          <Spinner loading={true} size={64} />
+        <div className={styles.loadingState}>
+          {[1, 2, 3, 4, 5].map((day) => (
+            <SkeletonItem key={`skeleton-day-${day}`} />
+          ))}
         </div>
       );
     }
@@ -103,12 +111,7 @@ const App = () => {
         {getMainContent()}
       </main>
 
-      <SearchInput
-        onSearch={searchSuggestions}
-        itemsSourse={suggestions}
-        onSelect={onSuggestionChosen}
-        query={query}
-      />
+      <SearchInput />
     </div>
   );
 };

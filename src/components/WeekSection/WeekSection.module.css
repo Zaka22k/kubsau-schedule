@@ -9,5 +9,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: var(--beetwen-sections-spacing);
+  gap: var(--beetwen-control_header-spacing);
+  padding: 0px var(--card-spacing);
 }
