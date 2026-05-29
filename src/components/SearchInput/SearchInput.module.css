@@ -1,9 +1,9 @@
 .searchContainer {
   display: flex;
   flex-direction: column;
-  background-color: var(--control-background-color-primary);
+  background-color: var(--control-bg-color-primary);
   border: 1px solid var(--control-stroke-color);
-  padding: var(--card-spacing);
+  padding: 12px 16px;
   position: fixed;
   bottom: 20px;
   left: 50%;
@@ -21,7 +21,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: var(--beetwen-controls-spacing);
+  gap: 4px;
 
   .input {
     background-color: transparent;
@@ -44,40 +44,6 @@
   }
 }
 
-.submitButton {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: var(--circular-border-radius);
-  padding: var(--compact-spacing) var(--beetwen-control_header-spacing);
-  scale: 0;
-  transition: scale 0.167s ease-in;
-  background-color: var(--control-accent-background-color-primary);
-  border: none;
-
-  &:hover {
-    background-color: var(--control-accent-background-color-secondary);
-  }
-
-  &:active {
-    background-color: var(--control-accent-background-color-tertiary);
-  }
-
-  &.show {
-    scale: 1;
-  }
-
-  .icon {
-    width: 22px;
-    height: 22px;
-    flex-shrink: 0;
-
-    & path {
-      fill: var(--text-color-inverted) !important;
-    }
-  }
-}
-
 .suggestionList {
   display: flex;
   flex-direction: column-reverse;
@@ -95,7 +61,7 @@
   &.visible {
     max-height: 320px;
     opacity: 1;
-    margin-bottom: var(--beetwen-control_header-spacing);
+    margin-bottom: 12px;
   }
 
   & li {
@@ -103,17 +69,17 @@
     font-size: var(--body-font);
     color: var(--text-color-secondary);
     padding: 8px 12px;
-    border-radius: var(--control-border-radius);
+    border-radius: var(--circular-border-radius);
     cursor: pointer;
     flex-shrink: 0;
 
     &:hover {
       color: var(--text-color-primary);
-      background-color: var(--control-background-color-secondary);
+      background-color: var(--control-bg-color-secondary);
     }
 
     &:active {
-      background-color: var(--control-background-color-tertiary);
+      background-color: var(--control-bg-color-tertiary);
     }
   }
 }

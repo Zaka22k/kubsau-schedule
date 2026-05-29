@@ -1,5 +1,5 @@
 .skeleton {
-  background: var(--divider-color);
+  background: var(--control-bg-color-secondary);
   animation: pulse 2.5s infinite ease-in-out;
 
   &.circle {
@@ -24,5 +24,5 @@
 .infoContainer {
   display: flex;
   flex-direction: column;
-  gap: var(--beetwen-controls-spacing);
+  gap: 8px;
 }

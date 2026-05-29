@@ -1,2 +1,2 @@
-export { DayItem } from "./DayItem";
-export { SkeletonItem } from "./Skeleton";
+export { Day } from "./Day";
+export { Skeleton } from "./Skeleton";

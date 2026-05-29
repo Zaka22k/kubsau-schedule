@@ -1,1 +1,1 @@
-export { default as SkeletonItem } from "./SkeletonItem.jsx";
+export { default as Skeleton } from "./Skeleton.jsx";

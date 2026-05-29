@@ -2,11 +2,11 @@
   font-size: var(--subtitle-font);
   position: fixed;
   width: 100%;
-  padding: var(--beetwen-control_header-spacing) var(--card-spacing);
+  padding: 8px 12px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  backdrop-filter: var(--filter);
+
   align-self: center;
   z-index: 1000;
 }
@@ -24,6 +24,7 @@
 .scrolled {
   background-color: var(--system-blur-color);
   border-bottom: 1px solid var(--control-stroke-color);
+  backdrop-filter: var(--filter);
 }
 
 .content {

@@ -1,0 +1,83 @@
+.lessonContainer {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+  background-color: var(--card-bg-color);
+  border-radius: var(--control-border-radius);
+  padding: 8px 12px;
+
+  &:last-child {
+    border-radius: var(--control-border-radius) var(--control-border-radius)
+      var(--card-border-radius) var(--card-border-radius);
+    padding-bottom: 12px;
+  }
+
+  &.now {
+    background-color: var(--system-green);
+    border-radius: var(--card-border-radius);
+  }
+
+  .whoWhere,
+  .times {
+    width: max-content;
+    font-size: var(--caption-font);
+  }
+
+  .times {
+    color: var(--text-color-tertiary);
+
+    &.now {
+      color: var(--inverted-text-color-primary);
+    }
+  }
+
+  .whoWhere {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: end;
+  }
+
+  .infoContainer {
+    width: 100%;
+
+    .discipline {
+      font-size: var(--caption-font);
+      font-weight: 500;
+
+      &.now {
+        color: var(--inverted-text-color-primary);
+      }
+    }
+    .teachers {
+      font-size: var(--caption-font);
+      color: var(--text-color-secondary);
+
+      &.now {
+        color: var(--inverted-text-color-secondary);
+      }
+    }
+  }
+}
+
+.link {
+  text-decoration: none;
+  color: var(--text-color-tertiary);
+
+  &:hover {
+    color: var(--text-color-primary);
+  }
+
+  &:visited {
+    text-decoration: none;
+  }
+
+  &.now {
+    color: var(--inverted-text-color-secondary);
+
+    &:hover {
+      color: var(--inverted-text-color-primary);
+    }
+  }
+}

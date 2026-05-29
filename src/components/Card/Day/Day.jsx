@@ -1,8 +1,8 @@
 import { Fragment, useEffect, useRef } from "react";
-import { LessonItem } from "../LessonItem";
-import styles from "../DayItem.module.css";
+import { Lesson } from "../Lesson";
+import styles from "../Day.module.css";
 
-const DayItem = (props) => {
+const Day = (props) => {
   const {
     day = {
       name: "-",
@@ -35,14 +35,12 @@ const DayItem = (props) => {
       <thead>
         <tr className={styles.title}>
           <th className={styles.name}>{day.name}</th>
-          <th className={`${styles.date} ${day.isToday && styles.today}`}>
-            {day.isToday ? "" : day.date}
-          </th>
+          <th className={styles.date}>{day.date}</th>
         </tr>
       </thead>
       <tbody className={styles.lessons}>
         {day.lessons.map((lesson, index) => (
-          <LessonItem
+          <Lesson
             key={index}
             lesson={lesson}
             isLast={index === day.lessons.length - 1}
@@ -54,4 +52,4 @@ const DayItem = (props) => {
   );
 };
 
-export default DayItem;
+export default Day;

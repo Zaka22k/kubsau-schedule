@@ -5,16 +5,9 @@
   --caption-font: 14px;
 
   /* Border-radius */
-  --card-border-radius: 15px;
-  --control-border-radius: 12px;
+  --card-border-radius: 16px;
+  --control-border-radius: 4px;
   --circular-border-radius: 9999px;
-
-  /* PADDING */
-  --compact-spacing: 4px;
-  --beetwen-controls-spacing: 8px;
-  --beetwen-control_header-spacing: 12px;
-  --card-spacing: 16px;
-  --beetwen-sections-spacing: 24px;
 
   /* Other */
   --filter: saturate(180%) blur(20px);
@@ -25,32 +18,23 @@
   --text-color-primary: rgb(26, 26, 26);
   --text-color-secondary: rgb(92, 92, 92);
   --text-color-tertiary: rgb(134, 134, 134);
-  --text-color-inverted: rgb(255, 255, 255);
+  --inverted-text-color-primary: rgb(255, 255, 255);
+  --inverted-text-color-secondary: rgb(251, 251, 251);
 
   /* System */
-  --system-background-color: rgb(242, 242, 242);
-  --system-blur-color: rgba(242, 242, 242, 0.5);
-
+  --page-bg-color: rgb(233, 238, 246);
+  --header-bg-color: rgba(233, 238, 246, 0.5);
   --system-green: rgb(15, 123, 15);
-  --system-yellow: rgb(255, 244, 206);
 
   /* Card */
-  --card-background-color: rgb(255, 255, 255);
+  --card-bg-color: rgb(255, 255, 255);
   --card-stroke-color: rgb(229, 229, 229);
 
   /* Control */
   --control-stroke-color: rgb(229, 229, 229);
-  --control-background-color-primary: rgba(250, 250, 250, 0.5);
-  --control-background-color-secondary: rgba(246, 246, 246, 0.5);
-  --control-background-color-tertiary: rgba(245, 245, 245, 0.5);
-
-  --control-accent-background-color-primary: rgb(44, 109, 57);
-  --control-accent-background-color-secondary: rgb(64, 123, 76);
-  --control-accent-background-color-tertiary: rgb(84, 136, 94);
-
-  /* Other */
-
-  --divider-color: rgb(233, 233, 233);
+  --control-bg-color-primary: rgba(250, 250, 250, 0.5);
+  --control-bg-color-secondary: rgba(246, 246, 246, 0.5);
+  --control-bg-color-tertiary: rgba(245, 245, 245, 0.5);
 }
 
 :root[data-theme="dark"] {
@@ -58,33 +42,24 @@
   --text-color-primary: rgb(255, 255, 255);
   --text-color-secondary: rgb(204, 204, 204);
   --text-color-tertiary: rgb(150, 150, 150);
-  --text-color-inverted: rgb(0, 0, 0);
+  --inverted-text-color-primary: rgb(0, 0, 0);
+  --inverted-text-color-secondary: rgb(16, 16, 16);
 
   /* System */
-  --system-background-color: rgb(32, 32, 32);
-  --system-blur-color: rgba(32, 32, 32, 0.7);
-
+  --page-bg-color: rgb(40, 42, 44);
+  --header-bg-color: rgba(40, 42, 44, 0.7);
   --system-green: rgb(129, 207, 140);
-  --system-yellow: rgb(67, 53, 25);
-  /* Card */
 
-  --card-background-color: rgb(25, 25, 25);
+  /* Card */
+  --card-bg-color: rgb(25, 25, 25);
   --card-stroke-color: rgb(29, 29, 29);
 
   /* Control */
 
   --control-stroke-color: rgb(48, 48, 48);
-  --control-background-color-primary: rgba(45, 45, 45, 0.7);
-  --control-background-color-secondary: rgba(50, 50, 50, 0.7);
-  --control-background-color-tertiary: rgba(39, 39, 39, 0.7);
-
-  --control-accent-background-color-primary: rgb(136, 204, 148);
-  --control-accent-background-color-secondary: rgb(125, 186, 136);
-  --control-accent-background-color-tertiary: rgb(114, 169, 124);
-
-  /* Other */
-
-  --divider-color: rgb(44, 44, 44);
+  --control-bg-color-primary: rgba(45, 45, 45, 0.7);
+  --control-bg-color-secondary: rgba(50, 50, 50, 0.7);
+  --control-bg-color-tertiary: rgba(39, 39, 39, 0.7);
 }
 
 * {
@@ -118,7 +93,7 @@
 html,
 body {
   height: 100vh;
-  background-color: var(--system-background-color);
+  background-color: var(--page-bg-color);
   display: flex;
   flex-direction: column;
 }
@@ -128,13 +103,5 @@ body {
     --subtitle-font: 20px;
     --body-font: 16px;
     --caption-font: 12px;
-
-    --compact-spacing: 2px;
-    --beetwen-controls-spacing: 6px;
-    --beetwen-control_header-spacing: 10px;
-    --card-spacing: 12px;
-    --beetwen-sections-spacing: 20px;
-
-    --control-border-radius: 8px;
   }
 }

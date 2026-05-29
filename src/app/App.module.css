@@ -33,7 +33,7 @@
   padding-bottom: 95px;
   display: flex;
   flex-direction: column;
-  gap: var(--beetwen-sections-spacing);
+  gap: 12px;
 }
 
 .emptyMessage {
@@ -49,6 +49,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: var(--beetwen-control_header-spacing);
-  padding: 0px var(--card-spacing);
+  gap: 12px;
+  padding: 0px 16px;
 }

@@ -1,9 +1,9 @@
 import { Fragment } from "react";
-import dayStyles from "../DayItem.module.css";
-import lessonStyles from "../LessonItem.module.css";
+import dayStyles from "../Day.module.css";
+import lessonStyles from "../Lesson.module.css";
 import skeletonStyles from "./Skeleton.module.css";
 
-const Skeleton = ({ width = "100%", height = "12px", shape = "rectangle" }) => {
+const Skelet = ({ width = "100%", height = "12px", shape = "rectangle" }) => {
   return (
     <div
       className={`${skeletonStyles.skeleton} ${skeletonStyles[shape]}`}
@@ -12,12 +12,12 @@ const Skeleton = ({ width = "100%", height = "12px", shape = "rectangle" }) => {
   );
 };
 
-const SkeletonItem = () => {
+const Skeleton = () => {
   return (
     <table className={dayStyles.cardContainer}>
       <thead>
         <tr className={dayStyles.title}>
-          <Skeleton width="60%" height="var(--subtitle-font)" />
+          <Skelet width="60%" height="var(--subtitle-font)" />
         </tr>
       </thead>
       <tbody className={dayStyles.lessons}>
@@ -25,23 +25,22 @@ const SkeletonItem = () => {
           <Fragment key={`lesson-${lesson}`}>
             <tr className={lessonStyles.lessonContainer}>
               <td className={`${lessonStyles.times}`}>
-                <Skeleton width="30px" />
+                <Skelet width="30px" />
               </td>
               <td
                 className={`${lessonStyles.infoContainer} ${skeletonStyles.infoContainer}`}
               >
                 <div className={lessonStyles.discipline}>
-                  <Skeleton width="70%" />
+                  <Skelet width="70%" />
                 </div>
                 <div className={lessonStyles.teachers}>
-                  <Skeleton width="30%" />
+                  <Skelet width="30%" />
                 </div>
               </td>
               <td className={lessonStyles.whoWhere}>
-                <Skeleton width="30px" />
+                <Skelet width="30px" />
               </td>
             </tr>
-            {lesson !== 6 && <tr className={dayStyles.divider}></tr>}
           </Fragment>
         ))}
       </tbody>
@@ -49,4 +48,4 @@ const SkeletonItem = () => {
   );
 };
 
-export default SkeletonItem;
+export default Skeleton;

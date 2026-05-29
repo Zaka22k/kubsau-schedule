@@ -3,7 +3,7 @@ import {
   WeekSection,
   Spinner,
   Header,
-  SkeletonItem,
+  Skeleton,
 } from "@components";
 import { useApp } from "@contexts";
 import { useRef, useState, useEffect } from "react";
@@ -64,7 +64,7 @@ const App = () => {
       return (
         <div className={styles.loadingState}>
           {[1, 2, 3, 4, 5].map((day) => (
-            <SkeletonItem key={`skeleton-day-${day}`} />
+            <Skeleton key={`skeleton-day-${day}`} />
           ))}
         </div>
       );

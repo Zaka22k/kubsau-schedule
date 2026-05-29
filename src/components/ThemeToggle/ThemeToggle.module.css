@@ -4,18 +4,20 @@
   color: var(--text-color-primary);
   font-size: var(--body-font);
   flex-shrink: 0;
-  padding: var(--compact-spacing);
+  padding: 4px;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: transparent;
   cursor: pointer;
+  background-color: var(--control-bg-color-primary);
+  border: 1px solid var(--control-stroke-color);
 
   &:hover {
-    background-color: var(--control-background-color-secondary);
+    background-color: var(--control-bg-color-secondary);
   }
 
   &:active {
-    background-color: var(--control-background-color-tertiary);
+    background-color: var(--control-bg-color-tertiary);
   }
 }
