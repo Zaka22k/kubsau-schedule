@@ -1,0 +1,970 @@
+{
+  "weeks": {
+    "1": [
+      {
+        "weekday": "Понедельник",
+        "date": "27 апреля",
+        "isToday": false,
+        "lessons": [
+          {
+            "startTime": "08:00",
+            "endTime": "09:30",
+            "isLection": false,
+            "discipline": "",
+            "teachers": [],
+            "rooms": [],
+            "groups": []
+          },
+          {
+            "startTime": "09:45",
+            "endTime": "11:15",
+            "isLection": true,
+            "discipline": "Инфокоммуникационные системы и сети",
+            "teachers": [
+              "Крепышев Д. А."
+            ],
+            "rooms": [
+              "403эк"
+            ],
+            "groups": []
+          },
+          {
+            "startTime": "11:30",
+            "endTime": "13:00",
+            "isLection": false,
+            "discipline": "",
+            "teachers": [
+              "Параскевов А. В."
+            ],
+            "rooms": [
+              "303эк"
+            ],
+            "groups": []
+          },
+          {
+            "startTime": "13:50",
+            "endTime": "15:20",
+            "isLection": true,
+            "discipline": "Мультимедиа технологии",
+            "teachers": [
+              "Вострокнутов А. Е."
+            ],
+            "rooms": [
+              "310эк"
+            ],
+            "groups": []
+          },
+          {
+            "startTime": "15:35",
+            "endTime": "17:05",
+            "isLection": false,
+            "discipline": "",
+            "teachers": [
+              "Васильева А. Д."
+            ],
+            "rooms": [
+              "404эк"
+            ],
+            "groups": []
+          },
+          {
+            "startTime": "17:20",
+            "endTime": "18:50",
+            "isLection": false,
+            "discipline": "",
+            "teachers": [],
+            "rooms": [],
+            "groups": []
+          }
+        ]
+      },
+      {
+        "weekday": "Вторник",
+        "date": "28 апреля",
+        "isToday": false,
+        "lessons": [
+          {
+            "startTime": "08:00",
+            "endTime": "09:30",
+            "isLection": true,
+            "discipline": "Администрирование информационных систем",
+            "teachers": [
+              "Лаптев С. В."
+            ],
+            "rooms": [
+              "403эк"
+            ],
+            "groups": []
+          },
+          {
+            "startTime": "09:45",
+            "endTime": "11:15",
+            "isLection": true,
+            "discipline": "Разработка приложений под мобильные устройства",
+            "teachers": [
+              "Сайкинов В. Е."
+            ],
+            "rooms": [
+              "403эк"
+            ],
+            "groups": []
+          },
+          {
+            "startTime": "11:30",
+            "endTime": "13:00",
+            "isLection": false,
+            "discipline": "",
+            "teachers": [
+              "ИТ2304/1 Агафонова Н. П.",
+              "ИТ2304/2 Агафонова Н. П."
+            ],
+            "rooms": [
+              "209эк"
+            ],
+            "groups": []
+          },
+          {
+            "startTime": "13:50",
+            "endTime": "15:20",
+            "isLection": false,
+            "discipline": "",
+            "teachers": [],
+            "rooms": [],
+            "groups": []
+          },
+          {
+            "startTime": "15:35",
+            "endTime": "17:05",
+            "isLection": false,
+            "discipline": "",
+            "teachers": [],
+            "rooms": [],
+            "groups": []
+          },
+          {
+            "startTime": "17:20",
+            "endTime": "18:50",
+            "isLection": false,
+            "discipline": "",
+            "teachers": [],
+            "rooms": [],
+            "groups": []
+          }
+        ]
+      },
+      {
+        "weekday": "Среда",
+        "date": "29 апреля",
+        "isToday": false,
+        "lessons": [
+          {
+            "startTime": "08:00",
+            "endTime": "09:30",
+            "isLection": false,
+            "discipline": "",
+            "teachers": [],
+            "rooms": [],
+            "groups": []
+          },
+          {
+            "startTime": "09:45",
+            "endTime": "11:15",
+            "isLection": false,
+            "discipline": "",
+            "teachers": [],
+            "rooms": [],
+            "groups": []
+          },
+          {
+            "startTime": "11:30",
+            "endTime": "13:00",
+            "isLection": false,
+            "discipline": "",
+            "teachers": [
+              "ИТ2304/2 Лытнев Н. Н.",
+              "ИТ2304/1 Крепышев Д. А."
+            ],
+            "rooms": [
+              "101эк"
+            ],
+            "groups": []
+          },
+          {
+            "startTime": "13:50",
+            "endTime": "15:20",
+            "isLection": true,
+            "discipline": "Системы и системный анализ",
+            "teachers": [
+              "Барановская Т. П.",
+              "Минина Е. А."
+            ],
+            "rooms": [
+              "310эк"
+            ],
+            "groups": []
+          },
+          {
+            "startTime": "15:35",
+            "endTime": "17:05",
+            "isLection": false,
+            "discipline": "",
+            "teachers": [],
+            "rooms": [],
+            "groups": []
+          },
+          {
+            "startTime": "17:20",
+            "endTime": "18:50",
+            "isLection": false,
+            "discipline": "",
+            "teachers": [],
+            "rooms": [],
+            "groups": []
+          }
+        ]
+      },
+      {
+        "weekday": "Четверг",
+        "date": "30 апреля",
+        "isToday": false,
+        "lessons": [
+          {
+            "startTime": "08:00",
+            "endTime": "09:30",
+            "isLection": false,
+            "discipline": "",
+            "teachers": [],
+            "rooms": [],
+            "groups": []
+          },
+          {
+            "startTime": "09:45",
+            "endTime": "11:15",
+            "isLection": false,
+            "discipline": "",
+            "teachers": [
+              "Васильева А. Д."
+            ],
+            "rooms": [
+              "216эк"
+            ],
+            "groups": []
+          },
+          {
+            "startTime": "11:30",
+            "endTime": "13:00",
+            "isLection": false,
+            "discipline": "",
+            "teachers": [
+              "ИТ2304/2 Лытнев Н. Н.",
+              "ИТ2304/1 Крепышев Д. А."
+            ],
+            "rooms": [
+              "103эк"
+            ],
+            "groups": []
+          },
+          {
+            "startTime": "13:50",
+            "endTime": "15:20",
+            "isLection": true,
+            "discipline": "Программирование и разработка Web-приложений",
+            "teachers": [
+              "Аврахам Е. М."
+            ],
+            "rooms": [
+              "310эк"
+            ],
+            "groups": []
+          },
+          {
+            "startTime": "15:35",
+            "endTime": "17:05",
+            "isLection": false,
+            "discipline": "",
+            "teachers": [
+              "ИТ2304/1 Минина Е. А.",
+              "ИТ2304/2 Медведев К. А."
+            ],
+            "rooms": [
+              "404эк"
+            ],
+            "groups": []
+          },
+          {
+            "startTime": "17:20",
+            "endTime": "18:50",
+            "isLection": false,
+            "discipline": "",
+            "teachers": [
+              "ИТ2304/1 Аврахам Е. М.",
+              "ИТ2304/2 Аврахам Е. М."
+            ],
+            "rooms": [
+              "101эк"
+            ],
+            "groups": []
+          }
+        ]
+      },
+      {
+        "weekday": "Пятница",
+        "date": "1 мая",
+        "isToday": false,
+        "lessons": [
+          {
+            "startTime": "08:00",
+            "endTime": "09:30",
+            "isLection": false,
+            "discipline": "",
+            "teachers": [],
+            "rooms": [],
+            "groups": []
+          },
+          {
+            "startTime": "09:45",
+            "endTime": "11:15",
+            "isLection": false,
+            "discipline": "",
+            "teachers": [],
+            "rooms": [],
+            "groups": []
+          },
+          {
+            "startTime": "11:30",
+            "endTime": "13:00",
+            "isLection": false,
+            "discipline": "",
+            "teachers": [],
+            "rooms": [],
+            "groups": []
+          },
+          {
+            "startTime": "13:50",
+            "endTime": "15:20",
+            "isLection": false,
+            "discipline": "",
+            "teachers": [],
+            "rooms": [],
+            "groups": []
+          },
+          {
+            "startTime": "15:35",
+            "endTime": "17:05",
+            "isLection": false,
+            "discipline": "",
+            "teachers": [],
+            "rooms": [],
+            "groups": []
+          },
+          {
+            "startTime": "17:20",
+            "endTime": "18:50",
+            "isLection": false,
+            "discipline": "",
+            "teachers": [],
+            "rooms": [],
+            "groups": []
+          }
+        ]
+      },
+      {
+        "weekday": "Суббота",
+        "date": "2 мая",
+        "isToday": false,
+        "lessons": [
+          {
+            "startTime": "08:00",
+            "endTime": "09:30",
+            "isLection": false,
+            "discipline": "",
+            "teachers": [],
+            "rooms": [],
+            "groups": []
+          },
+          {
+            "startTime": "09:45",
+            "endTime": "11:15",
+            "isLection": false,
+            "discipline": "",
+            "teachers": [],
+            "rooms": [],
+            "groups": []
+          },
+          {
+            "startTime": "11:30",
+            "endTime": "13:00",
+            "isLection": false,
+            "discipline": "",
+            "teachers": [],
+            "rooms": [],
+            "groups": []
+          },
+          {
+            "startTime": "13:15",
+            "endTime": "14:45",
+            "isLection": false,
+            "discipline": "",
+            "teachers": [],
+            "rooms": [],
+            "groups": []
+          },
+          {
+            "startTime": "15:00",
+            "endTime": "16:30",
+            "isLection": false,
+            "discipline": "",
+            "teachers": [],
+            "rooms": [],
+            "groups": []
+          },
+          {
+            "startTime": "16:45",
+            "endTime": "18:15",
+            "isLection": false,
+            "discipline": "",
+            "teachers": [],
+            "rooms": [],
+            "groups": []
+          }
+        ]
+      },
+      {
+        "weekday": "Воскресенье",
+        "date": "3 мая",
+        "isToday": false,
+        "lessons": [
+          {
+            "startTime": "08:00",
+            "endTime": "09:30",
+            "isLection": false,
+            "discipline": "",
+            "teachers": [],
+            "rooms": [],
+            "groups": []
+          },
+          {
+            "startTime": "09:45",
+            "endTime": "11:15",
+            "isLection": false,
+            "discipline": "",
+            "teachers": [],
+            "rooms": [],
+            "groups": []
+          },
+          {
+            "startTime": "11:30",
+            "endTime": "13:00",
+            "isLection": false,
+            "discipline": "",
+            "teachers": [],
+            "rooms": [],
+            "groups": []
+          },
+          {
+            "startTime": "13:50",
+            "endTime": "15:20",
+            "isLection": false,
+            "discipline": "",
+            "teachers": [],
+            "rooms": [],
+            "groups": []
+          },
+          {
+            "startTime": "15:35",
+            "endTime": "17:05",
+            "isLection": false,
+            "discipline": "",
+            "teachers": [],
+            "rooms": [],
+            "groups": []
+          },
+          {
+            "startTime": "17:20",
+            "endTime": "18:50",
+            "isLection": false,
+            "discipline": "",
+            "teachers": [],
+            "rooms": [],
+            "groups": []
+          }
+        ]
+      }
+    ],
+    "2": [
+      {
+        "weekday": "Понедельник",
+        "date": "20 апреля",
+        "isToday": false,
+        "lessons": [
+          {
+            "startTime": "08:00",
+            "endTime": "09:30",
+            "isLection": false,
+            "discipline": "",
+            "teachers": [
+              "ИТ2304/1 Агафонова Н. П.",
+              "ИТ2304/2 Агафонова Н. П."
+            ],
+            "rooms": [
+              "209эк"
+            ],
+            "groups": []
+          },
+          {
+            "startTime": "09:45",
+            "endTime": "11:15",
+            "isLection": false,
+            "discipline": "",
+            "teachers": [
+              "ИТ2304/2 Лытнев Н. Н.",
+              "ИТ2304/1 Крепышев Д. А."
+            ],
+            "rooms": [
+              "101эк"
+            ],
+            "groups": []
+          },
+          {
+            "startTime": "11:30",
+            "endTime": "13:00",
+            "isLection": false,
+            "discipline": "",
+            "teachers": [],
+            "rooms": [],
+            "groups": []
+          },
+          {
+            "startTime": "13:50",
+            "endTime": "15:20",
+            "isLection": false,
+            "discipline": "",
+            "teachers": [],
+            "rooms": [],
+            "groups": []
+          },
+          {
+            "startTime": "15:35",
+            "endTime": "17:05",
+            "isLection": false,
+            "discipline": "",
+            "teachers": [],
+            "rooms": [],
+            "groups": []
+          },
+          {
+            "startTime": "17:20",
+            "endTime": "18:50",
+            "isLection": false,
+            "discipline": "",
+            "teachers": [],
+            "rooms": [],
+            "groups": []
+          }
+        ]
+      },
+      {
+        "weekday": "Вторник",
+        "date": "21 апреля",
+        "isToday": false,
+        "lessons": [
+          {
+            "startTime": "08:00",
+            "endTime": "09:30",
+            "isLection": false,
+            "discipline": "",
+            "teachers": [],
+            "rooms": [],
+            "groups": []
+          },
+          {
+            "startTime": "09:45",
+            "endTime": "11:15",
+            "isLection": false,
+            "discipline": "",
+            "teachers": [],
+            "rooms": [],
+            "groups": []
+          },
+          {
+            "startTime": "11:30",
+            "endTime": "13:00",
+            "isLection": false,
+            "discipline": "",
+            "teachers": [],
+            "rooms": [],
+            "groups": []
+          },
+          {
+            "startTime": "13:50",
+            "endTime": "15:20",
+            "isLection": false,
+            "discipline": "",
+            "teachers": [],
+            "rooms": [],
+            "groups": []
+          },
+          {
+            "startTime": "15:35",
+            "endTime": "17:05",
+            "isLection": false,
+            "discipline": "",
+            "teachers": [],
+            "rooms": [],
+            "groups": []
+          },
+          {
+            "startTime": "17:20",
+            "endTime": "18:50",
+            "isLection": false,
+            "discipline": "",
+            "teachers": [],
+            "rooms": [],
+            "groups": []
+          }
+        ]
+      },
+      {
+        "weekday": "Среда",
+        "date": "22 апреля",
+        "isToday": false,
+        "lessons": [
+          {
+            "startTime": "08:00",
+            "endTime": "09:30",
+            "isLection": false,
+            "discipline": "",
+            "teachers": [],
+            "rooms": [],
+            "groups": []
+          },
+          {
+            "startTime": "09:45",
+            "endTime": "11:15",
+            "isLection": false,
+            "discipline": "",
+            "teachers": [
+              "ИТ2304/2 Лытнев Н. Н.",
+              "ИТ2304/1 Крепышев Д. А."
+            ],
+            "rooms": [
+              "108эк"
+            ],
+            "groups": []
+          },
+          {
+            "startTime": "11:30",
+            "endTime": "13:00",
+            "isLection": false,
+            "discipline": "",
+            "teachers": [
+              "Васильева А. Д."
+            ],
+            "rooms": [
+              "205эк"
+            ],
+            "groups": []
+          },
+          {
+            "startTime": "13:50",
+            "endTime": "15:20",
+            "isLection": true,
+            "discipline": "Системы и системный анализ",
+            "teachers": [
+              "ИТ2304/1 Барановская Т. П.",
+              "ИТ2304/1 Минина Е. А."
+            ],
+            "rooms": [
+              "310эк"
+            ],
+            "groups": []
+          },
+          {
+            "startTime": "15:35",
+            "endTime": "17:05",
+            "isLection": false,
+            "discipline": "",
+            "teachers": [],
+            "rooms": [],
+            "groups": []
+          },
+          {
+            "startTime": "17:20",
+            "endTime": "18:50",
+            "isLection": false,
+            "discipline": "",
+            "teachers": [],
+            "rooms": [],
+            "groups": []
+          }
+        ]
+      },
+      {
+        "weekday": "Четверг",
+        "date": "23 апреля",
+        "isToday": false,
+        "lessons": [
+          {
+            "startTime": "08:00",
+            "endTime": "09:30",
+            "isLection": false,
+            "discipline": "",
+            "teachers": [
+              "Параскевов А. В."
+            ],
+            "rooms": [
+              "307эк"
+            ],
+            "groups": []
+          },
+          {
+            "startTime": "09:45",
+            "endTime": "11:15",
+            "isLection": true,
+            "discipline": "Разработка приложений под мобильные устройства",
+            "teachers": [
+              "Сайкинов В. Е."
+            ],
+            "rooms": [
+              "403эк"
+            ],
+            "groups": []
+          },
+          {
+            "startTime": "11:30",
+            "endTime": "13:00",
+            "isLection": false,
+            "discipline": "",
+            "teachers": [
+              "ИТ2304/2 Лытнев Н. Н.",
+              "ИТ2304/1 Крепышев Д. А."
+            ],
+            "rooms": [
+              "108эк"
+            ],
+            "groups": []
+          },
+          {
+            "startTime": "13:50",
+            "endTime": "15:20",
+            "isLection": false,
+            "discipline": "",
+            "teachers": [],
+            "rooms": [],
+            "groups": []
+          },
+          {
+            "startTime": "15:35",
+            "endTime": "17:05",
+            "isLection": false,
+            "discipline": "",
+            "teachers": [],
+            "rooms": [],
+            "groups": []
+          },
+          {
+            "startTime": "17:20",
+            "endTime": "18:50",
+            "isLection": false,
+            "discipline": "",
+            "teachers": [],
+            "rooms": [],
+            "groups": []
+          }
+        ]
+      },
+      {
+        "weekday": "Пятница",
+        "date": "24 апреля",
+        "isToday": false,
+        "lessons": [
+          {
+            "startTime": "08:00",
+            "endTime": "09:30",
+            "isLection": true,
+            "discipline": "Разработка приложений под мобильные устройства",
+            "teachers": [
+              "Сайкинов В. Е."
+            ],
+            "rooms": [
+              "217гл"
+            ],
+            "groups": []
+          },
+          {
+            "startTime": "09:45",
+            "endTime": "11:15",
+            "isLection": true,
+            "discipline": "Большие данные",
+            "teachers": [
+              "Параскевов А. В."
+            ],
+            "rooms": [
+              "217гл"
+            ],
+            "groups": []
+          },
+          {
+            "startTime": "11:30",
+            "endTime": "13:00",
+            "isLection": false,
+            "discipline": "",
+            "teachers": [],
+            "rooms": [],
+            "groups": []
+          },
+          {
+            "startTime": "13:50",
+            "endTime": "15:20",
+            "isLection": false,
+            "discipline": "",
+            "teachers": [],
+            "rooms": [],
+            "groups": []
+          },
+          {
+            "startTime": "15:35",
+            "endTime": "17:05",
+            "isLection": false,
+            "discipline": "",
+            "teachers": [],
+            "rooms": [],
+            "groups": []
+          },
+          {
+            "startTime": "17:20",
+            "endTime": "18:50",
+            "isLection": false,
+            "discipline": "",
+            "teachers": [],
+            "rooms": [],
+            "groups": []
+          }
+        ]
+      },
+      {
+        "weekday": "Суббота",
+        "date": "25 апреля",
+        "isToday": false,
+        "lessons": [
+          {
+            "startTime": "08:00",
+            "endTime": "09:30",
+            "isLection": false,
+            "discipline": "",
+            "teachers": [],
+            "rooms": [],
+            "groups": []
+          },
+          {
+            "startTime": "09:45",
+            "endTime": "11:15",
+            "isLection": false,
+            "discipline": "",
+            "teachers": [],
+            "rooms": [],
+            "groups": []
+          },
+          {
+            "startTime": "11:30",
+            "endTime": "13:00",
+            "isLection": false,
+            "discipline": "",
+            "teachers": [],
+            "rooms": [],
+            "groups": []
+          },
+          {
+            "startTime": "13:15",
+            "endTime": "14:45",
+            "isLection": false,
+            "discipline": "",
+            "teachers": [],
+            "rooms": [],
+            "groups": []
+          },
+          {
+            "startTime": "15:00",
+            "endTime": "16:30",
+            "isLection": false,
+            "discipline": "",
+            "teachers": [],
+            "rooms": [],
+            "groups": []
+          },
+          {
+            "startTime": "16:45",
+            "endTime": "18:15",
+            "isLection": false,
+            "discipline": "",
+            "teachers": [],
+            "rooms": [],
+            "groups": []
+          }
+        ]
+      },
+      {
+        "weekday": "Воскресенье",
+        "date": "26 апреля",
+        "isToday": true,
+        "lessons": [
+          {
+            "startTime": "08:00",
+            "endTime": "09:30",
+            "isLection": false,
+            "discipline": "",
+            "teachers": [],
+            "rooms": [],
+            "groups": []
+          },
+          {
+            "startTime": "09:45",
+            "endTime": "11:15",
+            "isLection": false,
+            "discipline": "",
+            "teachers": [],
+            "rooms": [],
+            "groups": []
+          },
+          {
+            "startTime": "11:30",
+            "endTime": "13:00",
+            "isLection": false,
+            "discipline": "",
+            "teachers": [],
+            "rooms": [],
+            "groups": []
+          },
+          {
+            "startTime": "13:50",
+            "endTime": "15:20",
+            "isLection": false,
+            "discipline": "",
+            "teachers": [],
+            "rooms": [],
+            "groups": []
+          },
+          {
+            "startTime": "15:35",
+            "endTime": "17:05",
+            "isLection": false,
+            "discipline": "",
+            "teachers": [],
+            "rooms": [],
+            "groups": []
+          },
+          {
+            "startTime": "17:20",
+            "endTime": "18:50",
+            "isLection": false,
+            "discipline": "",
+            "teachers": [],
+            "rooms": [],
+            "groups": []
+          }
+        ]
+      }
+    ]
+  },
+  "currentWeek": 2
+}

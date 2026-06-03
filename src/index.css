@@ -57,9 +57,9 @@
   /* Control */
 
   --control-stroke-color: rgb(48, 48, 48);
-  --control-bg-color-primary: rgba(45, 45, 45, 0.7);
-  --control-bg-color-secondary: rgba(50, 50, 50, 0.7);
-  --control-bg-color-tertiary: rgba(39, 39, 39, 0.7);
+  --control-bg-color-primary: rgba(32, 32, 32, 0.7);
+  --control-bg-color-secondary: rgba(29, 29, 29, 0.7);
+  --control-bg-color-tertiary: rgba(42, 42, 42, 0.7);
 }
 
 * {
