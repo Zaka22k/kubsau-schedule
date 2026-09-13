@@ -1,7 +1,6 @@
 .app {
   display: flex;
   flex-direction: column;
-  gap: 12px;
 }
 
 .mainContent {
@@ -12,7 +11,7 @@
   min-height: calc(100vh - 60px);
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 16px;
 }
 
 /* Универсальный контейнер для центрирования заглушек */

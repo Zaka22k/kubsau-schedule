@@ -16,8 +16,8 @@ export default defineConfig({
         short_name: "Расписание",
         description:
           "Официальное расписание занятий Кубанского государственного аграрного университета",
-        theme_color: "#1c1c1e",
-        background_color: "#1c1c1e",
+        theme_color: "#000",
+        background_color: "#000",
         display: "standalone",
         icons: [
           {

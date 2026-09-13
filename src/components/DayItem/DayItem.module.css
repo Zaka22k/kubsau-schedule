@@ -10,7 +10,7 @@
   align-items: last baseline;
   gap: 12px;
   padding: 12px;
-  background-color: var(--card-bg-color);
+  background-color: #2c2c2e;
   border-radius: var(--card-border-radius) var(--card-border-radius)
     var(--control-border-radius) var(--control-border-radius);
 
