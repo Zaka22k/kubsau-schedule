@@ -1,7 +1,6 @@
 import { useRef, useEffect } from "react";
 import { type Day, type Lesson } from "@types";
 import LessonItem from "./LessonItem";
-import { Skeleton } from "@components";
 import styles from "./DayItem.module.css";
 
 interface DayItemProps {
@@ -35,24 +34,14 @@ const DayItem = ({ day }: DayItemProps) => {
     >
       <thead>
         <tr className={styles.header}>
-          {!day ? (
-            <Skeleton width="60%" height="var(--subtitle-font)" />
-          ) : (
-            <>
-              <th className={styles.weekday}>{day?.weekday}</th>
-              <th className={styles.date}>{day?.date}</th>
-            </>
-          )}
+          <th className={styles.weekday}>{day?.weekday}</th>
+          <th className={styles.date}>{day?.date}</th>
         </tr>
       </thead>
       <tbody className={styles.body}>
-        {day
-          ? day?.lessons.map((lesson: Lesson, index: number) => (
-              <LessonItem key={index} lesson={lesson} isToday={day.isToday} />
-            ))
-          : Array.from({ length: 7 }).map((_, index) => (
-              <LessonItem key={index} lesson={undefined} isToday={false} />
-            ))}
+        {day?.lessons.map((lesson: Lesson, index: number) => (
+          <LessonItem key={index} lesson={lesson} isToday={day.isToday} />
+        ))}
       </tbody>
     </table>
   );

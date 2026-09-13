@@ -1,4 +1,4 @@
-import { AutoSuggestBox, WeekSection, DayItem, Header } from "@components";
+import { AutoSuggestBox, WeekSection, Header, ProgressRing } from "@components";
 import { useRef, useState, useEffect } from "react";
 import useApp from "./useApp";
 import styles from "./App.module.css";
@@ -51,9 +51,7 @@ const App = () => {
     if (parsing === 1) {
       return (
         <div className={styles.centerContainer}>
-          {Array.from({ length: 7 }).map((_, i) => (
-            <DayItem key={i} />
-          ))}
+          <ProgressRing loading size={48} />
         </div>
       );
     }
@@ -128,7 +126,7 @@ const App = () => {
       <main className={styles.mainContent}> {getContent()}</main>
 
       <AutoSuggestBox
-        placeholder="Группа / Аудитория..."
+        placeholder="Группа | Аудитория..."
         textChanged={handleSearch}
         suggestions={suggestions}
         value={searchQuery}

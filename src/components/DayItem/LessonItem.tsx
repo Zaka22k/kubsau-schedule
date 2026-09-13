@@ -1,9 +1,8 @@
 import { type Lesson } from "@types";
-import { Skeleton } from "@components";
 import styles from "./LessonItem.module.css";
 
 interface LessonItemProps {
-  lesson?: Lesson;
+  lesson: Lesson;
   isToday?: boolean;
 }
 
@@ -15,15 +14,9 @@ const LessonItem = ({ lesson, isToday }: LessonItemProps) => {
       <td
         className={`${styles.times} ${lesson?.isNow && isToday && styles.now}`}
       >
-        {!lesson ? (
-          <Skeleton width="30%" />
-        ) : (
-          <>
-            {lesson.startTime}
-            <br />
-            {lesson.endTime}
-          </>
-        )}
+        {lesson.startTime}
+        <br />
+        {lesson.endTime}
       </td>
       <td
         className={`${styles.infoContainer} ${lesson?.isLection && styles.lection}`}
@@ -31,29 +24,25 @@ const LessonItem = ({ lesson, isToday }: LessonItemProps) => {
         <div
           className={`${styles.discipline} ${lesson?.isNow && isToday && styles.now}`}
         >
-          {!lesson ? <Skeleton width="70%" /> : lesson.discipline}
+          {lesson.discipline} {lesson?.isLection && "| Лекция"}
         </div>
         <div
           className={`${styles.teachers} ${lesson?.isNow && isToday && styles.now}`}
         >
-          {!lesson ? <Skeleton width="30%" /> : lesson.teachers.join(", ")}
+          {lesson.teachers.join(", ")}
         </div>
       </td>
       <td className={styles.whoWhere}>
-        {!lesson ? (
-          <Skeleton width="30%" />
-        ) : (
-          (lesson.rooms.length > 0 ? lesson.rooms : lesson.groups).map(
-            (item: string) => (
-              <a
-                key={item}
-                className={`${styles.link} ${lesson.isNow && isToday && styles.now}`}
-                href={`./?type=${lesson.rooms.length > 0 ? 3 : 1}&value=${item.replace(/\/\d+$/, "")}`}
-              >
-                {item}
-              </a>
-            ),
-          )
+        {(lesson.rooms.length > 0 ? lesson.rooms : lesson.groups).map(
+          (item: string) => (
+            <a
+              key={item}
+              className={`${styles.link} ${lesson.isNow && isToday && styles.now}`}
+              href={`./?type=${lesson.rooms.length > 0 ? 3 : 1}&value=${item.replace(/\/\d+$/, "")}`}
+            >
+              {item}
+            </a>
+          ),
         )}
       </td>
     </tr>

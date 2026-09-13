@@ -6,12 +6,13 @@
 
 .mainContent {
   width: 100%;
-  max-width: 800px;
+  max-width: 650px;
   margin: 0 auto;
-  padding: 80px 16px 120px 16px;
+  padding: 80px 16px 90px 16px;
   min-height: calc(100vh - 60px);
   display: flex;
   flex-direction: column;
+  gap: 12px;
 }
 
 /* Универсальный контейнер для центрирования заглушек */

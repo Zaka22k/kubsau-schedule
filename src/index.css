@@ -11,34 +11,7 @@
 
   /* Other */
   --filter: saturate(180%) blur(20px);
-}
 
-:root[data-theme="light"] {
-  /* Text */
-  --text-color-primary: rgb(26, 26, 26);
-  --text-color-secondary: rgb(92, 92, 92);
-  --text-color-tertiary: rgb(134, 134, 134);
-  --inverted-text-color-primary: rgb(255, 255, 255);
-  --inverted-text-color-secondary: rgb(251, 251, 251);
-
-  /* System */
-  --page-bg-color: rgb(233, 238, 246);
-  --header-bg-color: rgba(233, 238, 246, 0.5);
-  --system-green: rgb(15, 123, 15);
-
-  /* Card */
-  --card-bg-color: rgb(255, 255, 255);
-  --card-stroke-color: rgb(229, 229, 229);
-
-  /* Control */
-  --control-stroke-color: rgb(229, 229, 229);
-  --control-bg-color-primary: rgba(250, 250, 250, 0.5);
-  --control-bg-color-secondary: rgba(246, 246, 246, 0.5);
-  --control-bg-color-tertiary: rgba(245, 245, 245, 0.5);
-}
-
-:root[data-theme="dark"] {
-  /* Text */
   --text-color-primary: rgb(255, 255, 255);
   --text-color-secondary: rgb(204, 204, 204);
   --text-color-tertiary: rgb(150, 150, 150);
@@ -46,18 +19,88 @@
   --inverted-text-color-secondary: rgb(16, 16, 16);
 
   /* System */
-  --page-bg-color: rgb(40, 42, 44);
-  --header-bg-color: rgba(40, 42, 44, 0.7);
+  --page-bg-color: #000;
+  --header-bg-color: #161617cc;
+  --header-stroke-color: #343437;
   --system-green: rgb(129, 207, 140);
 
   /* Card */
-  --card-bg-color: rgb(25, 25, 25);
-  --card-stroke-color: rgb(29, 29, 29);
+  --card-bg-color: #1c1c1e;
 
   /* Control */
+  --c-glass: #bbbbbc;
+  --c-light: #fff;
+  --c-dark: #000;
 
-  --control-stroke-color: rgb(48, 48, 48);
-  --control-bg-color-primary: rgba(32, 32, 32, 0.7);
+  --glass-reflex-dark: 2;
+  --glass-reflex-light: 0.3;
+
+  --control-shadow:
+    inset 0 0 0 1px
+      color-mix(
+        in srgb,
+        var(--c-light) calc(var(--glass-reflex-light) * 10%),
+        transparent
+      ),
+    inset 1.8px 3px 0px -2px
+      color-mix(
+        in srgb,
+        var(--c-light) calc(var(--glass-reflex-light) * 90%),
+        transparent
+      ),
+    inset -2px -2px 0px -2px
+      color-mix(
+        in srgb,
+        var(--c-light) calc(var(--glass-reflex-light) * 80%),
+        transparent
+      ),
+    inset -3px -8px 1px -6px
+      color-mix(
+        in srgb,
+        var(--c-light) calc(var(--glass-reflex-light) * 60%),
+        transparent
+      ),
+    inset -0.3px -1px 4px 0px
+      color-mix(
+        in srgb,
+        var(--c-dark) calc(var(--glass-reflex-dark) * 12%),
+        transparent
+      ),
+    inset -1.5px 2.5px 0px -2px
+      color-mix(
+        in srgb,
+        var(--c-dark) calc(var(--glass-reflex-dark) * 20%),
+        transparent
+      ),
+    inset 0px 3px 4px -2px
+      color-mix(
+        in srgb,
+        var(--c-dark) calc(var(--glass-reflex-dark) * 20%),
+        transparent
+      ),
+    inset 2px -6.5px 1px -4px
+      color-mix(
+        in srgb,
+        var(--c-dark) calc(var(--glass-reflex-dark) * 10%),
+        transparent
+      ),
+    0px 1px 5px 0px
+      color-mix(
+        in srgb,
+        var(--c-dark) calc(var(--glass-reflex-dark) * 10%),
+        transparent
+      ),
+    0px 6px 16px 0px
+      color-mix(
+        in srgb,
+        var(--c-dark) calc(var(--glass-reflex-dark) * 8%),
+        transparent
+      );
+  --control-bg-color-primary: color-mix(
+    in srgb,
+    var(--c-glass) 12%,
+    transparent
+  );
   --control-bg-color-secondary: rgba(29, 29, 29, 0.7);
   --control-bg-color-tertiary: rgba(42, 42, 42, 0.7);
 }
@@ -70,18 +113,10 @@
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   color: var(--text-color-primary);
 
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
 
   &::-webkit-scrollbar {
-    width: 6px;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background: var(--control-stroke-color);
-    border-radius: var(--circular-border-radius);
+    display: none;
   }
 
   transition:
@@ -92,16 +127,8 @@
 
 html,
 body {
-  height: 100vh;
+  min-height: 100vh;
   background-color: var(--page-bg-color);
   display: flex;
   flex-direction: column;
-}
-
-@media (max-width: 450px) {
-  :root {
-    --subtitle-font: 20px;
-    --body-font: 16px;
-    --caption-font: 12px;
-  }
 }

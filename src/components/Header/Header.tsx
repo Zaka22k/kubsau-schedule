@@ -1,5 +1,4 @@
 import { useEffect, useState, useRef } from "react";
-import { ThemeToggle } from "@components";
 import styles from "./Header.module.css";
 
 type HeaderProps = {
@@ -40,29 +39,21 @@ const Header = ({ activeWeek }: HeaderProps) => {
 
   return (
     <header className={`${styles.header} ${scrolled ? styles.scrolled : ""}`}>
-      <div className={styles.left}>
-        <div
-          className={`${styles.content} ${isAnimating ? styles.animate : ""}`}
-        >
-          {scrolled && activeWeek ? (
-            <span className={styles.weekText}>
-              Неделя {/* Оборачиваем цифру в отдельный анимируемый спан */}
-              <span
-                className={`${styles.digit} ${digitAnimating ? styles.digitAnimate : ""}`}
-              >
-                {activeWeek}
-              </span>
+      <div className={`${styles.content} ${isAnimating ? styles.animate : ""}`}>
+        {scrolled && activeWeek ? (
+          <span className={styles.weekText}>
+            Неделя
+            <span
+              className={`${styles.digit} ${digitAnimating ? styles.digitAnimate : ""}`}
+            >
+              {activeWeek}
             </span>
-          ) : (
-            <a className={styles.headerLink} href="https://kubsau.ru">
-              КУБГАУ <span className={styles.brandBadge}>Расписание</span>
-            </a>
-          )}
-        </div>
-      </div>
-
-      <div className={styles.right}>
-        <ThemeToggle />
+          </span>
+        ) : (
+          <a className={styles.headerLink} href="https://kubsau.ru">
+            КУБГАУ <span className={styles.brandBadge}>Расписание</span>
+          </a>
+        )}
       </div>
     </header>
   );
