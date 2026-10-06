@@ -1,4 +1,4 @@
-import { AutoSuggestBox, WeekSection, Header, ProgressRing } from "@components";
+import { SearchField, WeekSection, Header, ProgressRing } from "@components";
 import { useRef, useState, useEffect } from "react";
 import useApp from "./useApp";
 import styles from "./App.module.css";
@@ -18,9 +18,13 @@ const App = () => {
   const week1Ref = useRef<HTMLDivElement>(null);
   const week2Ref = useRef<HTMLDivElement>(null);
 
-  const [activeWeek, setActiveWeek] = useState<string | null>(
-    () => schedule?.currentWeek?.toString() || "1",
-  );
+  const [activeWeek, setActiveWeek] = useState<string | null>("1");
+
+  useEffect(() => {
+    if (schedule?.currentWeek) {
+      setActiveWeek(String(schedule.currentWeek));
+    }
+  }, [schedule]);
 
   useEffect(() => {
     if (parsing || !schedule) return;
@@ -123,16 +127,18 @@ const App = () => {
     <div className={styles.app}>
       <Header activeWeek={activeWeek} />
 
-      <main className={styles.mainContent}> {getContent()}</main>
+      <main className={styles.mainContent}>{getContent()}</main>
 
-      <AutoSuggestBox
-        placeholder="Группа | Аудитория..."
-        textChanged={handleSearch}
-        suggestions={suggestions}
-        value={searchQuery}
-        loading={searching}
-        suggestionChosen={handleSelect}
-      />
+      <footer>
+        <SearchField
+          placeholder="Группа | Аудитория..."
+          textChanged={handleSearch}
+          suggestions={suggestions}
+          value={searchQuery}
+          loading={searching}
+          suggestionChosen={handleSelect}
+        />
+      </footer>
     </div>
   );
 };

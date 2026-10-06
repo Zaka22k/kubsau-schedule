@@ -1,11 +1,11 @@
 .lessonContainer {
   display: flex;
   justify-content: space-between;
-  gap: 12px;
+  gap: 10px;
   align-items: center;
   background-color: var(--card-bg-color);
   border-radius: var(--control-border-radius);
-  padding: 8px 12px;
+  padding: 8px 10px;
 
   &:last-child {
     border-radius: var(--control-border-radius) var(--control-border-radius)
@@ -26,6 +26,8 @@
 
   .times {
     color: var(--text-color-tertiary);
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum";
 
     &.now {
       color: var(--inverted-text-color-primary);
@@ -40,7 +42,7 @@
   }
 
   .lectionMark {
-    background: var(--system-green);
+    background: var(--system-accent-primary);
     width: 5px;
     height: 100%;
   }

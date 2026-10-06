@@ -1,0 +1,151 @@
+/* Строка поиска */
+
+.container {
+  --height: 45px;
+  display: grid;
+  gap: 0;
+  /* 0px вместо 0fr: fr и px не интерполируются, а px → px анимируется плавно */
+  grid-template-columns: 1fr 0px;
+  align-items: center;
+  width: 100%;
+  max-width: 400px;
+  transition:
+    grid-template-columns 0.3s ease,
+    gap 0.3s ease;
+  position: relative;
+  z-index: 100;
+}
+
+.container.focused {
+  grid-template-columns: 1fr var(--height);
+  gap: 10px;
+}
+
+.input {
+  height: var(--height);
+  width: 100%;
+  min-width: 0;
+  padding: 10px 16px;
+  font-size: var(--body-font);
+  color: var(--text-color-primary);
+
+  border: none;
+  outline: none;
+  box-sizing: border-box;
+
+  background-color: var(--control-bg-color-primary);
+  border-radius: 36px;
+  backdrop-filter: saturate(180%) blur(20px);
+  box-shadow: var(--shadow);
+  caret-color: var(--system-accent-primary);
+
+  &::placeholder {
+    color: var(--text-color-tertiary);
+  }
+
+  &:hover {
+    background-color: var(--control-bg-color-secondary);
+  }
+}
+
+.btnWrapper {
+  min-width: 0;
+  overflow: hidden;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.closeBtn {
+  height: var(--height);
+  aspect-ratio: 1 / 1;
+  flex-shrink: 0;
+  padding: 0;
+  border-radius: 50%;
+  opacity: 0;
+  transform: scale(0.6);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--control-bg-color-primary);
+  backdrop-filter: saturate(180%) blur(20px);
+  box-shadow: var(--shadow);
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
+
+  &:hover {
+    background-color: var(--control-bg-color-secondary);
+  }
+}
+
+.container.focused .closeBtn {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Оверлей */
+.overlay {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  inset: 0;
+  padding: 16px;
+  pointer-events: none;
+  transition: opacity 0.167s ease;
+  background-color: var(--page-bg-color);
+  opacity: 0;
+}
+
+.overlayVisible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.overlayContainer {
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+
+  & > p {
+    font-size: var(--subtitle-font);
+    color: var(--text-color-primary);
+  }
+}
+
+.overlayCenterContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.suggestionsList {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-bottom: 60px;
+
+  & li {
+    list-style: none;
+    font-size: var(--body-font);
+    color: var(--text-color-secondary);
+    padding: 8px 12px;
+    border-radius: var(--circular-border-radius);
+    cursor: pointer;
+    flex-shrink: 0;
+
+    &:hover {
+      color: var(--text-color-primary);
+      background-color: var(--control-bg-color-secondary);
+    }
+
+    &:active {
+      background-color: var(--control-bg-color-tertiary);
+    }
+  }
+}

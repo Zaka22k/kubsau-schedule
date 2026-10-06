@@ -11,10 +11,9 @@
   min-height: calc(100vh - 60px);
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
 }
 
-/* Универсальный контейнер для центрирования заглушек */
 .centerContainer {
   display: flex;
   flex-direction: column;
@@ -25,7 +24,6 @@
   padding: 40px 20px;
 }
 
-/* Стиль для стартового экрана и карточки ошибки */
 .startScreen,
 .statusCard {
   max-width: 400px;
@@ -98,4 +96,24 @@
   50% {
     transform: scale(1.05);
   }
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px 36px;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+
+  background: linear-gradient(
+    to top,
+    #000000 0%,
+    rgba(0, 0, 0, 0.85) 25%,
+    rgba(0, 0, 0, 0.5) 50%,
+    rgba(0, 0, 0, 0.25) 75%,
+    transparent 100%
+  );
 }

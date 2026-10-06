@@ -22,7 +22,7 @@
   --page-bg-color: #000;
   --header-bg-color: #161617cc;
   --header-stroke-color: #343437;
-  --system-green: rgb(129, 207, 140);
+  --system-accent-primary: rgb(129, 207, 140);
 
   /* Card */
   --card-bg-color: #1c1c1e;
@@ -35,7 +35,7 @@
   --glass-reflex-dark: 2;
   --glass-reflex-light: 0.3;
 
-  --control-shadow:
+  --shadow:
     inset 0 0 0 1px
       color-mix(
         in srgb,
@@ -101,7 +101,7 @@
     var(--c-glass) 12%,
     transparent
   );
-  --control-bg-color-secondary: rgba(29, 29, 29, 0.7);
+  --control-bg-color-secondary: rgba(28, 28, 30, 0.7);
   --control-bg-color-tertiary: rgba(42, 42, 42, 0.7);
 }
 
@@ -133,7 +133,7 @@ body {
   flex-direction: column;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 768px) {
   :root {
     --subtitle-font: 20px;
     --body-font: 16px;

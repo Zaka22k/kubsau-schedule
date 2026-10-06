@@ -10,13 +10,38 @@ export function useApp() {
   const [searchQuery, setSearchQuery] = useState<string>(
     () => searchParams.get("value") || "",
   );
+  const [typedQuery, setTypedQuery] = useState("");
+
   const [suggestions, setSuggestions] = useState<Suggestion[]>([]);
   const [schedule, setSchedule] = useState<Schedule | null>(null);
 
   const [searching, setSearching] = useState(false);
-  const [parsing, setParsing] = useState<number>(0);
-  const [debouncedQuery, setDebouncedQuery] = useState("");
-  const abortControllerRef = useRef<AbortController | null>(null);
+  const [parsing, setParsing] = useState<number>(() =>
+    searchParams.get("type") && searchParams.get("value") ? 1 : 0,
+  );
+
+  const requestIdRef = useRef(0);
+
+  const loadScheduleData = async (type: string, value: string) => {
+    const requestId = ++requestIdRef.current;
+    setParsing(1);
+
+    try {
+      const result = await parseSchedule(type, value);
+      if (requestId !== requestIdRef.current) return;
+
+      setSchedule(result);
+      setParsing(0);
+    } catch (error) {
+      if (requestId !== requestIdRef.current) return;
+
+      if (error instanceof Error) {
+        console.error(`Ошибка загрузки расписания: ${error.message}`);
+      }
+      setSchedule(null);
+      setParsing(-1);
+    }
+  };
 
   useEffect(() => {
     const urlType = searchParams.get("type");
@@ -28,97 +53,72 @@ export function useApp() {
   }, []);
 
   useEffect(() => {
-    if (searchQuery.trim()) {
-      setSearching(true);
-    }
+    const query = typedQuery.trim().toLowerCase();
+    const type = getType(query);
 
-    const timer = setTimeout(() => {
-      setDebouncedQuery(searchQuery);
-    }, 400);
-
-    return () => clearTimeout(timer);
-  }, [searchQuery]);
-
-  useEffect(() => {
-    const trimmedQuery = debouncedQuery.trim().toLowerCase();
-    const type = getType(trimmedQuery);
-
-    if (!trimmedQuery || !type) {
+    if (!query || !type) {
       setSuggestions([]);
       setSearching(false);
       return;
     }
 
-    if (abortControllerRef.current) {
-      abortControllerRef.current.abort();
-    }
-
+    setSearching(true);
     const controller = new AbortController();
-    abortControllerRef.current = controller;
 
-    const fetchSuggestions = async () => {
+    const timer = setTimeout(async () => {
       try {
-        const response = await axios.get(
-          `${import.meta.env.VITE_SUGGESTIONS_URL}/get.php?query=${encodeURIComponent(trimmedQuery)}&type_schedule=${type}`,
-          { signal: controller.signal },
+        const { data } = await axios.get(
+          `${import.meta.env.VITE_SUGGESTIONS_URL}/get.php`,
+          {
+            params: { query, type_schedule: type },
+            signal: controller.signal,
+          },
         );
-        setSuggestions(response.data.suggestions || []);
+
+        setSuggestions(
+          data?.suggestions?.map((suggestion: any) => ({
+            id: suggestion.data,
+            value: suggestion.value,
+            type,
+          })) ?? [],
+        );
       } catch (error) {
         if (axios.isCancel(error)) return;
         setSuggestions([]);
-      } finally {
-        if (abortControllerRef.current === controller) {
-          abortControllerRef.current = null;
-          setSearching(false);
-        }
       }
-    };
-
-    fetchSuggestions();
+      setSearching(false);
+    }, 400);
 
     return () => {
+      clearTimeout(timer);
       controller.abort();
     };
-  }, [debouncedQuery]);
+  }, [typedQuery]);
 
-  const loadScheduleData = async (type: string, value: string) => {
-    setParsing(1);
-    try {
-      const result = await parseSchedule(type, value);
-      setSchedule(result);
-    } catch (error) {
-      if (error instanceof Error) {
-        console.error(`Ошибка загрузки расписания: ${error.message}`);
-      }
-      setParsing(-1);
-      setSchedule(null);
-    } finally {
-      setParsing(0);
-    }
+  const handleSearch = (text: string) => {
+    setSearchQuery(text);
+    setTypedQuery(text);
   };
 
-  const handleSelect = async (value: string) => {
-    const cleanValue = value.trim();
-    const detectedType = getType(cleanValue.toLowerCase());
+  const handleSelect = async (value: string, type: string) => {
+    setSearchQuery(value);
+    setTypedQuery("");
 
-    setSearchQuery(cleanValue);
-    setSuggestions([]);
-
-    if (!cleanValue || !detectedType) return;
+    if (!value || !type) return;
 
     setSearchParams(
-      { type: detectedType, value: cleanValue.toLowerCase() },
+      { type: type, value: value.toLowerCase() },
       { replace: true },
     );
 
-    await loadScheduleData(detectedType, cleanValue.toLowerCase());
+    await loadScheduleData(type, value.toLowerCase());
   };
 
   return {
     searchQuery,
     suggestions,
     searching,
-    handleSearch: setSearchQuery,
+    handleSearch,
     schedule,
     parsing,
     handleSelect,
