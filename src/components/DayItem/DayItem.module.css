@@ -10,21 +10,21 @@
   align-items: last baseline;
   gap: 12px;
   padding: 10px;
-  background-color: #2c2c2e;
-  border-radius: var(--card-border-radius) var(--card-border-radius)
-    var(--control-border-radius) var(--control-border-radius);
+  background-color: var(--card-bg-secodary);
+  border-radius: var(--card-radius) var(--card-radius) var(--control-radius)
+    var(--control-radius);
 
   & th {
     font-weight: 400;
   }
 
   .weekday {
-    font-size: var(--subtitle-font);
+    font-size: var(--subtitle);
   }
 
   .date {
-    font-size: var(--body-font);
-    color: var(--text-color-secondary);
+    font-size: var(--body);
+    color: var(--text-secondary);
   }
 }
 

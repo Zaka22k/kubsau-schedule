@@ -1,10 +1,8 @@
 /* Строка поиска */
-
 .container {
   --height: 45px;
   display: grid;
   gap: 0;
-  /* 0px вместо 0fr: fr и px не интерполируются, а px → px анимируется плавно */
   grid-template-columns: 1fr 0px;
   align-items: center;
   width: 100%;
@@ -21,30 +19,60 @@
   gap: 10px;
 }
 
-.input {
+.glassPanel {
+  position: relative;
+  background: var(--glass-bg);
+  backdrop-filter: var(--filter);
+  border: none;
+  box-shadow: var(--glass-shadow);
+}
+
+.glassPanel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: var(--glass-gradient);
+  -webkit-mask: var(--glass-mask);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+.inputWrapper {
   height: var(--height);
   width: 100%;
   min-width: 0;
-  padding: 10px 16px;
-  font-size: var(--body-font);
-  color: var(--text-color-primary);
+  border-radius: var(--circular-radius);
+  display: flex;
+  align-items: center;
+}
+
+.searchIcon {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  margin-left: 16px;
+}
+
+.input {
+  height: 100%;
+  width: 100%;
+  min-width: 0;
+  padding: 10px 16px 10px 10px;
+  font-size: var(--body);
+  color: var(--text-primary);
 
   border: none;
   outline: none;
   box-sizing: border-box;
+  background: transparent;
 
-  background-color: var(--control-bg-color-primary);
-  border-radius: 36px;
-  backdrop-filter: saturate(180%) blur(20px);
-  box-shadow: var(--shadow);
-  caret-color: var(--system-accent-primary);
+  position: relative;
+  z-index: 2;
 
   &::placeholder {
-    color: var(--text-color-tertiary);
-  }
-
-  &:hover {
-    background-color: var(--control-bg-color-secondary);
+    color: var(--text-tertiary);
   }
 }
 
@@ -60,23 +88,16 @@
   aspect-ratio: 1 / 1;
   flex-shrink: 0;
   padding: 0;
-  border-radius: 50%;
+  border-radius: var(--circular-radius);
   opacity: 0;
   transform: scale(0.6);
-  border: none;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--control-bg-color-primary);
-  backdrop-filter: saturate(180%) blur(20px);
-  box-shadow: var(--shadow);
+  cursor: pointer;
   transition:
     opacity 0.25s ease,
     transform 0.25s ease;
-
-  &:hover {
-    background-color: var(--control-bg-color-secondary);
-  }
 }
 
 .container.focused .closeBtn {
@@ -88,12 +109,13 @@
 .overlay {
   position: fixed;
   display: flex;
+  height: 100vh;
   justify-content: center;
   inset: 0;
   padding: 16px;
   pointer-events: none;
   transition: opacity 0.167s ease;
-  background-color: var(--page-bg-color);
+  background-color: var(--app-bg);
   opacity: 0;
 }
 
@@ -110,8 +132,8 @@
   width: 100%;
 
   & > p {
-    font-size: var(--subtitle-font);
-    color: var(--text-color-primary);
+    font-size: var(--subtitle);
+    color: var(--text-primary);
   }
 }
 
@@ -130,22 +152,20 @@
   overflow-x: hidden;
   padding-bottom: 60px;
 
+  min-height: 0;
+
   & li {
     list-style: none;
-    font-size: var(--body-font);
-    color: var(--text-color-secondary);
+    font-size: var(--body);
+    color: var(--text-secondary);
     padding: 8px 12px;
-    border-radius: var(--circular-border-radius);
+    border-radius: var(--circular-radius);
     cursor: pointer;
     flex-shrink: 0;
 
     &:hover {
-      color: var(--text-color-primary);
-      background-color: var(--control-bg-color-secondary);
-    }
-
-    &:active {
-      background-color: var(--control-bg-color-tertiary);
+      color: var(--text-primary);
+      background-color: var(--control-bg-secondary);
     }
   }
 }

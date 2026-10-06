@@ -1,5 +1,5 @@
 .header {
-  font-size: var(--subtitle-font);
+  font-size: var(--subtitle);
   position: fixed;
   top: 0;
   width: 100%;
@@ -16,22 +16,22 @@
     backdrop-filter 0.25s ease-in-out;
 
   &.scrolled {
-    background-color: var(--header-bg-color);
-    border-bottom: 1px solid var(--header-stroke-color);
+    background-color: var(--header-bg);
+    border-bottom: 1px solid var(--header-stroke);
     backdrop-filter: var(--filter);
   }
 }
 
 .headerLink {
   text-decoration: none;
-  color: var(--text-color-primary);
+  color: var(--text-primary);
 
   &:hover {
-    color: var(--system-accent-primary);
+    color: var(--app-accent-primary);
 
     & span {
-      color: var(--text-color-tertiary);
-      font-size: var(--body-font);
+      color: var(--text-tertiary);
+      font-size: var(--body);
     }
   }
 
@@ -40,17 +40,17 @@
   }
 
   & span {
-    color: var(--system-accent-primary);
+    color: var(--app-accent-primary);
   }
 }
 
 .brandBadge {
   font-weight: 400;
-  color: var(--text-color-secondary);
+  color: var(--text-secondary);
 }
 
 .weekText {
-  color: var(--text-color-primary);
+  color: var(--text-primary);
   display: inline-flex;
   align-items: center;
   gap: 8px;

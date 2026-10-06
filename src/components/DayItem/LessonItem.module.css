@@ -3,34 +3,34 @@
   justify-content: space-between;
   gap: 10px;
   align-items: center;
-  background-color: var(--card-bg-color);
-  border-radius: var(--control-border-radius);
+  background-color: var(--card-bg-primary);
+  border-radius: var(--control-radius);
   padding: 8px 10px;
 
   &:last-child {
-    border-radius: var(--control-border-radius) var(--control-border-radius)
-      var(--card-border-radius) var(--card-border-radius);
+    border-radius: var(--control-radius) var(--control-radius)
+      var(--card-radius) var(--card-radius);
     padding-bottom: 12px;
   }
 
   &.now {
-    background-color: var(--system-green);
-    border-radius: var(--card-border-radius);
+    background-color: var(--app-accent-primary);
+    border-radius: var(--card-radius);
   }
 
   .whoWhere,
   .times {
     width: max-content;
-    font-size: var(--caption-font);
+    font-size: var(--caption);
   }
 
   .times {
-    color: var(--text-color-tertiary);
+    color: var(--text-tertiary);
     font-variant-numeric: tabular-nums;
     font-feature-settings: "tnum";
 
     &.now {
-      color: var(--inverted-text-color-primary);
+      color: var(--inverted-text-primary);
     }
   }
 
@@ -42,7 +42,7 @@
   }
 
   .lectionMark {
-    background: var(--system-accent-primary);
+    background: var(--app-accent-primary);
     width: 5px;
     height: 100%;
   }
@@ -53,19 +53,19 @@
     flex-direction: column;
 
     .discipline {
-      font-size: var(--caption-font);
+      font-size: var(--caption);
       font-weight: 500;
 
       &.now {
-        color: var(--inverted-text-color-primary);
+        color: var(--inverted-text-primary);
       }
     }
     .teachers {
-      font-size: var(--caption-font);
-      color: var(--text-color-secondary);
+      font-size: var(--caption);
+      color: var(--text-secondary);
 
       &.now {
-        color: var(--inverted-text-color-secondary);
+        color: var(--inverted-text-secondary);
       }
     }
   }
@@ -73,10 +73,10 @@
 
 .link {
   text-decoration: none;
-  color: var(--text-color-tertiary);
+  color: var(--text-tertiary);
 
   &:hover {
-    color: var(--text-color-primary);
+    color: var(--text-primary);
   }
 
   &:visited {
@@ -84,10 +84,10 @@
   }
 
   &.now {
-    color: var(--inverted-text-color-secondary);
+    color: var(--inverted-text-secondary);
 
     &:hover {
-      color: var(--inverted-text-color-primary);
+      color: var(--inverted-text-primary);
     }
   }
 }

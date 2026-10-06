@@ -67,7 +67,6 @@ const SearchField = ({
               {suggestions?.map((suggestion, index) => (
                 <li
                   key={`${suggestion.value}-${index}`}
-                  // Не даём инпуту потерять фокус до клика
                   onMouseDown={(e) => e.preventDefault()}
                   onClick={() =>
                     handleSuggestionChosen(suggestion.value, suggestion.type)
@@ -82,24 +81,40 @@ const SearchField = ({
       </div>
 
       <div className={`${styles.container} ${isFocused ? styles.focused : ""}`}>
-        <input
-          className={styles.input}
-          ref={inputRef}
-          type="text"
-          value={value}
-          placeholder={placeholder}
-          aria-label={placeholder || "Поиск"}
-          enterKeyHint="search"
-          onChange={handleTextChange}
-          onKeyDown={handleKeyDown}
-          onFocus={() => setIsFocused(true)}
-          onBlur={() => setIsFocused(false)}
-        />
+        <div className={`${styles.inputWrapper} ${styles.glassPanel}`}>
+          <svg
+            className={styles.searchIcon}
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="var(--text-secondary)"
+            strokeWidth="2.2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+          >
+            <circle cx="11" cy="11" r="7"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+
+          <input
+            className={styles.input}
+            ref={inputRef}
+            type="text"
+            value={value}
+            placeholder={placeholder}
+            aria-label={placeholder || "Поиск"}
+            enterKeyHint="search"
+            onChange={handleTextChange}
+            onKeyDown={handleKeyDown}
+            onFocus={() => setIsFocused(true)}
+            onBlur={() => setIsFocused(false)}
+          />
+        </div>
 
         <div className={styles.btnWrapper}>
           <button
             type="button"
-            className={styles.closeBtn}
+            className={`${styles.closeBtn} ${styles.glassPanel}`}
             aria-label="Закрыть"
             onMouseDown={handleClose}
             tabIndex={isFocused ? 0 : -1}
@@ -113,7 +128,7 @@ const SearchField = ({
               height={24}
             >
               <path
-                fill="var(--text-color-secondary)"
+                fill="var(--text-secondary)"
                 d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"
               />
             </svg>
