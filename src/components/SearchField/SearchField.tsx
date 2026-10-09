@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { ProgressRing } from "@components";
+import { ProgressRing, GlassPanel } from "@components";
 import { type Suggestion } from "@types";
 import { useKeyboardViewport } from "./useKeyboardViewport";
 import styles from "./SearchField.module.css";
@@ -85,19 +85,27 @@ const SearchField = ({
       </div>
 
       <div className={`${styles.container} ${isFocused ? styles.focused : ""}`}>
-        <div className={`${styles.inputWrapper} ${styles.glassPanel}`}>
+        <GlassPanel
+          style={{
+            height: "var(--height)",
+            width: "100%",
+            minWidth: 0,
+            borderRadius: "var(--circular-radius)",
+            display: "flex",
+            alignItems: "center",
+          }}
+        >
           <svg
             className={styles.searchIcon}
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="var(--text-secondary)"
-            strokeWidth="2.2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
+            viewBox="0 -960 960 960"
+            fill="currentColor"
             aria-hidden="true"
+            focusable="false"
           >
-            <circle cx="11" cy="11" r="7"></circle>
-            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            <path
+              fill="var(--text-secondary)"
+              d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"
+            />
           </svg>
 
           <input
@@ -113,30 +121,40 @@ const SearchField = ({
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
           />
-        </div>
+        </GlassPanel>
 
         <div className={styles.btnWrapper}>
-          <button
-            type="button"
-            className={`${styles.closeBtn} ${styles.glassPanel}`}
-            aria-label="Закрыть"
-            onMouseDown={handleClose}
-            tabIndex={isFocused ? 0 : -1}
+          <GlassPanel
+            className={styles.closeBtn}
+            width="var(--height)"
+            height="var(--height)"
+            boxShadow="none"
+            fallbackBlur={24}
+            specularWidth={2}
+            specularAngle={-125}
           >
-            <svg
-              viewBox="0 -960 960 960"
-              fill="currentColor"
-              aria-hidden="true"
-              focusable="false"
-              width={24}
-              height={24}
+            <button
+              type="button"
+              className={styles.closeBtnInner}
+              aria-label="Закрыть"
+              onMouseDown={handleClose}
+              tabIndex={isFocused ? 0 : -1}
             >
-              <path
-                fill="var(--text-secondary)"
-                d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"
-              />
-            </svg>
-          </button>
+              <svg
+                viewBox="0 -960 960 960"
+                fill="currentColor"
+                aria-hidden="true"
+                focusable="false"
+                width={24}
+                height={24}
+              >
+                <path
+                  fill="var(--text-secondary)"
+                  d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"
+                />
+              </svg>
+            </button>
+          </GlassPanel>
         </div>
       </div>
     </>

@@ -7,7 +7,7 @@
   width: 100%;
   max-width: 650px;
   margin: 0 auto;
-  padding: 80px 16px 90px 16px;
+  padding: 70px 16px 100px 16px;
   min-height: calc(100vh - 60px);
   display: flex;
   flex-direction: column;
@@ -22,55 +22,6 @@
   flex: 1;
   text-align: center;
   padding: 40px 20px;
-}
-
-/* ---------- Статусные экраны (приветствие / ошибка / не найдено) ---------- */
-
-.statusCard {
-  max-width: 340px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
-  animation: fadeInLayout 0.4s ease-out forwards;
-}
-
-.iconWrap {
-  width: 72px;
-  height: 72px;
-  display: grid;
-  place-items: center;
-  margin-bottom: 4px;
-  border-radius: var(--circular-radius);
-  background-color: var(--card-bg-primary);
-  border: 1px solid var(--header-stroke);
-}
-
-/* в index.css у `*` задан color, поэтому цвет иконки переопределяем явно */
-.iconWrap,
-.iconWrap * {
-  color: var(--icon-color);
-}
-
-.neutral {
-  --icon-color: var(--text-tertiary);
-}
-
-.accent {
-  --icon-color: var(--app-accent-primary);
-}
-
-.statusTitle {
-  font-size: var(--subtitle);
-  font-weight: 700;
-  color: var(--text-primary);
-}
-
-.statusText {
-  font-size: var(--body);
-  line-height: 1.4;
-  color: var(--text-tertiary);
-  text-wrap: balance;
 }
 
 .query {
@@ -132,14 +83,20 @@
 
 footer {
   position: fixed;
-  /* --kb-inset выставляется, пока открыта клавиатура: поле поиска стоит над ней */
   bottom: var(--kb-inset, 0px);
   left: 0;
   width: 100%;
-  padding: 20px 36px;
+  padding: 20px 36px 30px 36px;
   z-index: 10;
   display: flex;
   justify-content: center;
 
-  background: var(--footer-mask);
+  background: linear-gradient(
+    to top,
+    var(--app-bg) 0%,
+    color-mix(in srgb, var(--app-bg) 85%, transparent) 25%,
+    color-mix(in srgb, var(--app-bg) 50%, transparent) 50%,
+    color-mix(in srgb, var(--app-bg) 25%, transparent) 75%,
+    transparent 100%
+  );
 }

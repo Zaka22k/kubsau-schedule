@@ -3,23 +3,59 @@
   position: fixed;
   top: 0;
   width: 100%;
-  padding: 8px 16px;
+  padding: 16px;
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 10;
-  background-color: transparent;
-  border-bottom: 1px solid transparent;
-  transition:
-    background-color 0.25s ease-in-out,
-    border-color 0.25s ease-in-out,
-    backdrop-filter 0.25s ease-in-out;
+  background: linear-gradient(
+    to bottom,
+    var(--app-bg) 0%,
+    color-mix(in srgb, var(--app-bg) 85%, transparent) 25%,
+    color-mix(in srgb, var(--app-bg) 50%, transparent) 50%,
+    color-mix(in srgb, var(--app-bg) 25%, transparent) 75%,
+    transparent 100%
+  );
+}
 
-  &.scrolled {
-    background-color: var(--header-bg);
-    border-bottom: 1px solid var(--header-stroke);
-    backdrop-filter: var(--filter);
-  }
+/* ---------- Смена «КУБГАУ Расписание» ⇄ «неделя N» ---------- */
+
+.content {
+  display: grid;
+  place-items: center;
+}
+
+/* Оба слоя лежат в одной ячейке сетки, поэтому высота шапки не прыгает */
+.layer {
+  grid-area: 1 / 1;
+  opacity: 1;
+  transform: none;
+  visibility: visible;
+  transition:
+    opacity 0.25s ease,
+    transform 0.35s cubic-bezier(0.32, 0.72, 0, 1),
+    color 0.167s ease-in-out,
+    visibility 0s linear 0s;
+}
+
+.hiddenUp,
+.hiddenDown {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    opacity 0.2s ease,
+    transform 0.3s cubic-bezier(0.32, 0.72, 0, 1),
+    color 0.167s ease-in-out,
+    visibility 0s linear 0.3s;
+}
+
+.hiddenUp {
+  transform: translateY(-10px) scale(0.96);
+}
+
+.hiddenDown {
+  transform: translateY(10px) scale(0.94);
 }
 
 .headerLink {
@@ -49,42 +85,109 @@
   color: var(--text-secondary);
 }
 
+/* ---------- Цифра недели («барабан») ---------- */
+
 .weekText {
+  font-size: var(--body);
   color: var(--text-primary);
-  display: inline-flex;
+  display: flex;
   align-items: center;
   gap: 8px;
 }
 
-.digit {
+.roller {
+  position: relative;
   display: inline-block;
-  opacity: 1;
-  transform: translateY(0);
-  transition:
-    opacity 0.15s cubic-bezier(0.34, 1.56, 0.64, 1),
-    transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1);
+  height: 1.3em;
+  min-width: 1ch;
+  line-height: 1.3em;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+  overflow: hidden; /* прячет цифру, пока она «за окошком» барабана */
 }
 
-.digit.digitAnimate {
-  opacity: 0;
-  transform: translateY(-6px);
-  transition:
-    opacity 0.08s ease-in,
-    transform 0.08s ease-in;
+.digit {
+  display: block;
 }
 
-.content {
-  opacity: 1;
-  transform: translateY(0);
-  transition:
-    opacity 0.2s cubic-bezier(0.34, 1.56, 0.64, 1),
-    transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+.digitOut {
+  position: absolute;
+  inset: 0;
+}
 
-  &.animate {
+/* Скролл вниз по странице: новая цифра выезжает снизу, старая уезжает вверх */
+.inUp {
+  animation: inUp 0.32s cubic-bezier(0.32, 0.72, 0, 1) both;
+}
+.outUp {
+  animation: outUp 0.32s cubic-bezier(0.32, 0.72, 0, 1) both;
+}
+
+/* Скролл вверх: наоборот — новая цифра выезжает сверху, старая уезжает вниз */
+.inDown {
+  animation: inDown 0.32s cubic-bezier(0.32, 0.72, 0, 1) both;
+}
+.outDown {
+  animation: outDown 0.32s cubic-bezier(0.32, 0.72, 0, 1) both;
+}
+
+@keyframes inUp {
+  from {
+    transform: translateY(100%);
     opacity: 0;
-    transform: translateY(-8px);
-    transition:
-      opacity 0.1s ease-in,
-      transform 0.1s ease-in;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes outUp {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+}
+
+@keyframes inDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes outDown {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .inUp,
+  .inDown {
+    animation: none;
+  }
+
+  .digitOut {
+    display: none;
+  }
+
+  .layer,
+  .hiddenUp,
+  .hiddenDown {
+    transition: none;
   }
 }

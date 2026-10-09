@@ -1,33 +1,13 @@
-import { SearchField, WeekSection, Header, ProgressRing } from "@components";
-import { useRef, useState, useEffect, type ReactNode } from "react";
+import {
+  SearchField,
+  WeekSection,
+  Header,
+  ProgressRing,
+  StatusScreen,
+} from "@components";
+import { useRef, useState, useEffect } from "react";
 import useApp from "./useApp";
 import styles from "./App.module.css";
-
-type StatusScreenProps = {
-  icon: ReactNode;
-  title: string;
-  description?: ReactNode;
-  action?: ReactNode;
-  tone?: "accent" | "neutral";
-};
-
-const StatusScreen = ({
-  icon,
-  title,
-  description,
-  action,
-  tone = "neutral",
-}: StatusScreenProps) => (
-  <div className={styles.centerContainer}>
-    <div className={styles.statusCard}>
-      <div className={`${styles.iconWrap} ${styles[tone]}`}>{icon}</div>
-      <h2 className={styles.statusTitle}>{title}</h2>
-      {description && <p className={styles.statusText}>{description}</p>}
-      {action}
-    </div>
-  </div>
-);
-
 const svgProps = {
   width: 32,
   height: 32,
@@ -192,7 +172,7 @@ const App = () => {
 
   return (
     <div className={styles.app}>
-      <Header activeWeek={activeWeek} />
+      <Header activeWeek={activeWeek} weeksOrder={weeksArray.map(String)} />
 
       <main className={styles.mainContent}>{getContent()}</main>
 

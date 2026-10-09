@@ -21,14 +21,6 @@
 
     /* System */
     --app-bg: rgb(0, 0, 0);
-    --footer-mask: linear-gradient(
-      to top,
-      #000000 0%,
-      rgba(0, 0, 0, 0.85) 25%,
-      rgba(0, 0, 0, 0.5) 50%,
-      rgba(0, 0, 0, 0.25) 75%,
-      transparent 100%
-    );
     --header-bg: rgba(22, 22, 23, 0.8);
     --header-stroke: rgb(52, 52, 55);
 
@@ -43,17 +35,6 @@
     /* Other */
     --filter: saturate(180%) blur(20px);
     --app-accent-primary: rgb(129, 207, 140);
-    --glass-bg: rgba(255, 255, 255, 0.13);
-    --glass-gradient: linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.3) 0%,
-      rgba(255, 255, 255, 0) 25%,
-      rgba(255, 255, 255, 0) 75%,
-      rgba(255, 255, 255, 0.2) 100%
-    );
-    --glass-mask:
-      linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    --glass-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
   }
 }
 
@@ -73,14 +54,6 @@
 
     /* System */
     --app-bg: rgb(241, 241, 246);
-    --footer-mask: linear-gradient(
-      to top,
-      #ffffff 0%,
-      rgba(255, 255, 255, 0.85) 25%,
-      rgba(255, 255, 255, 0.5) 50%,
-      rgba(255, 255, 255, 0.25) 75%,
-      transparent 100%
-    );
     --header-bg: rgba(255, 255, 255, 0.7);
     --header-stroke: rgba(29, 29, 31, 0.1);
 
