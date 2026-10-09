@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import { ProgressRing } from "@components";
 import { type Suggestion } from "@types";
+import { useKeyboardViewport } from "./useKeyboardViewport";
 import styles from "./SearchField.module.css";
 
 type SearchFieldProps = {
@@ -22,6 +23,9 @@ const SearchField = ({
 }: SearchFieldProps) => {
   const [isFocused, setIsFocused] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  // Подгоняет оверлей и поле поиска под видимую область (над клавиатурой)
+  useKeyboardViewport(isFocused);
 
   const handleTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     textChanged?.(e.target.value);

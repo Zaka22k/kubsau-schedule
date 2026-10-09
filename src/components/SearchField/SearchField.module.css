@@ -105,13 +105,17 @@
   transform: scale(1);
 }
 
-/* Оверлей */
+/* Оверлей
+   --vv-top / --vv-height задаёт useKeyboardViewport, пока поле в фокусе:
+   оверлей занимает только видимую область над клавиатурой. */
 .overlay {
   position: fixed;
+  top: var(--vv-top, 0px);
+  left: 0;
+  right: 0;
+  height: var(--vv-height, 100dvh);
   display: flex;
-  height: 100vh;
   justify-content: center;
-  inset: 0;
   padding: 16px;
   pointer-events: none;
   transition: opacity 0.167s ease;
@@ -126,6 +130,7 @@
 
 .overlayContainer {
   max-width: 600px;
+  min-height: 0;
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -148,11 +153,13 @@
 .suggestionsList {
   display: flex;
   flex-direction: column;
+  flex: 1;
+  min-height: 0;
   overflow-y: auto;
   overflow-x: hidden;
-  padding-bottom: 60px;
-
-  min-height: 0;
+  overscroll-behavior: contain;
+  /* запас под строку поиска, которая стоит поверх списка внизу */
+  padding-bottom: 100px;
 
   & li {
     list-style: none;

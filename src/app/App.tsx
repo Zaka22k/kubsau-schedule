@@ -1,7 +1,65 @@
 import { SearchField, WeekSection, Header, ProgressRing } from "@components";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, type ReactNode } from "react";
 import useApp from "./useApp";
 import styles from "./App.module.css";
+
+type StatusScreenProps = {
+  icon: ReactNode;
+  title: string;
+  description?: ReactNode;
+  action?: ReactNode;
+  tone?: "accent" | "neutral";
+};
+
+const StatusScreen = ({
+  icon,
+  title,
+  description,
+  action,
+  tone = "neutral",
+}: StatusScreenProps) => (
+  <div className={styles.centerContainer}>
+    <div className={styles.statusCard}>
+      <div className={`${styles.iconWrap} ${styles[tone]}`}>{icon}</div>
+      <h2 className={styles.statusTitle}>{title}</h2>
+      {description && <p className={styles.statusText}>{description}</p>}
+      {action}
+    </div>
+  </div>
+);
+
+const svgProps = {
+  width: 32,
+  height: 32,
+  viewBox: "0 0 24 24",
+  fill: "none",
+  strokeWidth: 1.8,
+  strokeLinecap: "round" as const,
+  strokeLinejoin: "round" as const,
+};
+
+const CalendarSearchIcon = () => (
+  <svg {...svgProps} stroke="currentColor">
+    <rect x="3" y="4" width="18" height="17" rx="3" />
+    <path d="M3 9h18M8 2.5v3M16 2.5v3" />
+    <circle cx="11" cy="14.5" r="2.5" />
+    <path d="m13 16.5 2 2" />
+  </svg>
+);
+
+const CloudOffIcon = () => (
+  <svg {...svgProps} stroke="currentColor">
+    <path d="M7 18a4.5 4.5 0 0 1-.6-8.96A6 6 0 0 1 18 9.5a4 4 0 0 1 .5 7.97" />
+    <path d="M3 3l18 18" />
+  </svg>
+);
+
+const EmptyIcon = () => (
+  <svg {...svgProps} stroke="currentColor">
+    <circle cx="11" cy="11" r="7" />
+    <path d="m20 20-3.5-3.5M8.5 11h5" />
+  </svg>
+);
 
 const App = () => {
   const {
@@ -12,6 +70,7 @@ const App = () => {
     schedule,
     parsing,
     handleSelect,
+    retry,
   } = useApp();
   const weeksArray = schedule?.currentWeek === 1 ? [1, 2] : [2, 1];
 
@@ -62,40 +121,48 @@ const App = () => {
 
     if (parsing === -1) {
       return (
-        <div className={styles.centerContainer}>
-          <div className={styles.statusCard}>
-            <p>Не удалось загрузить расписание</p>
-            <button
-              onClick={() => window.location.reload()}
-              className={styles.retryButton}
-            >
-              Повторить попытку
+        <StatusScreen
+          icon={<CloudOffIcon />}
+          title="Не получилось загрузить"
+          description="Проверьте подключение к интернету и попробуйте ещё раз."
+          action={
+            <button onClick={retry} className={styles.retryButton}>
+              Повторить
             </button>
-          </div>
-        </div>
+          }
+        />
       );
     }
 
     if (!schedule && !searchQuery.trim() && parsing === 0) {
       return (
-        <div className={styles.centerContainer}>
-          <div className={styles.startScreen}>
-            <p>Добро пожаловать</p>
-          </div>
-        </div>
+        <StatusScreen
+          tone="accent"
+          icon={<CalendarSearchIcon />}
+          title="Найдите расписание"
+          description="Введите номер группы или аудитории в поле ниже."
+          action={
+            <span className={styles.hintArrow} aria-hidden>
+              ↓
+            </span>
+          }
+        />
       );
     }
 
     if (schedule && Object.keys(schedule.weeks || {}).length === 0) {
       return (
-        <div className={styles.centerContainer}>
-          <div className={styles.statusCard}>
-            <p>
-              По запросу «{searchQuery}»<br />
-              расписание не найдено
-            </p>
-          </div>
-        </div>
+        <StatusScreen
+          icon={<EmptyIcon />}
+          title="Ничего не найдено"
+          description={
+            <>
+              Для запроса <b className={styles.query}>«{searchQuery}»</b> нет
+              расписания. Выберите вариант из подсказок — так точно не
+              ошибётесь.
+            </>
+          }
+        />
       );
     }
 
@@ -131,7 +198,7 @@ const App = () => {
 
       <footer>
         <SearchField
-          placeholder="Группа | Аудитория..."
+          placeholder="Поиск"
           textChanged={handleSearch}
           suggestions={suggestions}
           value={searchQuery}

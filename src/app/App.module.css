@@ -24,55 +24,86 @@
   padding: 40px 20px;
 }
 
-.startScreen,
+/* ---------- Статусные экраны (приветствие / ошибка / не найдено) ---------- */
+
 .statusCard {
-  max-width: 400px;
+  max-width: 340px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
   animation: fadeInLayout 0.4s ease-out forwards;
 }
 
-.welcomeLogo,
-.errorIcon,
-.emptyIcon {
-  font-size: 4rem;
-  margin-bottom: 16px;
-  display: inline-block;
-  animation: pulseIcon 2s infinite ease-in-out;
+.iconWrap {
+  width: 72px;
+  height: 72px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 4px;
+  border-radius: var(--circular-radius);
+  background-color: var(--card-bg-primary);
+  border: 1px solid var(--header-stroke);
 }
 
-.startScreen h2,
-.statusCard h3 {
-  font-size: 1.5rem;
-  color: var(--text-primary);
-  margin-bottom: 12px;
-  font-weight: 700;
+/* в index.css у `*` задан color, поэтому цвет иконки переопределяем явно */
+.iconWrap,
+.iconWrap * {
+  color: var(--icon-color);
 }
 
-.startScreen,
-.statusCard {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+.neutral {
+  --icon-color: var(--text-tertiary);
+}
+
+.accent {
+  --icon-color: var(--app-accent-primary);
+}
+
+.statusTitle {
   font-size: var(--subtitle);
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.statusText {
+  font-size: var(--body);
+  line-height: 1.4;
+  color: var(--text-tertiary);
+  text-wrap: balance;
+}
+
+.query {
+  display: inline-block;
+  max-width: 100%;
+  overflow-wrap: anywhere;
   color: var(--text-secondary);
-  align-items: center;
+  font-weight: 600;
+}
+
+.hintArrow {
+  margin-top: 8px;
+  font-size: var(--subtitle);
+  color: var(--app-accent-primary);
+  animation: nudgeDown 1.6s infinite ease-in-out;
 }
 
 .retryButton {
-  background-color: var(--control-bg-color-primary);
-  color: var(--text-secondary);
-  border: 1px solid var(--control-stroke-color);
-  padding: 12px 16px;
+  margin-top: 8px;
+  padding: 12px 24px;
   font-size: var(--body);
+  font-weight: 600;
+  border: none;
   border-radius: var(--circular-radius);
   cursor: pointer;
-  width: max-content;
+  background-color: var(--app-accent-primary);
+  color: var(--inverted-text-primary);
 
   &:hover {
-    color: var(--text-primary);
-    background-color: var(--control-bg-color-secondary);
+    opacity: 0.88;
   }
   &:active {
-    background-color: var(--control-bg-color-tertiary);
+    opacity: 0.75;
   }
 }
 
@@ -87,19 +118,22 @@
   }
 }
 
-@keyframes pulseIcon {
+@keyframes nudgeDown {
   0%,
   100% {
-    transform: scale(1);
+    transform: translateY(0);
+    opacity: 0.6;
   }
   50% {
-    transform: scale(1.05);
+    transform: translateY(6px);
+    opacity: 1;
   }
 }
 
 footer {
   position: fixed;
-  bottom: 0;
+  /* --kb-inset выставляется, пока открыта клавиатура: поле поиска стоит над ней */
+  bottom: var(--kb-inset, 0px);
   left: 0;
   width: 100%;
   padding: 20px 36px;

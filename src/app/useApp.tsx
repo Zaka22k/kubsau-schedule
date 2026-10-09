@@ -21,8 +21,10 @@ export function useApp() {
   );
 
   const requestIdRef = useRef(0);
+  const lastRequestRef = useRef<{ type: string; value: string } | null>(null);
 
   const loadScheduleData = async (type: string, value: string) => {
+    lastRequestRef.current = { type, value };
     const requestId = ++requestIdRef.current;
     setParsing(1);
 
@@ -41,6 +43,11 @@ export function useApp() {
       setSchedule(null);
       setParsing(-1);
     }
+  };
+
+  const retry = () => {
+    const last = lastRequestRef.current;
+    if (last) loadScheduleData(last.type, last.value);
   };
 
   useEffect(() => {
@@ -122,6 +129,7 @@ export function useApp() {
     schedule,
     parsing,
     handleSelect,
+    retry,
   };
 }
 
