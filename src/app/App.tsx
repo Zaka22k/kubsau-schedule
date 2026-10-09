@@ -4,10 +4,12 @@ import {
   Header,
   ProgressRing,
   StatusScreen,
+  GlassPanel,
 } from "@components";
 import { useRef, useState, useEffect } from "react";
 import useApp from "./useApp";
 import styles from "./App.module.css";
+
 const svgProps = {
   width: 32,
   height: 32,
@@ -106,9 +108,16 @@ const App = () => {
           title="Не получилось загрузить"
           description="Проверьте подключение к интернету и попробуйте ещё раз."
           action={
-            <button onClick={retry} className={styles.retryButton}>
-              Повторить
-            </button>
+            <GlassPanel
+              backgroundColor="color-mix(in srgb, var(--app-accent-primary) 90%, transparent)"
+              style={{ marginTop: "8px", padding: "12px 24px" }}
+              width="max-content"
+              height="max-content"
+            >
+              <button onClick={retry} className={styles.retryButton}>
+                Повторить
+              </button>
+            </GlassPanel>
           }
         />
       );
@@ -117,7 +126,6 @@ const App = () => {
     if (!schedule && !searchQuery.trim() && parsing === 0) {
       return (
         <StatusScreen
-          tone="accent"
           icon={<CalendarSearchIcon />}
           title="Найдите расписание"
           description="Введите номер группы или аудитории в поле ниже."

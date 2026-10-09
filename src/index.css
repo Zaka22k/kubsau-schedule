@@ -5,6 +5,36 @@
   --caption: 14px;
 }
 
+@media (prefers-color-scheme: light) {
+  :root {
+    /* Text */
+    --text-primary: rgb(0, 0, 0);
+    --text-secondary: rgb(16, 16, 16);
+    --text-tertiary: rgb(150, 150, 150);
+    --inverted-text-primary: rgb(255, 255, 255);
+    --inverted-text-secondary: rgb(204, 204, 204);
+
+    /* Border-radius */
+    --card-radius: 16px;
+    --control-radius: 8px;
+    --circular-radius: 9999px;
+
+    /* System */
+    --app-bg: rgb(255, 255, 255);
+    --glass-bg: rgba(0, 0, 0, 0.1);
+
+    /* Card */
+    --card-bg-primary: rgb(240, 240, 240);
+    --card-bg-secodary: rgb(226, 226, 226);
+
+    /* Control */
+    --control-bg-secondary: rgba(230, 230, 230, 0.7);
+
+    /* Other */
+    --app-accent-primary: rgb(57, 134, 73);
+  }
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     /* Text */
@@ -21,66 +51,17 @@
 
     /* System */
     --app-bg: rgb(0, 0, 0);
-    --header-bg: rgba(22, 22, 23, 0.8);
-    --header-stroke: rgb(52, 52, 55);
+    --glass-bg: rgba(255, 255, 255, 0.07);
 
     /* Card */
     --card-bg-primary: rgb(28, 28, 30);
     --card-bg-secodary: rgb(44, 44, 46);
 
     /* Control */
-    --control-bg-color-secondary: rgba(28, 28, 30, 0.7);
-    --control-bg-color-tertiary: rgba(42, 42, 42, 0.7);
+    --control-bg-secondary: rgba(28, 28, 30, 0.7);
 
     /* Other */
-    --filter: saturate(180%) blur(20px);
     --app-accent-primary: rgb(129, 207, 140);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    /* Text */
-    --text-primary: rgb(0, 0, 0);
-    --text-secondary: rgb(16, 16, 16);
-    --text-tertiary: rgb(150, 150, 150);
-    --inverted-text-primary: rgb(255, 255, 255);
-    --inverted-text-secondary: rgb(204, 204, 204);
-
-    /* Border-radius */
-    --card-radius: 16px;
-    --control-radius: 8px;
-    --circular-radius: 9999px;
-
-    /* System */
-    --app-bg: rgb(241, 241, 246);
-    --header-bg: rgba(255, 255, 255, 0.7);
-    --header-stroke: rgba(29, 29, 31, 0.1);
-
-    /* Card */
-    --card-bg-primary: rgb(255, 255, 255);
-    --card-bg-secodary: rgb(255, 255, 255);
-
-    /* Control */
-    --control-bg-secondary: rgb(227, 227, 232);
-
-    /* Other */
-    --filter: saturate(180%) blur(20px);
-    --app-accent-primary: rgb(0, 128, 9);
-    --glass-bg: rgba(255, 255, 255, 0.75);
-
-    --glass-gradient: linear-gradient(
-      180deg,
-      rgba(0, 0, 0, 0.08) 0%,
-      rgba(0, 0, 0, 0) 25%,
-      rgba(0, 0, 0, 0) 75%,
-      rgba(0, 0, 0, 0.15) 100%
-    );
-
-    --glass-mask:
-      linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-
-    --glass-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
   }
 }
 

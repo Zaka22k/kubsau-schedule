@@ -40,14 +40,11 @@
 }
 
 .retryButton {
-  margin-top: 8px;
-  padding: 12px 24px;
+  background-color: transparent;
   font-size: var(--body);
   font-weight: 600;
   border: none;
-  border-radius: var(--circular-radius);
   cursor: pointer;
-  background-color: var(--app-accent-primary);
   color: var(--inverted-text-primary);
 
   &:hover {

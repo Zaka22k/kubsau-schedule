@@ -81,9 +81,6 @@
   cursor: pointer;
 }
 
-/* Оверлей
-   --vv-top / --vv-height задаёт useKeyboardViewport, пока поле в фокусе:
-   оверлей занимает только видимую область над клавиатурой. */
 .overlay {
   position: fixed;
   top: var(--vv-top, 0px);
@@ -134,7 +131,6 @@
   overflow-y: auto;
   overflow-x: hidden;
   overscroll-behavior: contain;
-  /* запас под строку поиска, которая стоит поверх списка внизу */
   padding-bottom: 100px;
 
   & li {
