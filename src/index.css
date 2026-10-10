@@ -3,35 +3,62 @@
   --subtitle: 24px;
   --body: 18px;
   --caption: 14px;
+
+  /* Border-radius */
+  --card-radius: 16px;
+  --control-radius: 8px;
+  --circular-radius: 9999px;
 }
 
 @media (prefers-color-scheme: light) {
   :root {
     /* Text */
-    --text-primary: rgb(0, 0, 0);
+    /* --text-primary: rgb(0, 0, 0);
     --text-secondary: rgb(16, 16, 16);
     --text-tertiary: rgb(150, 150, 150);
     --inverted-text-primary: rgb(255, 255, 255);
-    --inverted-text-secondary: rgb(204, 204, 204);
-
-    /* Border-radius */
-    --card-radius: 16px;
-    --control-radius: 8px;
-    --circular-radius: 9999px;
+    --inverted-text-secondary: rgb(204, 204, 204); */
 
     /* System */
-    --app-bg: rgb(255, 255, 255);
-    --glass-bg: rgba(0, 0, 0, 0.1);
+    /* --app-bg: rgb(245, 245, 245);
+    --app-accent-primary: rgb(57, 134, 73); */
 
     /* Card */
-    --card-bg-primary: rgb(240, 240, 240);
-    --card-bg-secodary: rgb(226, 226, 226);
+    /* --card-bg-primary: rgb(255, 255, 255);
+    --card-bg-secodary: rgb(255, 255, 255); */
 
     /* Control */
-    --control-bg-secondary: rgba(230, 230, 230, 0.7);
+    /* --control-bg-secondary: rgba(230, 230, 230, 0.7); */
 
     /* Other */
-    --app-accent-primary: rgb(57, 134, 73);
+    /* --glass-bg: rgba(0, 0, 0, 0.05);
+    --edge-shadow-opacity: 0.15;
+    --edge-shadow-width: 20;
+    --glass-outer-shadow-opacity: 0.1; */
+
+    /* Text */
+    --text-primary: rgb(255, 255, 255);
+    --text-secondary: rgb(204, 204, 204);
+    --text-tertiary: rgb(150, 150, 150);
+    --inverted-text-primary: rgb(0, 0, 0);
+    --inverted-text-secondary: rgb(16, 16, 16);
+
+    /* System */
+    --app-bg: rgb(0, 0, 0);
+    --app-accent-primary: rgb(129, 207, 140);
+
+    /* Card */
+    --card-bg-primary: rgb(28, 28, 30);
+    --card-bg-secodary: rgb(44, 44, 46);
+
+    /* Control */
+    --control-bg-secondary: rgba(28, 28, 30, 0.7);
+
+    /* Other */
+    --glass-bg: rgba(255, 255, 255, 0.07);
+    --edge-shadow-opacity: 0;
+    --edge-shadow-width: 0;
+    --glass-outer-shadow-opacity: 0;
   }
 }
 
@@ -44,14 +71,9 @@
     --inverted-text-primary: rgb(0, 0, 0);
     --inverted-text-secondary: rgb(16, 16, 16);
 
-    /* Border-radius */
-    --card-radius: 16px;
-    --control-radius: 8px;
-    --circular-radius: 9999px;
-
     /* System */
     --app-bg: rgb(0, 0, 0);
-    --glass-bg: rgba(255, 255, 255, 0.07);
+    --app-accent-primary: rgb(129, 207, 140);
 
     /* Card */
     --card-bg-primary: rgb(28, 28, 30);
@@ -61,7 +83,10 @@
     --control-bg-secondary: rgba(28, 28, 30, 0.7);
 
     /* Other */
-    --app-accent-primary: rgb(129, 207, 140);
+    --glass-bg: rgba(255, 255, 255, 0.07);
+    --edge-shadow-opacity: 0;
+    --edge-shadow-width: 0;
+    --glass-outer-shadow-opacity: 0;
   }
 }
 

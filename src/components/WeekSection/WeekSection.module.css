@@ -1,7 +1,17 @@
 .list {
+  --day-min-width: 350px;
+
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   gap: 12px;
+}
+
+@media (min-width: 769px) {
+  .list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(var(--day-min-width), 1fr));
+    align-items: start;
+    gap: 16px;
+  }
 }

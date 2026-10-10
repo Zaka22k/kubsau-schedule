@@ -131,7 +131,6 @@ const SearchField = ({
             boxShadow="none"
             fallbackBlur={24}
             specularWidth={2}
-            specularAngle={-125}
           >
             <button
               type="button"

@@ -1,13 +1,14 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, type CSSProperties } from "react";
 import { type Day, type Lesson } from "@types";
 import LessonItem from "./LessonItem";
 import styles from "./DayItem.module.css";
 
 interface DayItemProps {
   day?: Day;
+  index?: number;
 }
 
-const DayItem = ({ day }: DayItemProps) => {
+const DayItem = ({ day, index = 0 }: DayItemProps) => {
   const dayRef = useRef<HTMLTableElement>(null);
   const isCurrent = day?.isToday;
 
@@ -30,7 +31,7 @@ const DayItem = ({ day }: DayItemProps) => {
     <table
       className={styles.card}
       ref={dayRef}
-      style={{ scrollMarginTop: "50px" }}
+      style={{ scrollMarginTop: "50px", "--i": index } as CSSProperties}
     >
       <thead>
         <tr className={styles.header}>

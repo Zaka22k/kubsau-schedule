@@ -10,7 +10,7 @@ const WeekSection = ({ days = [] }: WeekSectionProps) => {
   return (
     <section className={styles.list}>
       {days.map((day, index) => (
-        <DayItem key={index} day={day} />
+        <DayItem key={index} day={day} index={index} />
       ))}
     </section>
   );

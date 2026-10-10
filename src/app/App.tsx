@@ -127,6 +127,7 @@ const App = () => {
       return (
         <StatusScreen
           icon={<CalendarSearchIcon />}
+          tone="accent"
           title="Найдите расписание"
           description="Введите номер группы или аудитории в поле ниже."
           action={

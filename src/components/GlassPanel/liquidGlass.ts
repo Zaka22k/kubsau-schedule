@@ -1,13 +1,16 @@
 /**
- * Liquid Glass math: refraction table, displacement map and specular mask.
+ * Liquid Glass math: refraction table, displacement map, specular rim mask and edge shade mask.
  * Pure functions, no React. Based on the approach from
- * https://kube.io/blog/liquid-glass-css-svg/ (the specular part is our own construction).
+ * https://kube.io/blog/liquid-glass-css-svg/ (the specular rim and edge shade are our own construction).
  */
 
 export type GlassProfile = 'squircle' | 'circle' | 'concave' | 'lip';
 
 /** Number of samples along the bezel. 128 matches the 8-bit resolution of the displacement map. */
 export const SAMPLES = 128;
+
+/** Width of the thin outline of the edge shade, in CSS px. */
+const OUTLINE_WIDTH = 1.4;
 
 const smootherstep = (x: number): number => x * x * x * (x * (x * 6 - 15) + 10);
 const squircle = (x: number): number => Math.pow(1 - Math.pow(1 - x, 4), 0.25);
@@ -73,6 +76,7 @@ function lookup(table: RefractionTable, x: number): number {
   return (table.displacement[i] * (1 - k) + table.displacement[j] * k) / table.maxAbs;
 }
 
+/** All lengths are in canvas pixels (CSS px multiplied by the pixel ratio). */
 interface FillOptions {
   width: number;
   height: number;
@@ -80,16 +84,26 @@ interface FillOptions {
   bezel: number;
   specularAngle: number;
   specularWidth: number;
+  edgeShadowWidth: number;
+  outlineWidth: number;
 }
 
-/** Fills RGBA buffers: displacement map (R = x, G = y, 128 = neutral) and white specular mask. */
+/**
+ * Fills three RGBA buffers:
+ *  - mapData: displacement map (R = x, G = y, 128 = neutral),
+ *  - specData: white rim highlight, lit from `specularAngle`,
+ *  - shadeData: black edge shade, a thin outline plus a soft inner shadow.
+ * Both overlays carry full-strength alpha, their opacity is applied by the caller.
+ */
 function fillMaps(
   o: FillOptions,
   table: RefractionTable,
   mapData: Uint8ClampedArray,
   specData: Uint8ClampedArray,
+  shadeData: Uint8ClampedArray,
 ): void {
   const { width: W, height: H, radius: R, bezel: B, specularWidth: rimW } = o;
+  const shadeW = Math.max(1, o.edgeShadowWidth);
   const cx = W / 2;
   const cy = H / 2;
   const hx = W / 2 - R;
@@ -118,6 +132,10 @@ function fillMaps(
       specData[i + 1] = 255;
       specData[i + 2] = 255;
       specData[i + 3] = 0;
+      shadeData[i] = 0;
+      shadeData[i + 1] = 0;
+      shadeData[i + 2] = 0;
+      shadeData[i + 3] = 0;
       if (sd >= 0) continue; // outside the shape
 
       const d = -sd;
@@ -142,18 +160,26 @@ function fillMaps(
         mapData[i + 1] = Math.round(128 - ny * m * 127);
       }
 
+      const edgeAA = Math.min(1, d);
+
+      // Specular rim: brighter on the lit side, half as bright on the opposite side.
       const c = nx * lx + ny * ly;
       const lit = Math.max(c, 0) + 0.5 * Math.max(-c, 0);
       const t = Math.max(0, 1 - d / rimW);
       const rim = t * t * (3 - 2 * t);
       const wide = 0.18 * Math.pow(Math.max(0, 1 - d / B), 2);
-      const edgeAA = Math.min(1, d);
       specData[i + 3] = Math.round(255 * Math.min(1, lit * Math.min(1, rim + wide) * edgeAA));
+
+      // Edge shade: uniform thin outline plus a soft inner shadow of width `shadeW`.
+      const outline = Math.max(0, 1 - d / o.outlineWidth);
+      const soft = Math.pow(Math.max(0, 1 - d / shadeW), 2);
+      shadeData[i + 3] = Math.round(255 * Math.min(1, outline + 0.4 * soft) * edgeAA);
     }
   }
 }
 
 export interface GlassMapOptions {
+  /** Panel size in CSS px. */
   width: number;
   height: number;
   radius: number;
@@ -163,54 +189,83 @@ export interface GlassMapOptions {
   strength: number;
   specularAngle: number;
   specularWidth: number;
+  /** Width of the soft inner edge shadow in CSS px. */
+  edgeShadowWidth: number;
   profile: GlassProfile;
+  /** Encode the displacement map. Pass false where SVG backdrop filters are unsupported. Default true. */
+  refraction?: boolean;
+  /** Pixel ratio the maps are rendered at (1 or 2), so thin lines stay crisp. Default 1. */
+  pixelRatio?: number;
 }
 
 export interface GlassMaps {
-  /** PNG data URL for feDisplacementMap. */
+  /** PNG data URL for feDisplacementMap. Empty string when `refraction` is false. */
   displacementUrl: string;
-  /** PNG data URL, white with alpha, for the specular overlay. */
+  /** PNG data URL, white with alpha, for the specular rim overlay. */
   specularUrl: string;
+  /** PNG data URL, black with alpha, for the edge shade overlay. */
+  edgeShadowUrl: string;
   /** Value for feDisplacementMap `scale`. */
   scale: number;
   /** Largest displacement in px, before the strength multiplier. */
   maxDisplacement: number;
 }
 
-/** Builds both maps on canvas. Returns null on the server or when canvas is unavailable. */
+/** Builds the maps on canvas. Returns null on the server or when canvas is unavailable. */
 export function createGlassMaps(o: GlassMapOptions): GlassMaps | null {
   if (typeof document === 'undefined') return null;
-  const W = Math.round(o.width);
-  const H = Math.round(o.height);
+  const k = Math.max(1, o.pixelRatio ?? 1);
+  const W = Math.round(o.width * k);
+  const H = Math.round(o.height * k);
   if (W < 2 || H < 2) return null;
 
-  const R = Math.min(Math.max(0, o.radius), W / 2, H / 2);
-  const B = Math.max(1, Math.min(o.bezel, Math.min(W, H) / 2));
-  const rimW = Math.max(0.5, o.specularWidth);
+  const wCss = o.width;
+  const hCss = o.height;
+  const R = Math.min(Math.max(0, o.radius), wCss / 2, hCss / 2);
+  const B = Math.max(1, Math.min(o.bezel, Math.min(wCss, hCss) / 2));
   const table = computeRefractionTable(o.profile, B, o.glassHeight, o.ior);
 
-  const mapCanvas = document.createElement('canvas');
-  const specCanvas = document.createElement('canvas');
-  mapCanvas.width = specCanvas.width = W;
-  mapCanvas.height = specCanvas.height = H;
+  const makeCanvas = () => {
+    const c = document.createElement('canvas');
+    c.width = W;
+    c.height = H;
+    return c;
+  };
+  const mapCanvas = makeCanvas();
+  const specCanvas = makeCanvas();
+  const shadeCanvas = makeCanvas();
   const mapCtx = mapCanvas.getContext('2d');
   const specCtx = specCanvas.getContext('2d');
-  if (!mapCtx || !specCtx) return null;
+  const shadeCtx = shadeCanvas.getContext('2d');
+  if (!mapCtx || !specCtx || !shadeCtx) return null;
 
   const mapImg = mapCtx.createImageData(W, H);
   const specImg = specCtx.createImageData(W, H);
+  const shadeImg = shadeCtx.createImageData(W, H);
   fillMaps(
-    { width: W, height: H, radius: R, bezel: B, specularAngle: o.specularAngle, specularWidth: rimW },
+    {
+      width: W,
+      height: H,
+      radius: R * k,
+      bezel: B * k,
+      specularAngle: o.specularAngle,
+      specularWidth: Math.max(0.5, o.specularWidth) * k,
+      edgeShadowWidth: o.edgeShadowWidth * k,
+      outlineWidth: OUTLINE_WIDTH * k,
+    },
     table,
     mapImg.data,
     specImg.data,
+    shadeImg.data,
   );
   mapCtx.putImageData(mapImg, 0, 0);
   specCtx.putImageData(specImg, 0, 0);
+  shadeCtx.putImageData(shadeImg, 0, 0);
 
   return {
-    displacementUrl: mapCanvas.toDataURL('image/png'),
+    displacementUrl: o.refraction === false ? '' : mapCanvas.toDataURL('image/png'),
     specularUrl: specCanvas.toDataURL('image/png'),
+    edgeShadowUrl: shadeCanvas.toDataURL('image/png'),
     // Per the SVG spec the offset is scale * (C - 0.5), so a 0..255 channel spans +-scale/2.
     scale: ((table.maxAbs * 255) / 127) * o.strength,
     maxDisplacement: table.maxAbs,

@@ -3,6 +3,29 @@
   overflow: hidden;
 
   max-width: 700px;
+
+  /* Появление: карточки по очереди выезжают снизу.
+     Задержка растёт с номером карточки, но не больше чем у шестой,
+     чтобы нижние карточки не ждали слишком долго. */
+  animation: cardIn 0.45s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+  animation-delay: calc(min(var(--i, 0), 5) * 60ms);
+}
+
+@keyframes cardIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    animation: none;
+  }
 }
 
 .header {

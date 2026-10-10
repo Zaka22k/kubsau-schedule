@@ -11,7 +11,7 @@
   background: linear-gradient(
     to bottom,
     var(--app-bg) 0%,
-    color-mix(in srgb, var(--app-bg) 85%, transparent) 25%,
+    color-mix(in srgb, var(--app-bg) 75%, transparent) 25%,
     color-mix(in srgb, var(--app-bg) 50%, transparent) 50%,
     color-mix(in srgb, var(--app-bg) 25%, transparent) 75%,
     transparent 100%
@@ -60,14 +60,19 @@
 
 .headerLink {
   text-decoration: none;
-  color: var(--text-primary);
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+
+  color: var(--text-secondary);
+  font-size: var(--caption);
 
   &:hover {
     color: var(--app-accent-primary);
+    font-size: var(--body);
 
     & span {
-      color: var(--text-tertiary);
-      font-size: var(--body);
+      font-size: 0;
     }
   }
 
@@ -76,7 +81,8 @@
   }
 
   & span {
-    color: var(--app-accent-primary);
+    color: var(--text-primary);
+    font-size: var(--subtitle);
   }
 }
 

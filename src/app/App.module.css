@@ -5,13 +5,19 @@
 
 .mainContent {
   width: 100%;
-  max-width: 650px;
   margin: 0 auto;
-  padding: 70px 16px 100px 16px;
+  padding: 85px 16px 100px 16px;
   min-height: calc(100vh - 60px);
   display: flex;
   flex-direction: column;
   gap: 12px;
+}
+
+@media (min-width: 769px) {
+  .mainContent {
+    max-width: 1300px;
+    gap: 64px;
+  }
 }
 
 .centerContainer {
@@ -36,7 +42,7 @@
   margin-top: 8px;
   font-size: var(--subtitle);
   color: var(--app-accent-primary);
-  animation: nudgeDown 1.6s infinite ease-in-out;
+  animation: nudgeDown 1.5s infinite ease-in-out;
 }
 
 .retryButton {
@@ -83,7 +89,7 @@ footer {
   bottom: var(--kb-inset, 0px);
   left: 0;
   width: 100%;
-  padding: 20px 36px 30px 36px;
+  padding: 20px 36px;
   z-index: 10;
   display: flex;
   justify-content: center;
@@ -91,7 +97,7 @@ footer {
   background: linear-gradient(
     to top,
     var(--app-bg) 0%,
-    color-mix(in srgb, var(--app-bg) 85%, transparent) 25%,
+    color-mix(in srgb, var(--app-bg) 75%, transparent) 25%,
     color-mix(in srgb, var(--app-bg) 50%, transparent) 50%,
     color-mix(in srgb, var(--app-bg) 25%, transparent) 75%,
     transparent 100%

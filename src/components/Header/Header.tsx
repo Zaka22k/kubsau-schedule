@@ -32,7 +32,7 @@ const Header = ({ activeWeek, weeksOrder = ["1", "2"] }: HeaderProps) => {
   const showPanel = scrolled && !!activeWeek;
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
+    const handleScroll = () => setScrolled(window.scrollY > 30);
 
     handleScroll(); // на случай, если страница восстановила позицию прокрутки
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -83,7 +83,7 @@ const Header = ({ activeWeek, weeksOrder = ["1", "2"] }: HeaderProps) => {
           aria-hidden={showPanel}
           tabIndex={showPanel ? -1 : undefined}
         >
-          КУБГАУ <span className={styles.brandBadge}>Расписание</span>
+          КубГАУ<span className={styles.brandBadge}>Расписание </span>
         </a>
 
         <div
