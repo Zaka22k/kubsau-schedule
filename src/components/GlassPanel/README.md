@@ -2,16 +2,16 @@
 
 Стеклянная панель, которая преломляет всё, что находится за ней. Состоит из трёх файлов в одной папке:
 
-| Файл             | Что внутри                                                               |
-| ---------------- | ------------------------------------------------------------------------ |
-| `GlassPanel.tsx` | Сам компонент и значения по умолчанию `GLASS_DEFAULTS`                   |
-| `liquidGlass.ts` | Математика: таблица преломления, карта смещений, маска блика (без React) |
-| `index.ts`       | Общий экспорт                                                            |
+| Файл | Что внутри |
+|---|---|
+| `GlassPanel.tsx` | Сам компонент и единственное место с базовыми настройками, `GLASS_DEFAULTS` |
+| `liquidGlass.ts` | Математика: таблица преломления, карта смещений, маски блика и тени по краю (без React) |
+| `index.ts` | Общий экспорт |
 
 Нужен React 18 или новее (используется `useId`).
 
 ```tsx
-import { GlassPanel } from "./glass-panel";
+import { GlassPanel } from './glass-panel';
 ```
 
 ## 1. Главное правило: за стеклом должно что-то быть
@@ -27,15 +27,8 @@ import { GlassPanel } from "./glass-panel";
 ### Минимальный пример
 
 ```tsx
-<div
-  style={{
-    position: "relative",
-    minHeight: 400,
-    backgroundImage: "url(/bg.jpg)",
-    backgroundSize: "cover",
-  }}
->
-  <GlassPanel style={{ position: "absolute", left: 40, top: 40 }}>
+<div style={{ position: 'relative', minHeight: 400, backgroundImage: 'url(/bg.jpg)', backgroundSize: 'cover' }}>
+  <GlassPanel style={{ position: 'absolute', left: 40, top: 40 }}>
     Привет
   </GlassPanel>
 </div>
@@ -62,51 +55,43 @@ import { GlassPanel } from "./glass-panel";
 
 ### Все параметры
 
-| Параметр             | По умолчанию             | Что делает                                                                                             |
-| -------------------- | ------------------------ | ------------------------------------------------------------------------------------------------------ |
-| `profile`            | `'squircle'`             | Форма кромки: `'squircle'`, `'circle'`, `'concave'`, `'lip'`                                           |
-| `bezel`              | `30`                     | Ширина зоны преломления у края, px                                                                     |
-| `glassHeight`        | `50`                     | Высота стекла, px. Больше значит сильнее преломление                                                   |
-| `ior`                | `1.5`                    | Показатель преломления. `1` отключает эффект                                                           |
-| `strength`           | `1`                      | Множитель смещения. `0` выключает преломление, `1.5` усиливает                                         |
-| `blur`               | `0.5`                    | Размытие фона, px                                                                                      |
-| `saturation`         | `1.4`                    | Насыщенность фона, `1` без изменений                                                                   |
-| `specularAngle`      | `-60`                    | Направление света в градусах. `0` справа, `90` снизу, `-60` справа сверху                              |
-| `specularOpacity`    | `0.6`                    | Яркость блика, 0..1                                                                                    |
-| `specularWidth`      | `3`                      | Толщина блика, px                                                                                      |
-| `edgeShadowOpacity`  | `0`                      | Сила тонкого контура и мягкой внутренней тени по краю, 0..1. `0` выключает. Для светлого фона 0.15–0.3 |
-| `edgeShadowWidth`    | `8`                      | Ширина мягкой внутренней тени, px. Сам контур всегда около 1.4 px                                      |
-| `outerShadowOpacity` | `0.38`                   | Прозрачность тени вокруг панели, 0..1. Игнорируется, если задан `boxShadow`                            |
-| `width`              | `320`                    | Ширина                                                                                                 |
-| `height`             | `160`                    | Высота                                                                                                 |
-| `radius`             | `80`                     | Радиус углов, px                                                                                       |
-| `backgroundColor`    | `rgba(255,255,255,0.05)` | Цвет панели, любой CSS-цвет                                                                            |
-| `boxShadow`          | не задан                 | Полная CSS-тень. Если задана, заменяет тень из `outerShadowOpacity`                                    |
-| `fallbackBlur`       | `10`                     | Размытие в браузерах без поддержки SVG-фильтра                                                         |
+| Параметр | По умолчанию | Что делает |
+|---|---|---|
+| `profile` | `'squircle'` | Форма кромки: `'squircle'`, `'circle'`, `'concave'`, `'lip'` |
+| `bezel` | `30` | Ширина зоны преломления у края, px |
+| `glassHeight` | `50` | Высота стекла, px. Больше значит сильнее преломление |
+| `ior` | `1.5` | Показатель преломления. `1` отключает эффект |
+| `strength` | `1` | Множитель смещения. `0` выключает преломление, `1.5` усиливает |
+| `blur` | `0.5` | Размытие фона, px |
+| `saturation` | `1.4` | Насыщенность фона, `1` без изменений |
+| `specularAngle` | `-60` | Направление света в градусах. `0` справа, `90` снизу, `-60` справа сверху |
+| `specularOpacity` | `0.6` | Яркость блика, 0..1 |
+| `specularWidth` | `3` | Толщина блика, px |
+| `edgeShadowOpacity` | `0` | Сила тонкого контура и мягкой внутренней тени по краю, 0..1. `0` выключает. Для светлого фона 0.15–0.3 |
+| `edgeShadowWidth` | `8` | Ширина мягкой внутренней тени, px. Число или токен. Сам контур всегда около 1.4 px |
+| `outerShadowOpacity` | `0.38` | Прозрачность тени вокруг панели, 0..1. Игнорируется, если задан `boxShadow` |
+| `width` | `320` | Ширина |
+| `height` | `160` | Высота |
+| `radius` | `80` | Радиус углов, px |
+| `backgroundColor` | `rgba(255,255,255,0.05)` | Цвет панели, любой CSS-цвет |
+| `boxShadow` | не задан | Полная CSS-тень. Если задана, заменяет тень из `outerShadowOpacity` |
+| `fallbackBlur` | `10` | Размытие в браузерах без поддержки SVG-фильтра |
 
 Остальные атрибуты div (`className`, `style`, `onClick`, `aria-*`) и `ref` передаются на корневой элемент.
 
 ### Светлый и тёмный вид краёв
 
-На тёмном или цветном фоне края задаёт белый блик. На светлом он почти не виден, и форму держат тёмный контур, мягкая внутренняя тень и серая заливка. Для этого есть два готовых набора:
+Готовых наборов нет, все базовые значения лежат в `GLASS_DEFAULTS` (они рассчитаны на тёмный или цветной фон). На светлом фоне белый блик почти не виден, и форму держат тёмный контур, мягкая внутренняя тень и серая заливка. Передайте нужные значения пропсами, а лучше токенами, чтобы они менялись вместе с темой (см. ниже). Ориентир для светлого фона:
 
 ```tsx
-import { GlassPanel, GLASS_PRESETS } from './glass-panel';
-
-<GlassPanel {...GLASS_PRESETS.light} />   {/* для светлого фона */}
-<GlassPanel {...GLASS_PRESETS.dark} />    {/* то же, что значения по умолчанию */}
-
-{/* Набор можно менять поверх */}
-<GlassPanel {...GLASS_PRESETS.light} edgeShadowOpacity={0.3} outerShadowOpacity={0.2} />
-```
-
-Что входит в `GLASS_PRESETS.light`: `backgroundColor: 'rgba(0, 0, 0, 0.04)'`, `specularOpacity: 1`, `specularWidth: 2`, `edgeShadowOpacity: 0.2`, `edgeShadowWidth: 9`, `outerShadowOpacity: 0.12`.
-
-Если тема переключается во время работы, выбирайте набор по теме:
-
-```tsx
-const preset = isDark ? GLASS_PRESETS.dark : GLASS_PRESETS.light;
-<GlassPanel {...preset} />;
+<GlassPanel
+  backgroundColor="rgba(0, 0, 0, 0.04)"
+  specularOpacity={1}
+  specularWidth={2}
+  edgeShadowOpacity={0.2}
+  edgeShadowWidth={9}
+  outerShadowOpacity={0.12}
+/>
 ```
 
 Контур и тень рисуются чёрным цветом, блик белым. Цвета пока не настраиваются.
@@ -116,14 +101,8 @@ const preset = isDark ? GLASS_PRESETS.dark : GLASS_PRESETS.light;
 `specularOpacity`, `edgeShadowOpacity` и `outerShadowOpacity` принимают число или строку с CSS-переменной. Токен должен раскрываться в обычное число от 0 до 1 (не в проценты):
 
 ```css
-:root {
-  --glass-outer-shadow-opacity: 0.12;
-  --glass-edge-opacity: 0.2;
-}
-[data-theme="dark"] {
-  --glass-outer-shadow-opacity: 0.5;
-  --glass-edge-opacity: 0;
-}
+:root                { --glass-outer-shadow-opacity: 0.12; --glass-edge-opacity: 0.2; }
+[data-theme='dark']  { --glass-outer-shadow-opacity: 0.5;  --glass-edge-opacity: 0; }
 ```
 
 ```tsx
@@ -132,39 +111,43 @@ const preset = isDark ? GLASS_PRESETS.dark : GLASS_PRESETS.light;
   edgeShadowOpacity="var(--glass-edge-opacity)"
   backgroundColor="var(--glass-bg)"
 />
-
-<GlassButton glass={{ outerShadowOpacity: 'var(--glass-outer-shadow-opacity)' }}>OK</GlassButton>
 ```
 
 При смене темы значения обновляются сразу, карты не пересобираются. Если нужна тень целиком из токена, передайте `boxShadow="0 14px 40px var(--shadow-color)"`, он главнее `outerShadowOpacity`.
 
+#### Ширина внутренней тени из токена
+
+`edgeShadowWidth` тоже принимает токен. В отличие от прозрачностей, ширина запекается в карту, поэтому при смене значения карта пересобирается (один раз на смену темы). Токен может хранить число (`8`) или длину (`8px`, `0.5rem`), работает и `calc()`:
+
+```css
+:root               { --glass-edge-width: 9px; }
+[data-theme='dark'] { --glass-edge-width: 6px; }
+```
+
+```tsx
+<GlassPanel edgeShadowWidth="var(--glass-edge-width)" />
+<GlassPanel edgeShadowWidth="calc(var(--glass-edge-width) * 2)" />
+```
+
+Компонент перечитывает токен при изменении атрибутов (`class`, `style`, `data-*`) у `<html>` или `<body>` и при смене системной цветовой схемы. Поэтому объявляйте токен на `:root` или `body`: значение, заданное на предке панели и меняющееся отдельно, не отслеживается. Если токен не раскрылся, берётся `8`.
+
 ### Рецепты
 
 ```tsx
-{
-  /* Тёмное синее стекло */
-}
-<GlassPanel backgroundColor="rgba(10, 40, 70, 0.35)" />;
+{/* Тёмное синее стекло */}
+<GlassPanel backgroundColor="rgba(10, 40, 70, 0.35)" />
 
-{
-  /* Сильное линзовое преломление */
-}
-<GlassPanel ior={1.8} glassHeight={90} bezel={46} />;
+{/* Сильное линзовое преломление */}
+<GlassPanel ior={1.8} glassHeight={90} bezel={46} />
 
-{
-  /* Тонкая кромка, лёгкий эффект */
-}
-<GlassPanel bezel={14} glassHeight={24} strength={0.7} />;
+{/* Тонкая кромка, лёгкий эффект */}
+<GlassPanel bezel={14} glassHeight={24} strength={0.7} />
 
-{
-  /* Блик слева снизу, ярче */
-}
-<GlassPanel specularAngle={150} specularOpacity={0.9} />;
+{/* Блик слева снизу, ярче */}
+<GlassPanel specularAngle={150} specularOpacity={0.9} />
 
-{
-  /* Круглая кнопка */
-}
-<GlassPanel width={64} height={64} radius={32} bezel={20} glassHeight={30} />;
+{/* Круглая кнопка */}
+<GlassPanel width={64} height={64} radius={32} bezel={20} glassHeight={30} />
 ```
 
 ### Что лучше не делать
@@ -173,22 +156,7 @@ const preset = isDark ? GLASS_PRESETS.dark : GLASS_PRESETS.light;
 - **Не берите профиль `concave`** на краях страницы. Он выталкивает лучи за границу панели, где фона нет, и края выглядят обрезанными. `lip` подходит для маленьких элементов вроде переключателя.
 - **Не ставьте десятки больших панелей на одну страницу.** У каждой панели свои карты. Для кнопок, полей и нескольких карточек это нормально.
 
-### Своя кнопка или поле на основе GlassPanel
-
-Если нужна другая разметка, соберите её сами. Внутрь панели кладётся любой элемент, который занимает всю её площадь:
-
-```tsx
-<GlassPanel width="auto" height={44} radius={22} bezel={14} glassHeight={22}>
-  <a
-    href="/docs"
-    style={{ padding: "0 20px", color: "#fff", textDecoration: "none" }}
-  >
-    Документация
-  </a>
-</GlassPanel>
-```
-
-## 4. Частые вопросы
+## 3. Частые вопросы
 
 **Эффекта не видно.** Проверьте, что за панелью есть неоднородный фон и что у родителей панели нет `opacity`, `filter` или `mask`. Откройте страницу именно в Chrome.
 
@@ -197,3 +165,5 @@ const preset = isDark ? GLASS_PRESETS.dark : GLASS_PRESETS.light;
 **Нужно менять параметры на лету.** Это можно делать через состояние React: карты пересобираются при каждом изменении, быстро для кнопок и небольших панелей. Для слайдеров на больших панелях лучше обновлять не чаще одного раза за кадр.
 
 **Серверный рендер (Next.js и т. п.).** На сервере и при первом рендере панель показывает обычное размытие. Преломление включается после монтирования в браузере, ошибок гидратации нет. Так как компонент использует хуки, в Next.js App Router добавьте `'use client'` в начало файла `GlassPanel.tsx`.
+
+**Что изменилось по сравнению с прошлой версией.** Удалены `GlassButton`, `GlassInput` и `GLASS_PRESETS`: базовые настройки есть только в `GLASS_DEFAULTS`. `edgeShadowWidth` теперь принимает токен. Комментарии в `GlassPanel.tsx` и `liquidGlass.ts` написаны на русском и английском.

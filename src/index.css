@@ -58,7 +58,7 @@
     --glass-bg: rgba(255, 255, 255, 0.07);
     --edge-shadow-opacity: 0;
     --edge-shadow-width: 0;
-    --glass-outer-shadow-opacity: 0;
+    --outer-shadow-opacity: 0;
   }
 }
 
