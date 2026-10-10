@@ -148,7 +148,7 @@ export const GLASS_DEFAULTS = {
   specularOpacity: 0.45,
   specularWidth: 2,
   edgeShadowOpacity: "var(--edge-shadow-opacity)",
-  edgeShadowWidth: "var(--edge-shadow-width)",
+  edgeShadowWidth: 0,
   outerShadowOpacity: "var(--outer-shadow-opacity)",
   width: 320,
   height: 160,
