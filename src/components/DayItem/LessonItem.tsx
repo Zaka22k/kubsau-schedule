@@ -1,49 +1,59 @@
-import { type Lesson } from "@types";
+import { type Lesson, type LessonState } from "@types";
+import { EXTERNAL_ROOM_LINKS } from "@consts";
 import styles from "./LessonItem.module.css";
 
 interface LessonItemProps {
   lesson: Lesson;
-  isToday?: boolean;
+  state: LessonState;
 }
 
-const LessonItem = ({ lesson, isToday }: LessonItemProps) => {
+const cx = (...names: (string | false | undefined)[]) =>
+  names.filter(Boolean).join(" ");
+
+const LessonItem = ({ lesson, state }: LessonItemProps) => {
+  const isNow = state === "now";
+  const hasRooms = lesson.rooms.length > 0;
+  const links = hasRooms ? lesson.rooms : lesson.groups;
+  const linkType = hasRooms ? 3 : 1;
+
   return (
-    <tr
-      className={`${styles.lessonContainer} ${lesson?.isNow && isToday && styles.now}`}
-    >
-      <td
-        className={`${styles.times} ${lesson?.isNow && isToday && styles.now}`}
-      >
+    <tr className={cx(styles.lessonContainer, isNow && styles.now)}>
+      <td className={cx(styles.times, isNow && styles.now)}>
         {lesson.startTime}
         <br />
         {lesson.endTime}
       </td>
       <td
-        className={`${styles.infoContainer} ${lesson?.isLection && styles.lection}`}
+        className={cx(styles.infoContainer, lesson.isLection && styles.lection)}
       >
-        <div
-          className={`${styles.discipline} ${lesson?.isNow && isToday && styles.now}`}
-        >
-          {lesson.discipline} {lesson?.isLection && "| Лекция"}
+        <div className={cx(styles.discipline, isNow && styles.now)}>
+          {lesson.discipline} {lesson.isLection && "| Лекция"}
         </div>
-        <div
-          className={`${styles.teachers} ${lesson?.isNow && isToday && styles.now}`}
-        >
+        <div className={cx(styles.teachers, isNow && styles.now)}>
           {lesson.teachers.join(", ")}
         </div>
       </td>
       <td className={styles.whoWhere}>
-        {(lesson.rooms.length > 0 ? lesson.rooms : lesson.groups).map(
-          (item: string) => (
+        {links.map((item: string) => {
+          const externalUrl = hasRooms ? EXTERNAL_ROOM_LINKS[item] : undefined;
+          const href =
+            externalUrl ??
+            `./?type=${linkType}&value=${encodeURIComponent(item.replace(/\/\d+$/, ""))}`;
+
+          return (
             <a
               key={item}
-              className={`${styles.link} ${lesson.isNow && isToday && styles.now}`}
-              href={`./?type=${lesson.rooms.length > 0 ? 3 : 1}&value=${item.replace(/\/\d+$/, "")}`}
+              className={cx(styles.link, isNow && styles.now)}
+              href={href}
+              {...(externalUrl && {
+                target: "_blank",
+                rel: "noopener noreferrer",
+              })}
             >
               {item}
             </a>
-          ),
-        )}
+          );
+        })}
       </td>
     </tr>
   );

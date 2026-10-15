@@ -90,9 +90,9 @@ const SearchField = ({
             height: "var(--height)",
             width: "100%",
             minWidth: 0,
-            borderRadius: "var(--circular-radius)",
             display: "flex",
             alignItems: "center",
+            backgroundColor: "var(--glass-bg)",
           }}
         >
           <svg

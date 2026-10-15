@@ -78,7 +78,7 @@ export default defineConfig({
       "@components": fileURLToPath(
         new URL("./src/components", import.meta.url),
       ),
-      "@tests": fileURLToPath(new URL("./src/tests", import.meta.url)),
+      "@consts": fileURLToPath(new URL("./src/consts", import.meta.url)),
       "@utils": fileURLToPath(new URL("./src/utils", import.meta.url)),
       "@types": fileURLToPath(new URL("./src/types", import.meta.url)),
     },

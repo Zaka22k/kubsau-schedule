@@ -115,11 +115,7 @@ export interface GlassOptions {
    * Радиус углов в px. Значение больше половины короткой стороны даёт «таблетку» или круг.
    */
   radius?: number;
-  /**
-   * Tint of the panel: any CSS colour or token, for example 'rgba(255, 255, 255, 0.08)'.
-   * Цвет заливки панели: любой CSS-цвет или токен, например 'rgba(255, 255, 255, 0.08)'.
-   */
-  backgroundColor?: string;
+
   /**
    * Full CSS box-shadow of the panel. When set, it replaces the shadow made by `outerShadowOpacity`.
    * Полное значение CSS box-shadow. Если задано, заменяет тень, которую строит `outerShadowOpacity`.
@@ -130,6 +126,15 @@ export interface GlassOptions {
    * Размытие в px там, где SVG-фильтр в backdrop-filter не поддерживается (всё, кроме Chromium).
    */
   fallbackBlur?: number;
+  /**
+   * Chromatic dispersion 0..1: red, green and blue are refracted with different strength
+   * (red by 1 - d, green by 1, blue by 1 + d), which gives colour fringes at the edge.
+   * 0 turns it off and uses a single displacement pass instead of three.
+   * Хроматическая дисперсия 0..1: красный, зелёный и синий преломляются с разной силой
+   * (красный на 1 - d, зелёный на 1, синий на 1 + d), из-за чего на краю появляется цветная кайма.
+   * 0 отключает её и использует один проход смещения вместо трёх.
+   */
+  dispersion?: number;
 }
 
 /**
@@ -144,7 +149,7 @@ export const GLASS_DEFAULTS = {
   strength: 1,
   blur: 1,
   saturation: 1.4,
-  specularAngle: -90,
+  specularAngle: -110,
   specularOpacity: 0.45,
   specularWidth: 2,
   edgeShadowOpacity: "var(--edge-shadow-opacity)",
@@ -152,9 +157,9 @@ export const GLASS_DEFAULTS = {
   outerShadowOpacity: "var(--outer-shadow-opacity)",
   width: 320,
   height: 160,
-  radius: 80,
-  backgroundColor: "var(--glass-bg)",
+  radius: 9999,
   fallbackBlur: 24,
+  dispersion: 0,
 } as const satisfies Required<Omit<GlassOptions, "boxShadow">>;
 
 /**
@@ -275,7 +280,10 @@ function useCssNumber(
  */
 function supportsSvgBackdropFilter(): boolean {
   if (typeof navigator === "undefined") return false;
-  return /Chrome\//.test(navigator.userAgent);
+  const ua = navigator.userAgent;
+  // На iOS все браузеры используют движок WebKit, где url(#filter) в backdrop-filter не работает
+  if (/CriOS|FxiOS|EdgiOS|OPiOS|iPhone|iPad|iPod/.test(ua)) return false;
+  return /Chrome\/|Chromium\/|Edg\//.test(ua);
 }
 
 /**
@@ -341,9 +349,9 @@ export const GlassPanel = forwardRef<HTMLDivElement, GlassPanelProps>(
       width = GLASS_DEFAULTS.width,
       height = GLASS_DEFAULTS.height,
       radius = GLASS_DEFAULTS.radius,
-      backgroundColor = GLASS_DEFAULTS.backgroundColor,
       boxShadow,
       fallbackBlur = GLASS_DEFAULTS.fallbackBlur,
+      dispersion = GLASS_DEFAULTS.dispersion,
       style,
       children,
       ...rest
@@ -439,6 +447,7 @@ export const GlassPanel = forwardRef<HTMLDivElement, GlassPanelProps>(
         glassHeight,
         ior,
         strength,
+        dispersion,
         profile,
         blur,
         saturation,
@@ -452,6 +461,7 @@ export const GlassPanel = forwardRef<HTMLDivElement, GlassPanelProps>(
       glassHeight,
       ior,
       strength,
+      dispersion,
       profile,
       blur,
       saturation,
@@ -481,7 +491,6 @@ export const GlassPanel = forwardRef<HTMLDivElement, GlassPanelProps>(
       width,
       height,
       borderRadius: radius,
-      background: backgroundColor,
       boxShadow: boxShadow ?? outerShadow(outerShadowOpacity),
       backdropFilter: backdrop,
       WebkitBackdropFilter: backdrop,
@@ -522,14 +531,67 @@ export const GlassPanel = forwardRef<HTMLDivElement, GlassPanelProps>(
                 preserveAspectRatio="none"
                 result="map"
               />
-              <feDisplacementMap
-                in="blur"
-                in2="map"
-                scale={maps.scale}
-                xChannelSelector="R"
-                yChannelSelector="G"
-                result="disp"
-              />
+              {dispersion > 0 ? (
+                <>
+                  {/* Красный канал — преломляется слабее */}
+                  <feDisplacementMap
+                    in="blur"
+                    in2="map"
+                    scale={maps.scale * (1 - dispersion)}
+                    xChannelSelector="R"
+                    yChannelSelector="G"
+                    result="dispR"
+                  />
+                  <feColorMatrix
+                    in="dispR"
+                    type="matrix"
+                    values="1 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0"
+                    result="chR"
+                  />
+                  {/* Зелёный канал — базовое преломление */}
+                  <feDisplacementMap
+                    in="blur"
+                    in2="map"
+                    scale={maps.scale}
+                    xChannelSelector="R"
+                    yChannelSelector="G"
+                    result="dispG"
+                  />
+                  <feColorMatrix
+                    in="dispG"
+                    type="matrix"
+                    values="0 0 0 0 0  0 1 0 0 0  0 0 0 0 0  0 0 0 1 0"
+                    result="chG"
+                  />
+                  {/* Синий канал — преломляется сильнее */}
+                  <feDisplacementMap
+                    in="blur"
+                    in2="map"
+                    scale={maps.scale * (1 + dispersion)}
+                    xChannelSelector="R"
+                    yChannelSelector="G"
+                    result="dispB"
+                  />
+                  <feColorMatrix
+                    in="dispB"
+                    type="matrix"
+                    values="0 0 0 0 0  0 0 0 0 0  0 0 1 0 0  0 0 0 1 0"
+                    result="chB"
+                  />
+                  {/* Собираем R + G + B через screen-смешивание */}
+                  <feBlend in="chR" in2="chG" mode="screen" result="rg" />
+                  <feBlend in="rg" in2="chB" mode="screen" result="disp" />
+                </>
+              ) : (
+                <feDisplacementMap
+                  in="blur"
+                  in2="map"
+                  scale={maps.scale}
+                  xChannelSelector="R"
+                  yChannelSelector="G"
+                  result="disp"
+                />
+              )}
               <feColorMatrix
                 in="disp"
                 type="saturate"
@@ -538,6 +600,7 @@ export const GlassPanel = forwardRef<HTMLDivElement, GlassPanelProps>(
             </filter>
           </svg>
         )}
+
         {/* Edge highlight layer. / Слой блика на краю. */}
         {maps && isVisible(specularOpacity) && (
           <div

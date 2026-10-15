@@ -12,7 +12,7 @@
  * Bezel cross-section: squircle and circle are convex, concave is a dish, lip is a convex edge with a dip.
  * Сечение кромки: squircle и circle выпуклые, concave вогнутая, lip — выпуклый край со впадиной.
  */
-export type GlassProfile = 'squircle' | 'circle' | 'concave' | 'lip';
+export type GlassProfile = "squircle" | "circle" | "concave" | "lip";
 
 /**
  * Number of samples along the bezel. 128 matches the 8-bit resolution of the displacement map.
@@ -110,7 +110,9 @@ function lookup(table: RefractionTable, x: number): number {
   const i = Math.floor(p);
   const j = Math.min(SAMPLES - 1, i + 1);
   const k = p - i;
-  return (table.displacement[i] * (1 - k) + table.displacement[j] * k) / table.maxAbs;
+  return (
+    (table.displacement[i] * (1 - k) + table.displacement[j] * k) / table.maxAbs
+  );
 }
 
 /**
@@ -140,6 +142,9 @@ interface FillOptions {
  *  - specData: белый блик по контуру, свет падает под углом `specularAngle`,
  *  - shadeData: чёрная тень по краю, тонкий контур плюс мягкая внутренняя тень.
  * Оба наложения хранят альфу на полной силе, непрозрачность применяет вызывающий код.
+ *
+ * Optimisation: pixels deeper than the active zone (bezel, rim, shade) stay neutral and are skipped.
+ * Оптимизация: пиксели глубже активной зоны (кромка, блик, тень) остаются нейтральными и пропускаются.
  */
 function fillMaps(
   o: FillOptions,
@@ -158,38 +163,40 @@ function fillMaps(
   const lx = Math.cos(a);
   const ly = Math.sin(a);
 
+  // Максимальная глубина от края, где вообще есть преломление, блик или тень.
+  // Все пиксели глубже этого порога — полностью плоский и прозрачный центр.
+  const activeDepth = Math.max(B, rimW, shadeW, o.outlineWidth);
+
+  // Мгновенно заполняем карту смещений нейтральным цветом rgba(128, 128, 128, 255) через 32-битное представление
+  // (0xFF808080 в little-endian памяти соответствует R=128, G=128, B=128, A=255).
+  // Буферы specData и shadeData уже заполнены нулями при создании ImageData.
+  new Uint32Array(mapData.buffer).fill(0xff808080);
+
   for (let y = 0; y < H; y++) {
+    const py = y + 0.5 - cy;
+    const qy = Math.abs(py) - hy;
+
     for (let x = 0; x < W; x++) {
-      const i = (y * W + x) * 4;
       const px = x + 0.5 - cx;
-      const py = y + 0.5 - cy;
       const qx = Math.abs(px) - hx;
-      const qy = Math.abs(py) - hy;
+
+      // Быстрое отсечение плоского прямоугольника внутри панели без вызова Math.hypot
+      if (qx < -activeDepth && qy < -activeDepth) continue;
+
       const ox = Math.max(qx, 0);
       const oy = Math.max(qy, 0);
-      const len = Math.hypot(ox, oy);
-      // Signed distance to the rounded rectangle (negative inside).
+      const len = ox > 0 && oy > 0 ? Math.hypot(ox, oy) : ox + oy;
       // Расстояние со знаком до скруглённого прямоугольника (внутри отрицательное).
       const sd = len + Math.min(Math.max(qx, qy), 0) - R;
 
-      mapData[i] = 128;
-      mapData[i + 1] = 128;
-      mapData[i + 2] = 128;
-      mapData[i + 3] = 255;
-      specData[i] = 255;
-      specData[i + 1] = 255;
-      specData[i + 2] = 255;
-      specData[i + 3] = 0;
-      shadeData[i] = 0;
-      shadeData[i + 1] = 0;
-      shadeData[i + 2] = 0;
-      shadeData[i + 3] = 0;
-      if (sd >= 0) continue; // outside the shape / вне фигуры
+      // Пиксели снаружи или глубже активной зоны кромки пропускаем
+      if (sd >= 0 || -sd >= activeDepth) continue;
 
+      const i = (y * W + x) * 4;
       const d = -sd;
       const sx = px < 0 ? -1 : 1;
       const sy = py < 0 ? -1 : 1;
-      let nx: number; // outward normal of the contour / внешняя нормаль контура
+      let nx: number; // внешняя нормаль контура
       let ny: number;
       if (qx > 0 && qy > 0 && len > 0) {
         nx = (sx * ox) / len;
@@ -204,28 +211,34 @@ function fillMaps(
 
       if (d < B) {
         const m = lookup(table, d / B);
-        mapData[i] = Math.round(128 - nx * m * 127); // inward = -normal / внутрь = минус нормаль
+        mapData[i] = Math.round(128 - nx * m * 127);
         mapData[i + 1] = Math.round(128 - ny * m * 127);
       }
 
-      // Anti-aliasing at the outer edge: fades in over the first pixel.
-      // Сглаживание на внешнем краю: нарастает на первом пикселе.
       const edgeAA = Math.min(1, d);
 
-      // Specular rim: brighter on the lit side, half as bright on the opposite side.
-      // Блик: ярче со стороны света, вдвое слабее с противоположной.
+      // Блик: записываем RGB=255 только для активных пикселей края
       const c = nx * lx + ny * ly;
       const lit = Math.max(c, 0) + 0.5 * Math.max(-c, 0);
       const t = Math.max(0, 1 - d / rimW);
       const rim = t * t * (3 - 2 * t);
       const wide = 0.18 * Math.pow(Math.max(0, 1 - d / B), 2);
-      specData[i + 3] = Math.round(255 * Math.min(1, lit * Math.min(1, rim + wide) * edgeAA));
+      const specAlpha = Math.round(
+        255 * Math.min(1, lit * Math.min(1, rim + wide) * edgeAA),
+      );
+      if (specAlpha > 0) {
+        specData[i] = 255;
+        specData[i + 1] = 255;
+        specData[i + 2] = 255;
+        specData[i + 3] = specAlpha;
+      }
 
-      // Edge shade: uniform thin outline plus a soft inner shadow of width `shadeW`.
-      // Тень по краю: равномерный тонкий контур плюс мягкая внутренняя тень шириной `shadeW`.
+      // Тень по краю (RGB уже равен 0)
       const outline = Math.max(0, 1 - d / o.outlineWidth);
       const soft = Math.pow(Math.max(0, 1 - d / shadeW), 2);
-      shadeData[i + 3] = Math.round(255 * Math.min(1, outline + 0.4 * soft) * edgeAA);
+      shadeData[i + 3] = Math.round(
+        255 * Math.min(1, outline + 0.4 * soft) * edgeAA,
+      );
     }
   }
 }
@@ -282,7 +295,7 @@ export interface GlassMaps {
  * Строит карты на канвасе. Возвращает null на сервере или когда канвас недоступен.
  */
 export function createGlassMaps(o: GlassMapOptions): GlassMaps | null {
-  if (typeof document === 'undefined') return null;
+  if (typeof document === "undefined") return null;
   const k = Math.max(1, o.pixelRatio ?? 1);
   const W = Math.round(o.width * k);
   const H = Math.round(o.height * k);
@@ -299,7 +312,7 @@ export function createGlassMaps(o: GlassMapOptions): GlassMaps | null {
   // Three canvases: displacement map, white rim, black edge shade.
   // Три канваса: карта смещений, белый блик, чёрная тень по краю.
   const makeCanvas = () => {
-    const c = document.createElement('canvas');
+    const c = document.createElement("canvas");
     c.width = W;
     c.height = H;
     return c;
@@ -307,9 +320,9 @@ export function createGlassMaps(o: GlassMapOptions): GlassMaps | null {
   const mapCanvas = makeCanvas();
   const specCanvas = makeCanvas();
   const shadeCanvas = makeCanvas();
-  const mapCtx = mapCanvas.getContext('2d');
-  const specCtx = specCanvas.getContext('2d');
-  const shadeCtx = shadeCanvas.getContext('2d');
+  const mapCtx = mapCanvas.getContext("2d");
+  const specCtx = specCanvas.getContext("2d");
+  const shadeCtx = shadeCanvas.getContext("2d");
   if (!mapCtx || !specCtx || !shadeCtx) return null;
 
   const mapImg = mapCtx.createImageData(W, H);
@@ -336,9 +349,10 @@ export function createGlassMaps(o: GlassMapOptions): GlassMaps | null {
   shadeCtx.putImageData(shadeImg, 0, 0);
 
   return {
-    displacementUrl: o.refraction === false ? '' : mapCanvas.toDataURL('image/png'),
-    specularUrl: specCanvas.toDataURL('image/png'),
-    edgeShadowUrl: shadeCanvas.toDataURL('image/png'),
+    displacementUrl:
+      o.refraction === false ? "" : mapCanvas.toDataURL("image/png"),
+    specularUrl: specCanvas.toDataURL("image/png"),
+    edgeShadowUrl: shadeCanvas.toDataURL("image/png"),
     // Per the SVG spec the offset is scale * (C - 0.5), so a 0..255 channel spans +-scale/2.
     scale: ((table.maxAbs * 255) / 127) * o.strength,
     maxDisplacement: table.maxAbs,

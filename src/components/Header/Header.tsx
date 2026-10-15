@@ -91,7 +91,7 @@ const Header = ({ activeWeek, weeksOrder = ["1", "2"] }: HeaderProps) => {
           aria-hidden={!showPanel}
         >
           <GlassPanel
-            style={{ padding: "6px 16px" }}
+            style={{ padding: "6px 16px", backgroundColor: "var(--glass-bg)" }}
             width="max-content"
             height="max-content"
           >

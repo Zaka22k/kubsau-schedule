@@ -2,7 +2,12 @@ import { type Schedule, type Suggestion } from "@types";
 import axios from "axios";
 import { useState, useRef, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
-import { getType, parseSchedule } from "@utils";
+import { getType, parseSchedule, useNow, getCurrentWeek } from "@utils";
+
+interface RawSuggestion {
+  data: string;
+  value: string;
+}
 
 export function useApp() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -20,26 +25,27 @@ export function useApp() {
     searchParams.get("type") && searchParams.get("value") ? 1 : 0,
   );
 
-  const requestIdRef = useRef(0);
+  const now = useNow();
+  const currentWeek = getCurrentWeek(schedule, now);
+
+  const abortRef = useRef<AbortController | null>(null);
   const lastRequestRef = useRef<{ type: string; value: string } | null>(null);
 
   const loadScheduleData = async (type: string, value: string) => {
     lastRequestRef.current = { type, value };
-    const requestId = ++requestIdRef.current;
+
+    abortRef.current?.abort();
+    const controller = (abortRef.current = new AbortController());
     setParsing(1);
 
     try {
-      const result = await parseSchedule(type, value);
-      if (requestId !== requestIdRef.current) return;
-
+      const result = await parseSchedule(type, value, controller.signal);
       setSchedule(result);
       setParsing(0);
     } catch (error) {
-      if (requestId !== requestIdRef.current) return;
+      if (axios.isCancel(error)) return;
 
-      if (error instanceof Error) {
-        console.error(`Ошибка загрузки расписания: ${error.message}`);
-      }
+      console.error("Ошибка загрузки расписания:", error);
       setSchedule(null);
       setParsing(-1);
     }
@@ -57,6 +63,7 @@ export function useApp() {
     if (urlType && urlValue) {
       loadScheduleData(urlType, urlValue);
     }
+    return () => abortRef.current?.abort();
   }, []);
 
   useEffect(() => {
@@ -74,7 +81,7 @@ export function useApp() {
 
     const timer = setTimeout(async () => {
       try {
-        const { data } = await axios.get(
+        const { data } = await axios.get<{ suggestions?: RawSuggestion[] }>(
           `${import.meta.env.VITE_SUGGESTIONS_URL}/get.php`,
           {
             params: { query, type_schedule: type },
@@ -83,9 +90,9 @@ export function useApp() {
         );
 
         setSuggestions(
-          data?.suggestions?.map((suggestion: any) => ({
-            id: suggestion.data,
-            value: suggestion.value,
+          data?.suggestions?.map((s) => ({
+            id: s.data,
+            value: s.value,
             type,
           })) ?? [],
         );
@@ -113,12 +120,10 @@ export function useApp() {
 
     if (!value || !type) return;
 
-    setSearchParams(
-      { type: type, value: value.toLowerCase() },
-      { replace: true },
-    );
+    const normalized = value.toLowerCase();
+    setSearchParams({ type, value: normalized }, { replace: true });
 
-    await loadScheduleData(type, value.toLowerCase());
+    await loadScheduleData(type, normalized);
   };
 
   return {
@@ -130,6 +135,8 @@ export function useApp() {
     parsing,
     handleSelect,
     retry,
+    now,
+    currentWeek,
   };
 }
 

@@ -6,17 +6,16 @@
     "module": "esnext",
     "types": ["vite/client"],
     "skipLibCheck": true,
-    
+
     "paths": {
       "@/*": ["./src/*"],
       "@app": ["./src/app/index.ts"],
       "@components": ["./src/components/index.ts"],
-      "@hooks":["./src/hooks/index.ts"],
-      "@tests/*": ["./src/tests/*"],
       "@utils/*": ["./src/utils/*"],
       "@utils": ["./src/utils/index.ts", "./src/utils/index.tsx"],
       "@types/*": ["./src/types/*"],
-      "@types": ["./src/types/index.ts"]
+      "@types": ["./src/types/index.ts"],
+      "@consts": ["./src/consts/index.ts"]
     },
 
     /* Bundler mode */

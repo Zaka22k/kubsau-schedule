@@ -1,16 +1,18 @@
 import { useRef, useEffect, type CSSProperties } from "react";
-import { type Day, type Lesson } from "@types";
+import { type Day, type Lesson, type Now } from "@types";
+import { getLessonState } from "@utils";
 import LessonItem from "./LessonItem";
 import styles from "./DayItem.module.css";
 
 interface DayItemProps {
   day?: Day;
+  now: Now;
   index?: number;
 }
 
-const DayItem = ({ day, index = 0 }: DayItemProps) => {
+const DayItem = ({ day, now, index = 0 }: DayItemProps) => {
   const dayRef = useRef<HTMLTableElement>(null);
-  const isCurrent = day?.isToday;
+  const isCurrent = day?.date === now.isoDate;
 
   useEffect(() => {
     const currentDayElement = dayRef.current;
@@ -36,12 +38,16 @@ const DayItem = ({ day, index = 0 }: DayItemProps) => {
       <thead>
         <tr className={styles.header}>
           <th className={styles.weekday}>{day?.weekday}</th>
-          <th className={styles.date}>{day?.date}</th>
+          <th className={styles.date}>{day?.dateLabel}</th>
         </tr>
       </thead>
       <tbody className={styles.body}>
-        {day?.lessons.map((lesson: Lesson, index: number) => (
-          <LessonItem key={index} lesson={lesson} isToday={day.isToday} />
+        {day?.lessons.map((lesson: Lesson) => (
+          <LessonItem
+            key={lesson.number}
+            lesson={lesson}
+            state={getLessonState(day, lesson, now)}
+          />
         ))}
       </tbody>
     </table>

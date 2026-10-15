@@ -53,8 +53,10 @@ const App = () => {
     parsing,
     handleSelect,
     retry,
+    now,
+    currentWeek,
   } = useApp();
-  const weeksArray = schedule?.currentWeek === 1 ? [1, 2] : [2, 1];
+  const weeksArray = currentWeek === 1 ? [1, 2] : [2, 1];
 
   const week1Ref = useRef<HTMLDivElement>(null);
   const week2Ref = useRef<HTMLDivElement>(null);
@@ -62,10 +64,10 @@ const App = () => {
   const [activeWeek, setActiveWeek] = useState<string | null>("1");
 
   useEffect(() => {
-    if (schedule?.currentWeek) {
-      setActiveWeek(String(schedule.currentWeek));
+    if (currentWeek) {
+      setActiveWeek(String(currentWeek));
     }
-  }, [schedule]);
+  }, [schedule, currentWeek]);
 
   useEffect(() => {
     if (parsing || !schedule) return;
@@ -109,8 +111,12 @@ const App = () => {
           description="Проверьте подключение к интернету и попробуйте ещё раз."
           action={
             <GlassPanel
-              backgroundColor="color-mix(in srgb, var(--app-accent-primary) 90%, transparent)"
-              style={{ marginTop: "8px", padding: "12px 24px" }}
+              style={{
+                marginTop: "8px",
+                padding: "12px 24px",
+                backgroundColor:
+                  "color-mix(in srgb, var(--app-accent-primary) 90%, transparent)",
+              }}
               width="max-content"
               height="max-content"
             >
@@ -168,7 +174,7 @@ const App = () => {
                 data-week={week}
                 className={styles.weekWrapper}
               >
-                <WeekSection days={schedule.weeks[week]} />
+                <WeekSection days={schedule.weeks[week]} now={now} />
               </div>
             );
           })}

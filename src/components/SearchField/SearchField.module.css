@@ -61,6 +61,7 @@
   transition:
     opacity 0.25s ease,
     transform 0.25s ease;
+  background-color: var(--glass-bg);
 }
 
 .container.focused .closeBtn {

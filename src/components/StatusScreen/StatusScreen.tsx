@@ -20,7 +20,7 @@ const StatusScreen = ({
   <div className={styles.centerContainer}>
     <div className={styles.statusCard}>
       <GlassPanel
-        style={{ width: 64, height: 64 }}
+        style={{ width: 64, height: 64, backgroundColor: "var(--glass-bg)" }}
         className={`${styles.iconWrap} ${styles[tone]}`}
       >
         {icon}
