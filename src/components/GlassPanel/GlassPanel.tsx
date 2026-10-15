@@ -149,7 +149,7 @@ export const GLASS_DEFAULTS = {
   strength: 1,
   blur: 1,
   saturation: 1.4,
-  specularAngle: -110,
+  specularAngle: -90,
   specularOpacity: 0.45,
   specularWidth: 2,
   edgeShadowOpacity: "var(--edge-shadow-opacity)",
