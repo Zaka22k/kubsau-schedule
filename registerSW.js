@@ -1,0 +1,1 @@
+if('serviceWorker' in navigator) {window.addEventListener('load', () => {navigator.serviceWorker.register('/kubsau-schedule/sw.js', { scope: '/kubsau-schedule/' })})}
