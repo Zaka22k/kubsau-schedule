@@ -18,20 +18,15 @@ const LessonItem = ({ lesson, state }: LessonItemProps) => {
 
   return (
     <tr className={cx(styles.lessonContainer, isNow && styles.now)}>
-      <td className={cx(styles.times, isNow && styles.now)}>
+      <td className={styles.times}>
         {lesson.startTime}
         <br />
         {lesson.endTime}
       </td>
-      <td
-        className={cx(styles.infoContainer, lesson.isLection && styles.lection)}
-      >
-        <div className={cx(styles.discipline, isNow && styles.now)}>
-          {lesson.discipline} {lesson.isLection && "| Лекция"}
-        </div>
-        <div className={cx(styles.teachers, isNow && styles.now)}>
-          {lesson.teachers.join(", ")}
-        </div>
+      <td className={`${lesson.isLection && styles.badge}`} />
+      <td className={styles.infoContainer}>
+        <div className={styles.discipline}>{lesson.discipline}</div>
+        <div className={styles.teachers}>{lesson.teachers.join(", ")}</div>
       </td>
       <td className={styles.whoWhere}>
         {links.map((item: string) => {
@@ -43,7 +38,7 @@ const LessonItem = ({ lesson, state }: LessonItemProps) => {
           return (
             <a
               key={item}
-              className={cx(styles.link, isNow && styles.now)}
+              className={styles.link}
               href={href}
               {...(externalUrl && {
                 target: "_blank",

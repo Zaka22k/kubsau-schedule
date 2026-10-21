@@ -6,29 +6,28 @@
 
   /* Border-radius */
   --card-radius: 16px;
-  --control-radius: 8px;
+  --control-radius: 4px;
   --circular-radius: 9999px;
 
   /* Text */
   --text-primary: rgb(255, 255, 255);
   --text-secondary: rgb(204, 204, 204);
   --text-tertiary: rgb(150, 150, 150);
-  --inverted-text-primary: rgb(0, 0, 0);
-  --inverted-text-secondary: rgb(16, 16, 16);
 
-  /* System */
+  /* App */
   --app-bg: rgb(0, 0, 0);
-  --app-accent-primary: rgb(129, 207, 140);
+  --app-accent: rgb(255, 214, 0);
 
   /* Card */
-  --card-bg-primary: rgb(28, 28, 30);
-  --card-bg-secodary: rgb(44, 44, 46);
+  --card-bg-primary: rgb(20, 20, 20);
+  --card-bg-secodary: rgb(28, 28, 28);
 
   /* Control */
-  --control-bg-secondary: rgba(28, 28, 30, 0.7);
+  --control-bg-secondary: rgb(45, 45, 45);
+  --control-bg-tertiary: rgb(28, 28, 28);
 
   /* Other */
-  --glass-bg: rgba(255, 255, 255, 0.07);
+  --glass-bg: rgba(28, 28, 28, 0.7);
   --edge-shadow-opacity: 0;
   --edge-shadow-width: 0;
   --glass-outer-shadow-opacity: 0;

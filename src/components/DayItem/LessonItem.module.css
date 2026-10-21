@@ -1,7 +1,7 @@
 .lessonContainer {
   display: flex;
   justify-content: space-between;
-  gap: 10px;
+  gap: 8px;
   align-items: center;
   background-color: var(--card-bg-primary);
   border-radius: var(--control-radius);
@@ -14,7 +14,7 @@
   }
 
   &.now {
-    background-color: var(--app-accent-primary);
+    background-color: var(--control-bg-secondary);
     border-radius: var(--card-radius);
   }
 
@@ -28,10 +28,6 @@
     color: var(--text-tertiary);
     font-variant-numeric: tabular-nums;
     font-feature-settings: "tnum";
-
-    &.now {
-      color: var(--inverted-text-primary);
-    }
   }
 
   .whoWhere {
@@ -39,12 +35,6 @@
     flex-direction: column;
     justify-content: flex-end;
     align-items: end;
-  }
-
-  .lectionMark {
-    background: var(--app-accent-primary);
-    width: 5px;
-    height: 100%;
   }
 
   .infoContainer {
@@ -55,18 +45,10 @@
     .discipline {
       font-size: var(--caption);
       font-weight: 500;
-
-      &.now {
-        color: var(--inverted-text-primary);
-      }
     }
     .teachers {
       font-size: var(--caption);
       color: var(--text-secondary);
-
-      &.now {
-        color: var(--inverted-text-secondary);
-      }
     }
   }
 }
@@ -82,12 +64,11 @@
   &:visited {
     text-decoration: none;
   }
+}
 
-  &.now {
-    color: var(--inverted-text-secondary);
-
-    &:hover {
-      color: var(--inverted-text-primary);
-    }
-  }
+.badge {
+  background: color-mix(in srgb, var(--app-accent) 100%, transparent);
+  border-radius: var(--circular-radius);
+  height: 30px;
+  width: 3px;
 }
