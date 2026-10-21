@@ -41,7 +41,7 @@
 .hintArrow {
   margin-top: 8px;
   font-size: var(--subtitle);
-  color: var(--app-accent-primary);
+  color: var(--app-green);
   animation: nudgeDown 1.5s infinite ease-in-out;
 }
 

@@ -68,7 +68,7 @@
   font-size: var(--caption);
 
   &:hover {
-    color: var(--app-accent);
+    color: var(--app-green);
     font-size: var(--body);
 
     & span {

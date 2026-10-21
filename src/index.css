@@ -16,7 +16,8 @@
 
   /* App */
   --app-bg: rgb(0, 0, 0);
-  --app-accent: rgb(255, 214, 0);
+  --app-yellow: rgb(255, 214, 0);
+  --app-green: rgb(48, 209, 88);
 
   /* Card */
   --card-bg-primary: rgb(20, 20, 20);

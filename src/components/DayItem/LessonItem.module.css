@@ -67,7 +67,7 @@
 }
 
 .badge {
-  background: color-mix(in srgb, var(--app-accent) 100%, transparent);
+  background: color-mix(in srgb, var(--app-yellow) 100%, transparent);
   border-radius: var(--circular-radius);
   height: 30px;
   width: 3px;
